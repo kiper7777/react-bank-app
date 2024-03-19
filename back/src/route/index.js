@@ -4,6 +4,7 @@ const router = express.Router()
 
 // Підключіть файли роутів
 // const test = require('./test')
+const page = require('/component/page')
 // Підключіть інші файли роутів, якщо є
 
 // Об'єднайте файли роутів за потреби
