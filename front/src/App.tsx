@@ -1,16 +1,25 @@
 import React from "react";
 import Page from "./component/page";
-import Wellcome from "./component/wellcome";
+import Welcome from "./component/welcome";
+
 
 function App() {
   return (
     <Page>
-      <div>Hello World</div>
+      <div className="welcome">
+      <div className="welcome-title">Hello!</div>;
+      <p className="welcome-description">Welcome to bank app</p>
+      <img src={welcome} className="welcome-image" alt="image"/>;
+      <div className="welcome-button">
+        <button>Sign Up</button>
+        <button>Sign Up</button>
+      </div>
+    </div>
     </Page>
 
-    <Wellcome>
-      <div>Test</div>
-    </Wellcome>
+    // <Welcome>
+    //   <div>{welcome}</div>
+    // </Welcome>
   )
   
 }
