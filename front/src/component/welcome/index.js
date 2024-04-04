@@ -1,6 +1,6 @@
+import React from "react";
 import "./index.css";
 import welcome from './component/welcome/welcome.svg';
-// import '.App.tsx';
 
 export default function Welcome({ children, className, button }) {
   return (
@@ -15,3 +15,5 @@ export default function Welcome({ children, className, button }) {
     </div>
   )
 }
+
+export default Welcome;
