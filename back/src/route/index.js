@@ -11,9 +11,17 @@ const { User } = require('../class/user')
 // router.use('/', test)
 // Використовуйте інші файли роутів, якщо є
 
-router.get('/', (req, res) => {
-  res.status(200).json('Hello World')
-})
+// router.get('/', (req, res) => {
+//   res.status(200).json('Hello World')
+// })
+
+app.get('/', (req, res) => {
+  res.send('Welcome to bank app');
+});
+
+// app.listen(PORT, () => {
+//   console.log(`Server is running on port ${PORT}`);
+
 
 // Експортуємо глобальний роутер
 module.exports = router

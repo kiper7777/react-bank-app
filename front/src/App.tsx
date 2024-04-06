@@ -1,19 +1,16 @@
-import React from "react";
-import Page from "./component/page";
-// import {Welcome} from "./component/welcome/welcome.svg";
+// src/App.js
 
+import React from 'react';
+// import './App.css';
+import StartPage from './component/StartPage'; // Import StartPage component
 
 function App() {
   return (
-    <Page>
-      <div>Hello World!</div>
-    </Page>
-
-    // <Welcome>
-    //   <div>{welcome}</div>
-    // </Welcome>
-  )
-  
+    <div className="App">
+      <StartPage />
+    </div>
+  );
 }
 
 export default App;
+
