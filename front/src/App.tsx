@@ -1,8 +1,7 @@
-// src/App.js
-
 import React from 'react';
 // import './App.css';
-import StartPage from './component/StartPage'; // Import StartPage component
+
+import StartPage from './component/StartPage'; 
 
 function App() {
   return (
