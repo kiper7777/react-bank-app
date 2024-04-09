@@ -4,7 +4,8 @@ const router = express.Router()
 
 // Підключіть файли роутів
 const { User } = require('../class/user')
-
+const {Confirm} = require('../class/confirm')
+const {Session} = require('../class/session')
 User.create({
     email: 'user@mail.com',
     password: 123,
@@ -50,5 +51,20 @@ router.post('/signup', function (req, res) {
         }
 
         const newUser = User.create({email, password})
+
+        const session = Session.create(newUser)
+
+        confirm.create(newUser.email)
+
+        return res.status(200).json({
+            message: "Користувач успішно зареєстрований",
+            session,
+        })
+    } catch (err) {
+        return res.status(400).json({
+            message: "Помилка створення користувача",
+        })
     }
 })
+
+//=================================
