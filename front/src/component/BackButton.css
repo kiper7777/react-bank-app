@@ -1,19 +1,12 @@
-/* .back-button {
-    @include s.click;
-} */
-
 .back-button {
-    /* background-color: #007bff;
-    color: white;
-    border: none; */
-    /* border-radius: 5px; */
-    padding: 10px 20px;
+    color: #000;
+    padding: 10px 8px;
+    margin: 14px;
+    margin-top: 52px;
     cursor: pointer;
-    /* width: 24px;
-    height: 24px; */
     transition: opacity 0.3s;
     &:hover {
-      color: #6a4ddc;
+      color: #2908bb;
     }
     &:active {
       opacity: 0.7; 

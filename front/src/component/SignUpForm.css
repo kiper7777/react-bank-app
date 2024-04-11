@@ -1,40 +1,61 @@
-.container {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-  }
+.page {
+  width: 394px;
+  height: 852px;
+  margin: 26px;
+  border: 1px solid #775CE5;
+  border-radius: 28px;
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
   
-  form {
-    width: 300px;
-    border: 1px solid #ccc;
-    padding: 20px;
-    border-radius: 5px;
-    background-color: #f9f9f9;
-  }
+.form {
+  padding: 20px;
+  border-radius: 5px;
+  background-color: #fff;
+  gap: 24px;
+}
+
+.form__title {
+  font-size: 24px;
+  line-height: 100%;
+  font-weight: bold;
+  color: #121212;
+}
+
+.form__subtitle {
+  font-size: 14px;
+  color: #939199;
+}
+
+.form__item {
+  align-self: start;
+  font-size: 14px;
+  color: #1D1D1F;
+}
   
-  form div {
-    margin-bottom: 10px;
-  }
+.form__label {
+  display: block;
+}
   
-  label {
-    display: block;
-    font-weight: bold;
-  }
-  
-  input[type='email'],
+  /* input[type='email'],
   input[type='password'] {
     width: calc(100% - 20px);
     padding: 8px;
     border: 1px solid #ccc;
     border-radius: 3px;
-  }
+  } */
   
-  button {
-    padding: 10px 20px;
-    background-color: #007bff;
-    color: white;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-  }
+.form__button {
+  padding: 10px 20px;
+  background-color: #775CE5;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  width: 352px;
+  cursor: pointer;
+}
   

@@ -15,9 +15,7 @@ import "./BackButton.css";
 const BackButton = ({onClick}) => {
     return (
         <div className="back-button">
-            <img 
-              src={backbutton}/> 
-              
+            <img src={backbutton} alt="Back Button"/> 
         </div>
     )
 }

@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import BackButton from './BackButton';
-// import SignUpForm from "./component/SignUpForm.css";
+import "./SignUpForm.css"
 
 const SignUpForm = () => {
 
@@ -31,19 +31,24 @@ const SignUpForm = () => {
   };
 
   return (
-    <div>
-      <BackButton onClick={handleBackButtonClick}/>
-      <h2>Sign Up</h2>
-      <form onSubmit={handleSubmit}>
-        <div>
-          <label>Email:</label>
+    <div className='page'>
+      <header>
+        <BackButton onClick={handleBackButtonClick}/>
+      </header>
+
+      <form className='form' onSubmit={handleSubmit}>
+        <h1 className='form__title'>Sign up</h1>
+        <p className='form__subtitle'>Choose a registration method</p>
+
+        <div className='form__item'>
+          <label className='form__label' type="email" name="email" placeholder='example@gmail.com'>Email:</label>
           <input type="email" value={email} onChange={handleEmailChange} />
         </div>
-        <div>
-          <label>Password:</label>
+        <div className='form__item'>
+          <label className='form__label'>Password:</label>
           <input type="password" value={password} onChange={handlePasswordChange} />
         </div>
-        <div>
+        <div className='form__button'>
           <button type="submit">Continue</button>
         </div>
       </form>
