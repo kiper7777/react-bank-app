@@ -1,6 +1,14 @@
 import React, { useState } from 'react';
+import BackButton from './BackButton';
+// import SignUpForm from "./component/SignUpForm.css";
 
 const SignUpForm = () => {
+
+  const handleBackButtonClick = () => {
+    // Handle back button click logic here
+    console.log('Back button clicked!');
+  };
+  
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
@@ -24,6 +32,7 @@ const SignUpForm = () => {
 
   return (
     <div>
+      <BackButton onClick={handleBackButtonClick}/>
       <h2>Sign Up</h2>
       <form onSubmit={handleSubmit}>
         <div>
@@ -35,7 +44,7 @@ const SignUpForm = () => {
           <input type="password" value={password} onChange={handlePasswordChange} />
         </div>
         <div>
-          <button type="submit">Sign Up</button>
+          <button type="submit">Continue</button>
         </div>
       </form>
     </div>
