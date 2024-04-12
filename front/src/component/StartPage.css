@@ -57,6 +57,7 @@
     display: grid;
     gap: 12px;
     font-size: 16px;
+    align-content: center;
     cursor: pointer;
   }
 
@@ -66,13 +67,17 @@
     background-color: #775CE5;
     color: white;
     border: none;
-    border-radius: 20px;
+    border-radius: 14px;
     width: 352px;
     height: 56px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 
     transition: opacity 0.3s;
     &:hover {
       background-color: #6a4ddc;
+      font-size: 24px;
     }
     &:active {
       opacity: 0.7; 
@@ -85,13 +90,18 @@
     background-color: #fff;
     color: #775CE5;
     border: 1px solid #775CE5;
-    border-radius: 20px;
+    border-radius: 14px;
     width: 352px;
     height: 56px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 
     transition: opacity 0.3s;
     &:hover {
-      background-color: #ced263;
+      background-color: #f1f657;
+      border: none;
+      font-size: 24px;
     }
     &:active {
       opacity: 0.7; 

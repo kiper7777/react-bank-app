@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import BackButton from './BackButton';
-import "./SignUpForm.css"
+import "./SignUpForm.css";
+
 
 const SignUpForm = () => {
 
@@ -40,17 +41,19 @@ const SignUpForm = () => {
         <h1 className='form__title'>Sign up</h1>
         <p className='form__subtitle'>Choose a registration method</p>
 
-        <div className='form__item'>
-          <label className='form__label' type="email" name="email" placeholder='example@gmail.com'>Email:</label>
-          <input type="email" value={email} onChange={handleEmailChange} />
+        <div className='field'>
+          <label className='field__label' type="email" name="email" placeholder='example@gmail.com'>Email:</label>
+          <input className='field__input' type="email" value={email} onChange={handleEmailChange} />
         </div>
-        <div className='form__item'>
-          <label className='form__label'>Password:</label>
-          <input type="password" value={password} onChange={handlePasswordChange} />
+        <div className='field'>
+          <label className='field__label'>Password:</label>
+          <input className='field__input' type="password" value={password} onChange={handlePasswordChange} />
         </div>
-        <div className='form__button'>
-          <button type="submit">Continue</button>
-        </div>
+
+        <span className='link__prefix'>Already have an account? <a className='link' href='/Sign In'>Sign In</a></span>
+        
+        <button className='form__button' type="submit">Continue</button>
+        
       </form>
     </div>
   );
