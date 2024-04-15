@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
 import BackButton from './BackButton';
-import "./SignUpForm.css";
+import "./SignInForm.css";
 
 
-const SignUpForm = () => {
+const SignInForm = () => {
 
   const handleBackButtonClick = () => {
     // Handle back button click logic here
@@ -38,8 +38,8 @@ const SignUpForm = () => {
       </header>
 
       <form className='form' onSubmit={handleSubmit}>
-        <h1 className='form__title'>Sign up</h1>
-        <p className='form__subtitle'>Choose a registration method</p>
+        <h1 className='form__title'>Sign in</h1>
+        <p className='form__subtitle'>Select login method</p>
 
         <div className='field'>
           <label className='field__label' type="email" name="email" placeholder='example@gmail.com'>Email:</label>
@@ -50,7 +50,7 @@ const SignUpForm = () => {
           <input className='field__input' type="password" value={password} onChange={handlePasswordChange} />
         </div>
 
-        <span className='link__prefix'>Already have an account? <a className='link' href='/signin'>Sign In</a></span>
+        <span className='link__prefix'>Forgot your password? <a className='link' href='/restore'>Restore</a></span>
         
         <button className='form__button' type="submit">Continue</button>
         
@@ -59,4 +59,4 @@ const SignUpForm = () => {
   );
 };
 
-export default SignUpForm;
+export default SignInForm;

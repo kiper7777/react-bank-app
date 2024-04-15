@@ -16,8 +16,8 @@ const StartPage = () => {
       <img src={welcome} alt="Bank Image" className='start-page__image'/>
         
       <div className="start-page__buttons">
-        <button className='start-page__button-purple'>Sign Up</button>
-        <button className='start-page__button-white'>Sign In</button>
+        <button className='start-page__button-purple'><a className='start-page__button-purple__link' href='/signup'>Sign Up</a></button>
+        <button className='start-page__button-white'><a className='start-page__button-white__link' href='/signin'>Sign In</a></button>
       </div>
     </div>
   );

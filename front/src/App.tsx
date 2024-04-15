@@ -3,6 +3,7 @@ import React from "react";
 
 import StartPage from "./component/StartPage";
 import SignUpForm from "./component/SignUpForm";
+import SignInForm from "./component/SignInForm";
 
 function App() {
   return (
@@ -11,8 +12,12 @@ function App() {
         <StartPage />
       </div>
 
-      <div className="container">
+      <div className="form">
         <SignUpForm />
+      </div>
+
+      <div className="form">
+        <SignInForm />
       </div>
     </div>
   );
