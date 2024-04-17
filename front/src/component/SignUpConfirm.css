@@ -1,7 +1,6 @@
 .page {
     width: 394px;
     height: 852px;
-    /* margin: 26px; */
     margin: 0 auto;
     border: 1px solid #775CE5;
     border-radius: 28px;
@@ -68,28 +67,6 @@
     border-color: #ce0e0e;
   }
   
-  .link__prefix {
-    font-size: 14px;
-    align-self: start;
-    padding: 10px;
-    padding-right: 10px;
-  }
-  
-  .link {
-    color: #775CE5;
-    text-decoration: underline;
-    cursor: pointer;
-  }
-  
-  .link:hover {
-    &:hover {
-      color: red;
-    }
-    &:active {
-      opacity: 0.7; 
-    }
-  }
-    
   .form__button {
     background-color: #775CE5;
     color: #fff;
@@ -110,3 +87,4 @@
         opacity: 0.7; 
       }
   }
+    

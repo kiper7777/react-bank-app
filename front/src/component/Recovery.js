@@ -1,8 +1,8 @@
 import React, { useState } from "react";
 import BackButton from "./BackButton";
-import "./PasswordRecoveryForm.css";
+import "./Recovery.css";
 
-const PasswordRecoveryForm = () => {
+const Recovery = () => {
     const handleBackButtonClick = () => {
         // Handle back button click logic here
         console.log('Back button clicked!');
@@ -34,16 +34,19 @@ const PasswordRecoveryForm = () => {
 
             <div className='field'>
                 <label className='field__label' type="email" name="email" placeholder='example@gmail.com'>Email:</label>
-                <input className='field__input' type="email" value={email} onChange={handleEmailChange} />
+                <input className='field__input' 
+                  type="email" 
+                  id="email" 
+                  value={email} 
+                  onChange={handleEmailChange}
+                  required 
+                />
             </div>
                 
-            {/* <span className='link__prefix'>Forgot your password? <a className='link' href='/restore'>Restore</a></span> */}
-            
             <button className='form__button' type="submit">Send code</button>
-        
         </form>
     </div>
     );
 };
 
-export default PasswordRecoveryForm;
+export default Recovery;

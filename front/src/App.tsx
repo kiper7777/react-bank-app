@@ -4,7 +4,9 @@ import React from "react";
 import StartPage from "./component/StartPage";
 import SignUpForm from "./component/SignUpForm";
 import SignInForm from "./component/SignInForm";
-import PasswordRecoveryForm from "./component/PasswordRecoveryForm";
+import Recovery from "./component/Recovery";
+import SignUpConfirm from "./component/SignUpConfirm";
+import RecoveryConfirm from "./component/RecoveryConfirm";
 
 function App() {
   return (
@@ -22,7 +24,15 @@ function App() {
       </div>
 
       <div className="form">
-        <PasswordRecoveryForm />
+        <Recovery />
+      </div>
+
+      <div className="form">
+        <SignUpConfirm />
+      </div>
+
+      <div className="form">
+        <RecoveryConfirm />
       </div>
     </div>
   );
