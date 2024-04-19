@@ -50,7 +50,7 @@
   }
   
   .field__label {
-    display: block;
+    /* display: block; */
     font-size: 14px;
     color: #1D1D1F;
     margin: 0;
