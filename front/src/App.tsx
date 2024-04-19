@@ -7,6 +7,8 @@ import SignInForm from "./component/SignInForm";
 import Recovery from "./component/Recovery";
 import SignUpConfirm from "./component/SignUpConfirm";
 import RecoveryConfirm from "./component/RecoveryConfirm";
+import SendMoney from "./component/SendMoney";
+import Settings from "./component/Settings";
 
 function App() {
   return (
@@ -33,6 +35,14 @@ function App() {
 
       <div className="form">
         <RecoveryConfirm />
+      </div>
+
+      <div className="form">
+        <SendMoney />
+      </div>
+
+      <div className="form">
+        <Settings />
       </div>
     </div>
   );
