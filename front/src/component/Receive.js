@@ -1,17 +1,20 @@
-import React, { useState } from 'react';
-import BackButton from './BackButton';
+import React, { useState } from "react";
+import BackButton from "./BackButton";
 import "./Receive.css";
-
+import stripe from "./svg/stripe.svg";
+import stripeGroup from "./svg/stripe-group.svg";
+import coinbase from "./svg/coinbase.svg";
+import coinbaseGroup from "./svg/coinbase-group.svg";
+import { click } from "@testing-library/user-event/dist/click";
 
 const Receive = () => {
-
   const handleBackButtonClick = () => {
     // Handle back button click logic here
-    console.log('Back button clicked!');
+    console.log("Back button clicked!");
   };
-  
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
+
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
 
   const handleEmailChange = (e) => {
     setEmail(e.target.value);
@@ -24,57 +27,71 @@ const Receive = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
     // Handle signup logic here (e.g., send data to backend)
-    console.log('Email:', email);
-    console.log('Password:', password);
+    console.log("Email:", email);
+    console.log("Password:", password);
     // Clear form fields
-    setEmail('');
-    setPassword('');
+    setEmail("");
+    setPassword("");
   };
 
   return (
-    <div className='page__receive'>
-      <div className='header'>
-        <BackButton onClick={handleBackButtonClick}/>
-        <h1 className='header__title'>Receive</h1>
+    <div className="page__receive">
+      <div className="header">
+        <BackButton onClick={handleBackButtonClick} />
+        <h1 className="header__title">Receive</h1>
       </div>
 
-      <form className='form__receive' onSubmit={handleSubmit}>
-                
-        <div className='field'>
-          <label className='field__label' type="text" name="amount">Receive amount</label>
-          <input className='field__input' 
-            type="number" 
-            placeholder='$500'
-            value={email} 
-            onChange={handleEmailChange} 
+      <form className="form__receive" onSubmit={handleSubmit}>
+        <div className="field">
+          <label className="field__label" type="text" name="amount">
+            Receive amount
+          </label>
+          <input
+            className="field__input"
+            type="number"
+            placeholder="$500"
+            value={email}
+            onChange={handleEmailChange}
           />
         </div>
 
-        <hr className='divider'/>
+        <hr className="divider" />
 
+        <div className="field">
+          <label className="field__label">Payment system</label>
 
+          <div className="cards">
+            <div className="card">
+              <img
+                src={stripe}
+                alt="Stripe Icon"
+                className="card__image"
+                onClick={click}
+              />
+              <span className="card__text">Stripe</span>
+              <img
+                src={stripeGroup}
+                alt="Stripe Icons"
+                className="card__group__image"
+              />
+            </div>
 
-        <div className='field'>
-          <label className='field__label'>Payment system</label>
-          <input className='field__input' 
-            type="icon" 
-            placeholder='********'
-            value={password} 
-            onChange={handlePasswordChange} 
-          />
-
-          <input className='field__input' 
-            type="icon" 
-            placeholder='********'
-            value={password} 
-            onChange={handlePasswordChange} 
-          />
+            <div className="card">
+              <img
+                src={coinbase}
+                alt="Coinbase Icon"
+                className="card__image"
+                onClick={click}
+              />
+              <span className="card__text">Coinbase</span>
+              <img
+                src={coinbaseGroup}
+                alt="Coinbase Icons"
+                className="card__group__image"
+              />
+            </div>
+          </div>
         </div>
-
-        {/* <button className='form__button-white' type="submit">Save Email</button> */}
-        {/* <button className='form__button-white' type="submit">Save Password</button> */}
-        {/* <button className='form__button-red' type="submit">Log out</button> */}
-        
       </form>
     </div>
   );
