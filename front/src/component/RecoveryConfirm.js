@@ -42,10 +42,11 @@ const RecoveryConfirm = () => {
         <p className='form__subtitle'>Write the code you received</p>
 
         <div className='field'>
-          <label className='field__label' type="code" name="code" placeholder='123456'>Code</label>
+          <label className='field__label' type="code" name="code">Code</label>
           <input className='field__input' 
             type="text" 
             id="code"
+            placeholder='123456'
             value={code} 
             onChange={handleCodeChange} 
             required
@@ -57,6 +58,7 @@ const RecoveryConfirm = () => {
           <input className='field__input' 
             type="password" 
             id="newPassword"
+            placeholder='********'
             value={newPassword} 
             onChange={handleNewPasswordChange}
             required

@@ -65,7 +65,7 @@
     margin: 0 10px;
     padding: 20px 20px;
     background-color: #775CE5;
-    color: white;
+    color: #fff;
     border: none;
     border-radius: 14px;
     width: 352px;
@@ -98,8 +98,7 @@
 
     transition: opacity 0.3s;
     &:hover {
-      background-color: #f1f657;
-      border: none;
+      background-color: #ecf162;
     }
     &:active {
       opacity: 0.7; 

@@ -33,10 +33,14 @@ const Recovery = () => {
             <p className='form__subtitle'>Choose a recovery method</p>
 
             <div className='field'>
-                <label className='field__label' type="email" name="email" placeholder='example@gmail.com'>Email:</label>
+                <label className='field__label' 
+                  type="email" 
+                  name="email" 
+                >Email</label>
                 <input className='field__input' 
                   type="email" 
                   id="email" 
+                  placeholder='example@gmail.com'
                   value={email} 
                   onChange={handleEmailChange}
                   required 

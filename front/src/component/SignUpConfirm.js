@@ -33,10 +33,11 @@ const SignUpConfirm = () => {
             <p className='form__subtitle'>Write the code you received</p>
 
             <div className='field'>
-                <label className='field__label' type="email" name="email" placeholder='123456'>Code</label>
+                <label className='field__label' type="email" name="email">Code</label>
                 <input className='field__input' 
                   type="text" 
                   id="code" 
+                  placeholder='123456'
                   value={code} 
                   onChange={handleCodeChange}
                   required 

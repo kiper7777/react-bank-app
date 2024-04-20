@@ -42,12 +42,22 @@ const SignUpForm = () => {
         <p className='form__subtitle'>Choose a registration method</p>
 
         <div className='field'>
-          <label className='field__label' type="email" name="email" placeholder='example@gmail.com'>Email:</label>
-          <input className='field__input' type="email" value={email} onChange={handleEmailChange} />
+          <label className='field__label' type="email" name="email">Email</label>
+          <input className='field__input' 
+            type="email" 
+            placeholder='example@gmail.com'
+            value={email} 
+            onChange={handleEmailChange}
+          />
         </div>
         <div className='field'>
-          <label className='field__label'>Password:</label>
-          <input className='field__input' type="password" value={password} onChange={handlePasswordChange} />
+          <label className='field__label'>Password</label>
+          <input className='field__input' 
+            type="password" 
+            placeholder='Pass2000ID'
+            value={password} 
+            onChange={handlePasswordChange}
+          />
         </div>
 
         <span className='link__prefix'>Already have an account? <a className='link' href='/signin'>Sign In</a></span>

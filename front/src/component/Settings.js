@@ -44,32 +44,52 @@ const Settings = () => {
         <div className='field'>
           <h6 className='field__title'>Change email</h6>  
           <label className='field__label' type="email" name="email">Email</label>
-          <input className='field__input' type="email" value={email} placeholder='example@gmail.com' onChange={handleEmailChange} />
+          <input className='field__input' 
+            type="email" 
+            placeholder='example@gmail.com'
+            value={email} 
+            onChange={handleEmailChange} 
+          />
         </div>
         <div className='field'>
           <label className='field__label'>Old Password</label>
-          <input className='field__input' type="password" value={password} placeholder='********' onChange={handlePasswordChange} />
+          <input className='field__input' 
+            type="password" 
+            placeholder='********'
+            value={password} 
+            onChange={handlePasswordChange} 
+          />
         </div>
 
-        <button className='form__button' type="submit">Save Email</button>
+        <button className='form__button-white' type="submit">Save Email</button>
 
         <hr className='divider'/>
 
         <div className='field'>
           <h6 className='field__title'>Change password</h6>  
           <label className='field__label' type="password" name="password">Old Password</label>
-          <input className='field__input' type="email" value={email} placeholder='example@gmail.com' onChange={handleEmailChange} />
+          <input className='field__input' 
+            type="email" 
+            placeholder='example@gmail.com'
+            value={email}  
+            onChange={handleEmailChange}
+          />
         </div>
         <div className='field'>
           <label className='field__label'>New Password</label>
-          <input className='field__input' type="password" value={password} placeholder='********' onChange={handlePasswordChange} />
+          <input className='field__input' 
+            type="password"
+            placeholder='********'
+            value={password}  
+            onChange={handlePasswordChange} 
+          />
         </div>
 
-        <button className='form__button' type="submit">Save Password</button>
+        <button className='form__button-white' type="submit">Save Password</button>
 
         <hr className='divider'/>
 
-        <button className='form__button' type="submit">Log out</button>
+        <button className='form__button-red' type="submit">Log out</button>
         
       </form>
     </div>

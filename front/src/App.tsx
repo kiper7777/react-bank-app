@@ -22,15 +22,15 @@ function App() {
       </div>
 
       <div className="form">
+        <SignUpConfirm />
+      </div>
+
+      <div className="form">
         <SignInForm />
       </div>
 
       <div className="form">
         <Recovery />
-      </div>
-
-      <div className="form">
-        <SignUpConfirm />
       </div>
 
       <div className="form">
