@@ -5,6 +5,11 @@
   border: 1px solid #775CE5;
   border-radius: 28px;
 }
+
+.header {
+  display: flex;
+  align-items: baseline;
+}
   
 .form__send {
   display: flex;
@@ -16,21 +21,16 @@
 }
 
 .form__send-title {
+  margin-right: 48px;
   font-size: 20px;
   line-height: 100%;
   font-weight: bold;
   color: #121212;
+  text-align: center;
+  flex-grow: 1;
 }
 
-/* .form__subtitle {
-  font-size: 14px;
-  color: #939199;
-} */
-
 .field__send {
-  /* align-self: start;
-  font-size: 14px;
-  color: #1D1D1F; */
   display: flex;
   flex-direction: column;
   gap: 8px;

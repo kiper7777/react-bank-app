@@ -33,13 +33,13 @@ const Send = () => {
 
   return (
     <div className='page__send'>
-      <header>
+      <header className='header'>
         <BackButton onClick={handleBackButtonClick}/>
+        <h1 className='form__send-title'>Send</h1>
       </header>
 
       <form className='form__send' onSubmit={handleSubmit}>
-        <h1 className='form__send-title'>Send</h1>
-        
+                
         <div className='field__send'>
           <label className='field__send-label' type="email" name="email">Email</label>
           <input className='field__input' 

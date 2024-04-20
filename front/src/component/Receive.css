@@ -13,10 +13,9 @@
     /* margin: 52px 92px 14px 14px; */
   }
 
-  .header__title {
+  .header__receive-title {
     margin-right: 48px;
-    font-size: 24px;
-    line-height: 100%;
+    font-size: 20px;
     font-weight: bold;
     color: #121212;
     text-align: center;
@@ -31,20 +30,17 @@
     gap: 20px;
   }
 
-  .field {
-    /* align-self: start;
-    font-size: 14px;
-    color: #1D1D1F; */
+  .field__receive {
     display: flex;
     flex-direction: column;
     gap: 8px;
     width: 352px;
   }
   
-  .field__label {
+  .field__receive-label {
     /* display: block; */
     font-size: 16px;
-    
+    font-weight: 600;
     color :#121212;
     margin: 0;
   }

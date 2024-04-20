@@ -38,12 +38,12 @@ const Receive = () => {
     <div className="page__receive">
       <div className="header">
         <BackButton onClick={handleBackButtonClick} />
-        <h1 className="header__title">Receive</h1>
+        <h1 className="header__receive-title">Receive</h1>
       </div>
 
       <form className="form__receive" onSubmit={handleSubmit}>
-        <div className="field">
-          <label className="field__label" type="text" name="amount">
+        <div className="field__receive">
+          <label className="field__receive-label" type="text" name="amount">
             Receive amount
           </label>
           <input
@@ -57,8 +57,8 @@ const Receive = () => {
 
         <hr className="divider" />
 
-        <div className="field">
-          <label className="field__label">Payment system</label>
+        <div className="field__receive">
+          <label className="field__receive-label">Payment system</label>
 
           <div className="cards">
             <div className="card">
