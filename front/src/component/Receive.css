@@ -1,14 +1,14 @@
-.page {
+.page__receive {
     width: 394px;
     height: 852px;
     margin: 10px;
     border: 1px solid #775CE5;
     border-radius: 28px;
+    background-color: #F7F7F7;
   }
 
   .header {
     display: flex;
-    /* align-items: center; */
     align-items: baseline;
     /* margin: 52px 92px 14px 14px; */
   }
@@ -18,7 +18,7 @@
     flex-direction: column;
     align-items: center;
     padding: 12px;
-    background-color: #fff;
+    /* background-color: #fff; */
     gap: 20px;
   }
 
@@ -31,13 +31,6 @@
     text-align: center;
     flex-grow: 1;
    }
-
-  .field__title {
-    font-size: 16px;
-    line-height: 100%;
-    font-weight: bold;
-    color: #121212;
-  }
   
   .field {
     /* align-self: start;
@@ -51,8 +44,9 @@
   
   .field__label {
     /* display: block; */
-    font-size: 14px;
-    color: #1D1D1F;
+    font-size: 16px;
+    font-weight: bold;
+    color :#121212;
     margin: 0;
   }
   

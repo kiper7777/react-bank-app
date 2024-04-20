@@ -32,7 +32,7 @@ const Receive = () => {
   };
 
   return (
-    <div className='page'>
+    <div className='page__receive'>
       <div className='header'>
         <BackButton onClick={handleBackButtonClick}/>
         <h1 className='header__title'>Receive</h1>
@@ -41,54 +41,39 @@ const Receive = () => {
       <form className='form__receive' onSubmit={handleSubmit}>
                 
         <div className='field'>
-          <h6 className='field__title'>Change email</h6>  
-          <label className='field__label' type="email" name="email">Receive amount</label>
+          <label className='field__label' type="text" name="amount">Receive amount</label>
           <input className='field__input' 
-            type="email" 
-            placeholder='example@gmail.com'
+            type="number" 
+            placeholder='$500'
             value={email} 
             onChange={handleEmailChange} 
           />
         </div>
+
+        <hr className='divider'/>
+
+
+
         <div className='field'>
-          <label className='field__label'>Old Password</label>
+          <label className='field__label'>Payment system</label>
           <input className='field__input' 
-            type="password" 
+            type="icon" 
+            placeholder='********'
+            value={password} 
+            onChange={handlePasswordChange} 
+          />
+
+          <input className='field__input' 
+            type="icon" 
             placeholder='********'
             value={password} 
             onChange={handlePasswordChange} 
           />
         </div>
 
-        <button className='form__button-white' type="submit">Save Email</button>
-
-        <hr className='divider'/>
-
-        <div className='field'>
-          <h6 className='field__title'>Change password</h6>  
-          <label className='field__label' type="password" name="password">Old Password</label>
-          <input className='field__input' 
-            type="email" 
-            placeholder='example@gmail.com'
-            value={email}  
-            onChange={handleEmailChange}
-          />
-        </div>
-        <div className='field'>
-          <label className='field__label'>New Password</label>
-          <input className='field__input' 
-            type="password"
-            placeholder='********'
-            value={password}  
-            onChange={handlePasswordChange} 
-          />
-        </div>
-
-        <button className='form__button-white' type="submit">Save Password</button>
-
-        <hr className='divider'/>
-
-        <button className='form__button-red' type="submit">Log out</button>
+        {/* <button className='form__button-white' type="submit">Save Email</button> */}
+        {/* <button className='form__button-white' type="submit">Save Password</button> */}
+        {/* <button className='form__button-red' type="submit">Log out</button> */}
         
       </form>
     </div>
