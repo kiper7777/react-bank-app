@@ -1,4 +1,4 @@
-.page {
+.page__settings {
     width: 394px;
     height: 852px;
     margin: 10px;
@@ -22,9 +22,9 @@
     gap: 20px;
   }
 
-  .header__title {
+  .header__settings-title {
     margin-right: 48px;
-    font-size: 24px;
+    font-size: 20px;
     line-height: 100%;
     font-weight: bold;
     color: #121212;
@@ -82,6 +82,7 @@
   .form__button-white {
     background-color: #fff;
     color: #775CE5;
+    font-size: 14px;
     border: 1px solid #775CE5;
     border-radius: 14px;
     width: 352px;
@@ -103,6 +104,7 @@
   .form__button-red {
     background-color: #fff;
     color: #F23152;
+    font-size: 14px;
     border: 1px solid #F23152;
     border-radius: 14px;
     width: 352px;

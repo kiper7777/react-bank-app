@@ -7,7 +7,7 @@ import SignInForm from "./component/SignInForm";
 import Recovery from "./component/Recovery";
 import SignUpConfirm from "./component/SignUpConfirm";
 import RecoveryConfirm from "./component/RecoveryConfirm";
-import SendMoney from "./component/SendMoney";
+import Send from "./component/Send";
 import Settings from "./component/Settings";
 import Receive from "./component/Receive";
 import Notifications from "./component/Notifications";
@@ -39,8 +39,8 @@ function App() {
         <RecoveryConfirm />
       </div>
 
-      <div className="form">
-        <SendMoney />
+      <div className="form__send">
+        <Send />
       </div>
 
       <div className="form__settings">
@@ -51,7 +51,7 @@ function App() {
         <Receive />
       </div>
 
-      <div className="form__receive">
+      <div className="form__notifications">
         <Notifications />
       </div>
     </div>

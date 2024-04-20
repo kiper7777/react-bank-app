@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
 import BackButton from './BackButton';
-import "./SendMoney.css";
+import "./Send.css";
 
 
-const SendMoney = () => {
+const Send = () => {
 
   const handleBackButtonClick = () => {
     // Handle back button click logic here
@@ -32,16 +32,16 @@ const SendMoney = () => {
   };
 
   return (
-    <div className='page'>
+    <div className='page__send'>
       <header>
         <BackButton onClick={handleBackButtonClick}/>
       </header>
 
-      <form className='form' onSubmit={handleSubmit}>
-        <h1 className='form__title'>Send</h1>
+      <form className='form__send' onSubmit={handleSubmit}>
+        <h1 className='form__send-title'>Send</h1>
         
-        <div className='field'>
-          <label className='field__label' type="email" name="email">Email</label>
+        <div className='field__send'>
+          <label className='field__send-label' type="email" name="email">Email</label>
           <input className='field__input' 
             type="email" 
             id="email"
@@ -52,8 +52,8 @@ const SendMoney = () => {
           />
         </div>
 
-        <div className='field'>
-          <label className='field__label'>Sum</label>
+        <div className='field__send'>
+          <label className='field__send-label'>Sum</label>
           <input className='field__input' 
             type="number" 
             id="sum"
@@ -64,11 +64,11 @@ const SendMoney = () => {
           />
         </div>
 
-        <button className='form__button' type="submit">Send</button>
+        <button className='form__send-button' type="submit">Send</button>
         
       </form>
     </div>
   );
 };
 
-export default SendMoney;
+export default Send;

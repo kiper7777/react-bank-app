@@ -32,10 +32,10 @@ const Settings = () => {
   };
 
   return (
-    <div className='page'>
+    <div className='page__settings'>
       <div className='header'>
         <BackButton onClick={handleBackButtonClick}/>
-        <h1 className='header__title'>Settings</h1>
+        <h1 className='header__settings-title'>Settings</h1>
       </div>
 
       <form className='form__settings' onSubmit={handleSubmit}>
@@ -50,7 +50,7 @@ const Settings = () => {
             onChange={handleEmailChange} 
           />
         </div>
-        <div className='field'>
+        <div className='field__settings'>
           <label className='field__settings-label'>Old Password</label>
           <input className='field__input' 
             type="password" 

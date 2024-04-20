@@ -1,4 +1,4 @@
-.page {
+.page__send {
   width: 394px;
   height: 852px;
   margin: 26px;
@@ -6,7 +6,7 @@
   border-radius: 28px;
 }
   
-.form {
+.form__send {
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -15,19 +15,19 @@
   gap: 24px;
 }
 
-.form__title {
-  font-size: 24px;
+.form__send-title {
+  font-size: 20px;
   line-height: 100%;
   font-weight: bold;
   color: #121212;
 }
 
-.form__subtitle {
+/* .form__subtitle {
   font-size: 14px;
   color: #939199;
-}
+} */
 
-.field {
+.field__send {
   /* align-self: start;
   font-size: 14px;
   color: #1D1D1F; */
@@ -37,7 +37,7 @@
   width: 352px;
 }
 
-.field__label {
+.field__send-label {
   /* display: block; */
   font-size: 14px;
   color: #1D1D1F;
@@ -67,9 +67,10 @@
   border-color: #ce0e0e;
 }
 
-.form__button {
+.form__send-button {
   background-color: #775CE5;
   color: #fff;
+  font-size: 16px;
   border: none;
   border-radius: 14px;
   width: 352px;
