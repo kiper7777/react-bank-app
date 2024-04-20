@@ -38,7 +38,7 @@ const Notifications = () => {
     <div className="page__notifications">
       <div className="header">
         <BackButton onClick={handleBackButtonClick} />
-        <h1 className="header__title">Notifications</h1>
+        <h1 className="header__notifications-title">Notifications</h1>
       </div>
 
       <form className="form__notifications" onSubmit={handleSubmit}>
