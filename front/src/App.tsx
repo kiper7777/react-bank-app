@@ -10,6 +10,7 @@ import RecoveryConfirm from "./component/RecoveryConfirm";
 import SendMoney from "./component/SendMoney";
 import Settings from "./component/Settings";
 import Receive from "./component/Receive";
+import Notifications from "./component/Notifications";
 
 function App() {
   return (
@@ -42,12 +43,16 @@ function App() {
         <SendMoney />
       </div>
 
-      <div className="form">
+      <div className="form__settings">
         <Settings />
       </div>
 
       <div className="form__receive">
         <Receive />
+      </div>
+
+      <div className="form__receive">
+        <Notifications />
       </div>
     </div>
   );

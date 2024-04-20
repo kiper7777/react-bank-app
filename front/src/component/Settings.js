@@ -38,11 +38,11 @@ const Settings = () => {
         <h1 className='header__title'>Settings</h1>
       </div>
 
-      <form className='form' onSubmit={handleSubmit}>
+      <form className='form__settings' onSubmit={handleSubmit}>
            
-        <div className='field'>
-          <h6 className='field__title'>Change email</h6>  
-          <label className='field__label' type="email" name="email">Email</label>
+        <div className='field__settings'>
+          <h6 className='field__settings-title'>Change email</h6>  
+          <label className='field__settings-label' type="email" name="email">Email</label>
           <input className='field__input' 
             type="email" 
             placeholder='example@gmail.com'
@@ -51,7 +51,7 @@ const Settings = () => {
           />
         </div>
         <div className='field'>
-          <label className='field__label'>Old Password</label>
+          <label className='field__settings-label'>Old Password</label>
           <input className='field__input' 
             type="password" 
             placeholder='********'
@@ -65,8 +65,8 @@ const Settings = () => {
         <hr className='divider'/>
 
         <div className='field'>
-          <h6 className='field__title'>Change password</h6>  
-          <label className='field__label' type="password" name="password">Old Password</label>
+          <h6 className='field__settings-title'>Change password</h6>  
+          <label className='field__settings-label' type="password" name="password">Old Password</label>
           <input className='field__input' 
             type="email" 
             placeholder='example@gmail.com'
@@ -75,7 +75,7 @@ const Settings = () => {
           />
         </div>
         <div className='field'>
-          <label className='field__label'>New Password</label>
+          <label className='field__settings-label'>New Password</label>
           <input className='field__input' 
             type="password"
             placeholder='********'
