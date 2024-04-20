@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
 import BackButton from './BackButton';
-import "./Settings.css";
+import "./Receive.css";
 
 
-const Settings = () => {
+const Receive = () => {
 
   const handleBackButtonClick = () => {
     // Handle back button click logic here
@@ -35,14 +35,14 @@ const Settings = () => {
     <div className='page'>
       <div className='header'>
         <BackButton onClick={handleBackButtonClick}/>
-        <h1 className='header__title'>Settings</h1>
+        <h1 className='header__title'>Receive</h1>
       </div>
 
-      <form className='form' onSubmit={handleSubmit}>
-           
+      <form className='form__receive' onSubmit={handleSubmit}>
+                
         <div className='field'>
           <h6 className='field__title'>Change email</h6>  
-          <label className='field__label' type="email" name="email">Email</label>
+          <label className='field__label' type="email" name="email">Receive amount</label>
           <input className='field__input' 
             type="email" 
             placeholder='example@gmail.com'
@@ -95,4 +95,4 @@ const Settings = () => {
   );
 };
 
-export default Settings;
+export default Receive;
