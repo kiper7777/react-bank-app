@@ -51,7 +51,7 @@ function App() {
         <Receive />
       </div>
 
-      <div className="form__notifications">
+      <div className="form">
         <Notifications />
       </div>
     </div>

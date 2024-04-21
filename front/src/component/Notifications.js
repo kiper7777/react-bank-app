@@ -1,10 +1,8 @@
 import React, { useState } from "react";
 import BackButton from "./BackButton";
-import "./Receive.css";
-import stripe from "./svg/stripe.svg";
-import stripeGroup from "./svg/stripe-group.svg";
-import coinbase from "./svg/coinbase.svg";
-import coinbaseGroup from "./svg/coinbase-group.svg";
+import "./Notifications.css";
+import announcement from "./svg/announcement.svg";
+import warning from "./svg/warning.svg";
 import { click } from "@testing-library/user-event/dist/click";
 
 const Notifications = () => {
@@ -41,39 +39,61 @@ const Notifications = () => {
         <h1 className="header__notifications-title">Notifications</h1>
       </div>
 
-      <form className="form__notifications" onSubmit={handleSubmit}>
+      <form className="form__receive" onSubmit={handleSubmit}>
     
-        <div className="field">
+        <div className="field__receive">
           
-          <div className="cards">
-            <div className="card">
+          <div className="cards__notifications">
+            <div className="card__notifications">
               <img
-                src={stripe}
-                alt="Stripe Icon"
-                className="card__image"
+                src={announcement}
+                alt="Announcement Icon"
+                className="card__notifications-image"
                 onClick={click}
               />
-              <span className="card__text">Stripe</span>
-              <img
-                src={stripeGroup}
-                alt="Stripe Icons"
-                className="card__group__image"
-              />
+              <div className="card__notifications-text">
+                <span className="card__notifications-title">New reward system</span>
+                <p className="card__notifications-text-description">10 min. ago - Announcement</p>
+              </div>
             </div>
 
-            <div className="card">
+            <div className="card__notifications">
               <img
-                src={coinbase}
-                alt="Coinbase Icon"
-                className="card__image"
+                src={warning}
+                alt="Warning Icon"
+                className="card__notifications-image"
                 onClick={click}
               />
-              <span className="card__text">Coinbase</span>
+              <div className="card__notifications-text">
+                <span className="card__notifications-title">New login</span>
+                <p className="card__notifications-text-description">20 min. ago - Warning</p>
+              </div>
+            </div>
+
+            <div className="card__notifications">
               <img
-                src={coinbaseGroup}
-                alt="Coinbase Icons"
-                className="card__group__image"
+                src={announcement}
+                alt="Announcement Icon"
+                className="card__notifications-image"
+                onClick={click}
               />
+              <div className="card__notifications-text">
+                <span className="card__notifications-title">New reward system</span>
+                <p className="card__notifications-text-description">10 min. ago - Announcement</p>
+              </div>
+            </div>
+
+            <div className="card__notifications">
+              <img
+                src={warning}
+                alt="Warning Icon"
+                className="card__notifications-image"
+                onClick={click}
+              />
+              <div className="card__notifications-text">
+                <span className="card__notifications-title">New login</span>
+                <p className="card__notifications-text-description">20 min. ago - Warning</p>
+              </div>
             </div>
           </div>
         </div>
