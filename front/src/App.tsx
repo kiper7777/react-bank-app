@@ -11,6 +11,7 @@ import Send from "./component/Send";
 import Settings from "./component/Settings";
 import Receive from "./component/Receive";
 import Notifications from "./component/Notifications";
+import Transaction from "./component/Transaction";
 
 function App() {
   return (
@@ -53,6 +54,10 @@ function App() {
 
       <div className="form">
         <Notifications />
+      </div>
+
+      <div className="form">
+        <Transaction />
       </div>
     </div>
   );

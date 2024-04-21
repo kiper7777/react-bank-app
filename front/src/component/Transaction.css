@@ -1,0 +1,109 @@
+.page__transaction {
+    width: 394px;
+    height: 852px;
+    margin: 10px;
+    border: 1px solid #775CE5;
+    border-radius: 28px;
+    background-color: #F7F7F7;
+  }
+
+  .header {
+    display: flex;
+    align-items: baseline;
+    /* margin: 52px 92px 14px 14px; */
+  }
+
+  .header__transaction-title {
+    margin-right: 48px;
+    font-size: 20px;
+    font-weight: 500;
+    color: #121212;
+    text-align: center;
+    flex-grow: 1;
+   }
+
+   .transaction__amount {
+    font-size: 38px;
+    color: #24B277;
+    font-weight: bold;
+    display: flex;
+    justify-content: center;
+    margin: 20px;
+   }
+    
+  .form__receive {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 12px;
+    gap: 20px;
+  }
+
+  .field__receive {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    width: 352px;
+  }
+  
+  .cards__notifications {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+  }
+  
+  .card__transaction {
+    display: flex;
+    flex-direction: row;
+    padding: 16px 16px;
+    gap: 16px;
+    width: 352px;
+    height: 138px;
+    /* border: 1px solid #E9E8EB; */
+    border-radius: 12px;
+    
+    background-color: #fff;
+    transition: border-color 0.3s;
+    
+    align-items: center;
+  }
+
+  .card__notifications-image {
+    width: 40px;
+    height: 40px;
+    cursor: pointer;
+
+    transition: opacity 0.3s;
+      &:hover {
+        background-color: #E9E8EB;
+      }
+      &:active {
+        opacity: 0.7; 
+      }
+  }
+
+  .card__notifications-text {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  .card__notifications-title {
+    font-size: 16px;
+    font-weight: bold;
+    color: #1D1D1F;
+  }
+
+  .card__notifications-text-description {
+    font-size: 12px;
+    color: #939199;
+  }
+
+  .card__group__image {
+    width: 160px;
+    height: 20px;
+    margin-left: auto;
+  }
+
+
+    
