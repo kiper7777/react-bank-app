@@ -45,21 +45,14 @@ const Transaction = () => {
     
         <div className="field__receive">
           
-          <div className="cards__notifications">
             <div className="card__transaction">
-              <img
-                src={announcement}
-                alt="Announcement Icon"
-                className="card__notifications-image"
-                onClick={click}
-              />
-              <div className="card__notifications-text">
-                <span className="card__notifications-title">New reward system</span>
-                <p className="card__notifications-text-description">10 min. ago - Announcement</p>
+              <div className="card__notifications__content">
+                <span className="card__notifications__content-name">Date</span>
+                <p className="card__notifications__content-name">25 May, 15:20</p>
               </div>
             </div>
 
-          </div>
+          
         </div>
       </form>
     </div>
