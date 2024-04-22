@@ -4,7 +4,7 @@ import settings from "./svg/settings.svg";
 import notifications from "./svg/notifications.svg"; 
 import { click } from "@testing-library/user-event/dist/click";
 
-const Transaction = () => {
+const Balance = () => {
   const handleSettingsClick = () => {
     // Handle back button click logic here
     console.log("Settings button clicked!");
@@ -38,13 +38,17 @@ const Transaction = () => {
 
   return (
     <div className="page__balance">
+        <div className='page__balance__background-image'></div>
         <div className="header__content">
+
             <div className="header__balance">
                 <img src={settings} alt="Settings Icon" className="header__balance-image" onClick={handleSettingsClick} />
                 <h6 className="header__balance-title">Main wallet</h6>
                 <img src={notifications} alt="Notifications Icon" className="header__balance-image" onClick={handleNotificationsClick}/>
             </div>
-            <span className="balance__amount">+$100.20</span>
+            
+            <span className="balance__amount">$ 100.20</span>
+            
         </div>
 
         <form className="form__balance" onSubmit={handleSubmit}>
@@ -74,4 +78,4 @@ const Transaction = () => {
   );
 };
 
-export default Transaction;
+export default Balance;

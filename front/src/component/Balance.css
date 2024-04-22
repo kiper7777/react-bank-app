@@ -1,28 +1,42 @@
 .page__balance {
+    position: relative;
     width: 394px;
     height: 852px;
     margin: 10px;
     border: 1px solid #775CE5;
     border-radius: 28px;
-    background-color: #F7F7F7;
+    background-color: #fff;
+  }
+
+  .page__balance__background-image {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 394px;
+    height: 202px;
+    background-image: url('./svg/balance-background.svg');
+    background-size: cover;
+    border-top-left-radius: 28px;
+    border-top-right-radius: 28px;
+  }
+
+  .header__content {
+    position: absolute;
+    display: grid;
+    grid-template-columns: auto;
+    justify-content: center;
+    width: 394px;
   }
 
   .header__balance {
-    /* display: flex;
-    flex-direction: row;
-    align-items: baseline;
-    /* margin: 52px 92px 14px 14px; */
-    /* justify-content: space-between;  */
-
     display: flex;
     flex-direction: row;
-    padding: 16px 16px;
+    /* padding: 12px 12px; */
     gap: 16px;
-    width: 352px;
-    height: 72px;
-    /* border: 1px solid ##24b277; */
+    margin-top: 52px;
+    width: 354px;
+    height: 24px;
     border-radius: 12px;
-    background-color: #e70f0f;
     transition: border-color 0.3s;
     align-items: center;
   }
@@ -35,15 +49,15 @@
   .header__balance-title {
     /* margin-right: 48px; */
     font-size: 16px;
-    font-weight: 500;
-    color: #fff;
+    font-weight: 400;
+    color: #F3F5FF;
     text-align: center;
     flex-grow: 1;
    }
 
    .balance__amount {
-    font-size: 38px;
-    color: #24B277;
+    font-size: 34px;
+    color: #FFFFFF;
     font-weight: bold;
     display: flex;
     justify-content: center;
