@@ -46,12 +46,25 @@ const Transaction = () => {
         <div className="field__receive">
           
             <div className="card__transaction">
-              <div className="card__notifications__content">
-                <span className="card__notifications__content-name">Date</span>
-                <p className="card__notifications__content-name">25 May, 15:20</p>
+              <div className="card__transaction__content">
+                <span className="card__transaction__content-name">Date</span>
+                <p className="card__transaction__content-info">25 May, 15:20</p>
+              </div>
+
+              <hr className="transaction__divider" />
+
+              <div className="card__transaction__content">
+                <span className="card__transaction__content-name">Address</span>
+                <p className="card__transaction__content-info">user123@mail.com</p>
+              </div>
+
+              <hr className="transaction__divider" />
+
+              <div className="card__transaction__content">
+                <span className="card__transaction__content-name">Type</span>
+                <p className="card__transaction__content-info">Recive</p>
               </div>
             </div>
-
           
         </div>
       </form>
