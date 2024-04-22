@@ -10,7 +10,6 @@
   .header {
     display: flex;
     align-items: baseline;
-    /* margin: 52px 92px 14px 14px; */
   }
 
   .header__notifications-title {
@@ -55,15 +54,13 @@
     flex-direction: row;
     padding: 16px 16px;
     gap: 16px;
+    align-items: center;
     width: 352px;
     height: 72px;
-    /* border: 1px solid #E9E8EB; */
     border-radius: 12px;
     
     background-color: #fff;
     transition: border-color 0.3s;
-    
-    align-items: center;
   }
 
   .card__notifications-image {
