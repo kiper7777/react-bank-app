@@ -13,7 +13,7 @@
   left: 0;
   width: 394px;
   height: 582px;
-  background-image: url('background.svg');
+  background-image: url('./svg/background.svg');
   background-size: cover;
   border-radius: 28px;
 }

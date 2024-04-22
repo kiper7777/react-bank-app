@@ -1,9 +1,6 @@
-// src/components/StartPage.js
-
 import React from 'react';
-import './StartPage.css'; // Import CSS file
-import welcome from "./bank-image.svg"
-// import SignUpForm from './component/SignUpForm.css';
+import './StartPage.css'; 
+import welcome from "./svg/bank-image.svg";
 
 const StartPage = () => {
   return (

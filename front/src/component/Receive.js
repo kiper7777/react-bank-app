@@ -60,15 +60,15 @@ const Receive = () => {
         <div className="field__receive">
           <label className="field__receive-label">Payment system</label>
 
-          <div className="cards">
-            <div className="card">
+          <div className="cards__receive">
+            <div className="card__receive">
               <img
                 src={stripe}
                 alt="Stripe Icon"
-                className="card__image"
+                className="card__receive-image"
                 onClick={click}
               />
-              <span className="card__text">Stripe</span>
+              <span className="card__receive-text">Stripe</span>
               <img
                 src={stripeGroup}
                 alt="Stripe Icons"
@@ -76,14 +76,14 @@ const Receive = () => {
               />
             </div>
 
-            <div className="card">
+            <div className="card__receive">
               <img
                 src={coinbase}
                 alt="Coinbase Icon"
-                className="card__image"
+                className="card__receive-image"
                 onClick={click}
               />
-              <span className="card__text">Coinbase</span>
+              <span className="card__receive-text">Coinbase</span>
               <img
                 src={coinbaseGroup}
                 alt="Coinbase Icons"

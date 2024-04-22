@@ -1,22 +1,19 @@
 .back-button {
+    width: 24px;
+    height: 24px; 
     color: #000;
     padding: 0 4px;
     padding-bottom: 0;
-    /* margin: 14px; */
     margin: 52px 0px 14px 14px;
-    /* margin-top: 52px; */
     cursor: pointer;
     margin-right: 10px;
     transition: opacity 0.3s;
-    &:hover {
-      color: #2908bb;
-    }
-    &:active {
-      opacity: 0.7; 
-    }
   }
   
-  /* .back-button:hover {
-    background-color: #e6091c;
-  } */
-  
+  .back-button:hover {
+  color: #b51225;
+  }
+
+  .back-button:active {
+    opacity: 0.7;
+  }

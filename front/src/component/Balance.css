@@ -1,4 +1,4 @@
-.page__transaction {
+.page__balance {
     width: 394px;
     height: 852px;
     margin: 10px;
@@ -7,22 +7,41 @@
     background-color: #F7F7F7;
   }
 
-  .header {
-    display: flex;
+  .header__balance {
+    /* display: flex;
+    flex-direction: row;
     align-items: baseline;
     /* margin: 52px 92px 14px 14px; */
+    /* justify-content: space-between;  */
+
+    display: flex;
+    flex-direction: row;
+    padding: 16px 16px;
+    gap: 16px;
+    width: 352px;
+    height: 72px;
+    /* border: 1px solid ##24b277; */
+    border-radius: 12px;
+    background-color: #e70f0f;
+    transition: border-color 0.3s;
+    align-items: center;
   }
 
-  .header__transaction-title {
-    margin-right: 48px;
-    font-size: 20px;
+  .header__balance-image {
+    width: 24px;
+    height: 24px;
+  }
+
+  .header__balance-title {
+    /* margin-right: 48px; */
+    font-size: 16px;
     font-weight: 500;
-    color: #121212;
+    color: #fff;
     text-align: center;
     flex-grow: 1;
    }
 
-   .transaction__amount {
+   .balance__amount {
     font-size: 38px;
     color: #24B277;
     font-weight: bold;
@@ -31,7 +50,7 @@
     margin: 20px;
    }
     
-  .form__transaction {
+  .form__balance {
     display: flex;
     flex-direction: column;
     align-items: center;

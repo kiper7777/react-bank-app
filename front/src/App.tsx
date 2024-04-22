@@ -61,7 +61,7 @@ function App() {
         <Transaction />
       </div>
 
-      <div className="form">
+      <div className="form__balance">
         <Balance />
       </div>
     </div>
