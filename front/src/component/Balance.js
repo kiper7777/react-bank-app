@@ -3,6 +3,8 @@ import "./Balance.css";
 import settings from "./svg/settings.svg";
 import notifications from "./svg/notifications.svg"; 
 import { click } from "@testing-library/user-event/dist/click";
+import receive from "./svg/receive.svg";
+import send from "./svg/send.svg";
 
 const Balance = () => {
   const handleSettingsClick = () => {
@@ -49,6 +51,17 @@ const Balance = () => {
             
             <span className="balance__amount">$ 100.20</span>
             
+        </div>
+
+        <div className="balance__operations">
+          <div className="balance__operations-receive">
+            <img src={receive} alt="Receive Icon" className='balance__operations-receive__image'/> 
+            <div>Test</div>
+          </div>
+          <div className="balance__operations-send">
+            <img src={send} alt="Send Icon" className='balance__operations-send__image'/>
+            <div>Test</div>
+          </div>
         </div>
 
         <form className="form__balance" onSubmit={handleSubmit}>

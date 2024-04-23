@@ -70,6 +70,15 @@
     justify-content: center;
     margin: 20px;
    }
+
+   .balance__operations {
+    position: relative;
+    display: flex;
+    grid-template-columns: auto;
+    justify-content: center;
+    gap: 10px;
+   }
+
     
   .form__balance {
     display: flex;
