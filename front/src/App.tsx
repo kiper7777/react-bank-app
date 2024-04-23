@@ -53,11 +53,11 @@ function App() {
         <Receive />
       </div>
 
-      <div className="form">
+      <div className="form__notifications">
         <Notifications />
       </div>
 
-      <div className="form">
+      <div className="form__transaction">
         <Transaction />
       </div>
 

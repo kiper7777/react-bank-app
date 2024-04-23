@@ -39,9 +39,9 @@ const Notifications = () => {
         <h1 className="header__notifications-title">Notifications</h1>
       </div>
 
-      <form className="form__receive" onSubmit={handleSubmit}>
+      <form className="form__notifications" onSubmit={handleSubmit}>
     
-        <div className="field__receive">
+        <div className="field__notifications">
           
           <div className="cards__notifications">
             <div className="card__notifications">

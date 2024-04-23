@@ -40,8 +40,7 @@ const Transaction = () => {
       <span className="transaction__amount">+$100.20</span>
 
       <form className="form__transaction" onSubmit={handleSubmit}>
-    
-        
+            
           
             <div className="card__transaction">
               <div className="card__transaction__content">

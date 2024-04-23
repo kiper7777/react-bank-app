@@ -21,7 +21,7 @@
     flex-grow: 1;
    }
     
-  .form__receive {
+  .form__notifications {
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -29,7 +29,7 @@
     gap: 20px;
   }
 
-  .field__receive {
+  .field__notifications {
     display: flex;
     flex-direction: column;
     gap: 8px;

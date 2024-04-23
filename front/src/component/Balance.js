@@ -5,6 +5,10 @@ import notifications from "./svg/notifications.svg";
 import { click } from "@testing-library/user-event/dist/click";
 import receive from "./svg/receive.svg";
 import send from "./svg/send.svg";
+import stripe from "./svg/stripe.svg";
+import coinbase from "./svg/coinbase.svg";
+import person from "./svg/person.svg";
+
 
 const Balance = () => {
   const handleSettingsClick = () => {
@@ -54,37 +58,38 @@ const Balance = () => {
         </div>
 
         <div className="balance__operations">
-          <div className="balance__operations-receive">
-            <img src={receive} alt="Receive Icon" className='balance__operations-receive__image'/> 
-            <div>Test</div>
+
+          <div className="balance__operation">
+            <img src={receive} alt="Receive Icon" className='balance__operations-image'/> 
+            <span className="balance__operations-text">Receive</span>
           </div>
-          <div className="balance__operations-send">
-            <img src={send} alt="Send Icon" className='balance__operations-send__image'/>
-            <div>Test</div>
+
+          <div className="balance__operation">
+            <img src={send} alt="Send Icon" className='balance__operation-image'/>
+            <span className="balance__operations-text">Send</span>
           </div>
         </div>
 
         <form className="form__balance" onSubmit={handleSubmit}>
     
-            <div className="card__transaction">
-                <div className="card__transaction__content">
-                    <span className="card__transaction__content-name">Date</span>
-                    <p className="card__transaction__content-info">25 May, 15:20</p>
+            <div className="card__balance">
+
+                <div className="card__balance-transaction">
+                  <img
+                    src={stripe}
+                    alt="Stripe Icon"
+                    className="card__balance-transaction__image"
+                    onClick={click}
+                  />
+                  <div className="card__notifications-text">
+                    <span className="card__notifications-title">New reward system</span>
+                    <p className="card__notifications-text-description">10 min. ago - Announcement</p>
+                  </div>
+                  <span className="card__balance-transaction__amount">+$125.00</span>
                 </div>
 
-                <hr className="transaction__divider" />
-
-                <div className="card__transaction__content">
-                    <span className="card__transaction__content-name">Address</span>
-                    <p className="card__transaction__content-info">user123@mail.com</p>
-                </div>
-
-                <hr className="transaction__divider" />
-
-                <div className="card__transaction__content">
-                    <span className="card__transaction__content-name">Type</span>
-                    <p className="card__transaction__content-info">Receive</p>
-                </div>
+                 
+                
             </div>
         </form>
     </div>
