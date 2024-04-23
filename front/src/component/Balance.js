@@ -81,15 +81,13 @@ const Balance = () => {
                     className="card__balance-transaction__image"
                     onClick={click}
                   />
-                  <div className="card__notifications-text">
-                    <span className="card__notifications-title">New reward system</span>
-                    <p className="card__notifications-text-description">10 min. ago - Announcement</p>
+                  <div className="card__balance-transaction__text">
+                    <span className="card__balance-transaction__text-title">Stripe</span>
+                    <p className="card__balance-transaction__text-description">12:25 - Receipt</p>
                   </div>
                   <span className="card__balance-transaction__amount">+$125.00</span>
                 </div>
 
-                 
-                
             </div>
         </form>
     </div>

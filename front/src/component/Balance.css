@@ -133,31 +133,42 @@
     align-items: stretch; */
     display: flex;
     flex-direction: row;
-    padding: 16px 16px;
+    /* padding: 16px 16px; */
     gap: 16px;
     align-items: center;
     width: 352px;
     height: 72px;
     border-radius: 12px;
     /* justify-content: space-between; */
-    background-color: #fff;
-    transition: border-color 0.3s;
+    
+    /* transition: border-color 0.3s; */
   }
 
-  .transaction__divider {
-    border: 1px solid #E9E8EB;  
-    width: 320px;
-    margin: auto;
+  .card__balance-transaction__text {
+    display: grid;
+    gap: 4px;
+    margin-left: 0;
   }
 
-  .card__transaction__content-name {
-    font-size: 14px;
+  .card__balance-transaction__text-title {
+    font-size: 16px;
+    font-weight: 500;
     color: #1D1D1F;
   }
 
-  .card__transaction__content-info {
-    font-size: 14px;
-    color: #1D1D1F;
+  .card__balance-transaction__text-description {
+    font-size: 12px;
+    font-weight: 400;
+    color: #939199;
+  }
+
+  .card__balance-transaction__amount {
+    font-size: 16px;
+    font-weight: 500;
+    color: #24B277;
+    display: flex;
+    margin-right: 0;
+    align-items: end;
   }
 
 
