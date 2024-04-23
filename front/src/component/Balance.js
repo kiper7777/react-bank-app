@@ -11,6 +11,22 @@ import person from "./svg/person.svg";
 
 
 const Balance = () => {
+  const [balance, setBalance] = useState(1000);
+  const [transactions, setTransactions] = useState([]);
+
+  const handleReceiveMoney = () => {
+    // Simulate receiving money
+    const receivedAmount = Math.floor(Math.random() * 100) + 1;
+    setBalance(balance + receivedAmount);
+    setTransactions([...transactions, {type: 'receive', amount: receivedAmount}]);
+  };
+
+  const handleSendMoney = () => {
+    // Simulate sending money
+    const sentAmount = Math.floor(Math.random() * 100) + 1;
+    setTransactions([...transactions, {type: 'send', amount: sentAmount}]);
+  };
+
   const handleSettingsClick = () => {
     // Handle back button click logic here
     console.log("Settings button clicked!");
@@ -21,27 +37,7 @@ const Balance = () => {
     console.log("Notifications button clicked!");
   };
 
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-
-  const handleEmailChange = (e) => {
-    setEmail(e.target.value);
-  };
-
-  const handlePasswordChange = (e) => {
-    setPassword(e.target.value);
-  };
-
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    // Handle signup logic here (e.g., send data to backend)
-    console.log("Email:", email);
-    console.log("Password:", password);
-    // Clear form fields
-    setEmail("");
-    setPassword("");
-  };
-
+   
   return (
     <div className="page__balance">
         <div className='page__balance__background-image'></div>
@@ -60,17 +56,17 @@ const Balance = () => {
         <div className="balance__operations">
 
           <div className="balance__operation">
-            <img src={receive} alt="Receive Icon" className='balance__operations-image'/> 
+            <img src={receive} alt="Receive Icon" className='balance__operations-image' onClick={handleReceiveMoney}/> 
             <span className="balance__operations-text">Receive</span>
           </div>
 
           <div className="balance__operation">
-            <img src={send} alt="Send Icon" className='balance__operation-image'/>
+            <img src={send} alt="Send Icon" className='balance__operation-image' onClick={handleSendMoney}/>
             <span className="balance__operations-text">Send</span>
           </div>
         </div>
 
-        <form className="form__balance" onSubmit={handleSubmit}>
+        <form className="form__balance">
     
             <div className="card__balance">
 
