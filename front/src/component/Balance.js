@@ -166,6 +166,22 @@ const Balance = () => {
                   <div className="card__balance-transaction__amount">+$125.00</div>
                 </div>
 
+                <div className="card__balance-transaction">
+                  <div className="card__balance-transaction__block">
+                    <img
+                      src={stripe}
+                      alt="Stripe Icon"
+                      className="card__balance-transaction__image"
+                      onClick={click}
+                    />
+                    <div className="card__balance-transaction__text">
+                      <span className="card__balance-transaction__text-title">Stripe</span>
+                      <p className="card__balance-transaction__text-description">12:25 - Receipt</p>
+                    </div>
+                  </div>
+                  <div className="card__balance-transaction__amount">+$125.00</div>
+                </div>
+
             </div>
         </form>
     </div>
