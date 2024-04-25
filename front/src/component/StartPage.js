@@ -3,6 +3,12 @@ import './StartPage.css';
 import welcome from "./svg/bank-image.svg";
 
 const StartPage = () => {
+  // const history = useHistory();
+
+  // const handleClick = () => {
+  //   history.push('/signup');
+  // }
+
   return (
     <div className="start-page">
       <div className='start-page__background-image'></div>
