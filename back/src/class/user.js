@@ -1,33 +1,35 @@
 class User {
-  static USER_ROLE = {
-    USER: 1,
-    ADMIN: 2,
-    DEVELOPER: 3,
-  }
-
   static #list = []
+  static #count = 1
 
-  constructor({ email, password, role }) {
-    this.email = email
-    this.password = password
-    this.role = role
+  constructor({ email, password }) {
+    this.id = User.#count++
+    this.email = String(email).toLowerCase()
+    this.password = String(password)
+    this.isConfirm = false
   }
 
-  static #convertRole = (role) => {
-    role = Number(role)
+  static create(data) {
+    const user = new User(data)
+    console.log(user)
 
-    if (isNaN(role)) {
-      role = this.USER_ROLE.USER
-    }
+    this.#list.push(user)
+    console.log(this.#list)
 
-    role = Object.values(this.USER_ROLE).includes(role)
-      ? role
-      : this.USER_ROLE.USER
-
-    return role
+    return user
   }
+
+  static getByEmail(email) {
+    return (this.#list.find((user) => user.email === String(email).toLowerCase(),
+      ) || null
+    )
+  }
+
+  static getById(id) {
+    return (this.#list.find((user) => user.id === Number(id)) || null)
+  }
+
+  static getList = () => this.#list
 }
 
-module.exports = {
-  User,
-}
+module.exports = {User}
