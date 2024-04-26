@@ -1,9 +1,9 @@
 import React from "react";
 // import './App.css';
 
-import StartPage from "./component/StartPage";
-import SignUpForm from "./component/SignUpForm";
-import SignInForm from "./component/SignInForm";
+import WellcomePage from "./component/WellcomePage";
+import SignUpPage from "./component/SignUpPage";
+import SignInPage from "./component/SignInPage";
 import Recovery from "./component/Recovery";
 import SignUpConfirm from "./component/SignUpConfirm";
 import RecoveryConfirm from "./component/RecoveryConfirm";
@@ -18,11 +18,11 @@ function App() {
   return (
     <div>
       <div className="App">
-        <StartPage />
+        <WellcomePage />
       </div>
 
       <div className="form">
-        <SignUpForm />
+        <SignUpPage />
       </div>
 
       <div className="form">
@@ -30,7 +30,7 @@ function App() {
       </div>
 
       <div className="form">
-        <SignInForm />
+        <SignInPage />
       </div>
 
       <div className="form">

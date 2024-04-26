@@ -1,8 +1,8 @@
 import React from 'react';
-import './StartPage.css'; 
+import './WellcomePage.css'; 
 import welcome from "./svg/bank-image.svg";
 
-const StartPage = () => {
+const WellcomePage = () => {
   // const history = useHistory();
 
   // const handleClick = () => {
@@ -26,5 +26,5 @@ const StartPage = () => {
   );
 };
 
-export default StartPage;
+export default WellcomePage;
 
