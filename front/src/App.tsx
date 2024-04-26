@@ -1,5 +1,6 @@
 import React from "react";
-// import './App.css';
+import { BrowserRouter as Router, Route } from "react-router-dom";
+import AuthRoute from "../../back/src/component/AuthRoute";
 
 import WellcomePage from "./component/WellcomePage";
 import SignUpPage from "./component/SignUpPage";
