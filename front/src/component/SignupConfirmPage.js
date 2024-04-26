@@ -1,8 +1,8 @@
 import React, { useState } from "react";
 import BackButton from "./BackButton";
-import "./SignUpConfirm.css";
+import "./SignupConfirmPage.css";
 
-const SignUpConfirm = () => {
+const SignupConfirmPage = () => {
     const handleBackButtonClick = () => {
         // Handle back button click logic here
         console.log('Back button clicked!');
@@ -50,4 +50,4 @@ const SignUpConfirm = () => {
     );
 };
 
-export default SignUpConfirm;
+export default SignupConfirmPage;

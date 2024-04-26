@@ -31,7 +31,7 @@ const authReducer = (state, action) => {
 };
 
 // Create context
-const AuthContext = createContext();
+export const AuthContext = createContext();
 
 // Create AuthProvider component
 export const AuthProvider = ({ children }) => {
@@ -56,3 +56,6 @@ export const login = (token, user) => ({
 export const logout = () => ({
   type: LOGOUT,
 });
+
+// export default AuthProvider;
+

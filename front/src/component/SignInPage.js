@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
 import BackButton from './BackButton';
-import "./SignInPage.css";
+import "./SigninPage.css";
 
 
-const SignInPage = () => {
+const SigninPage = () => {
 
   const handleBackButtonClick = () => {
     // Handle back button click logic here
@@ -71,4 +71,4 @@ const SignInPage = () => {
   );
 };
 
-export default SignInPage;
+export default SigninPage;

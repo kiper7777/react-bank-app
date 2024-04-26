@@ -1,8 +1,8 @@
 import React, { useState } from "react";
 import BackButton from "./BackButton";
-import "./Recovery.css";
+import "./RecoveryPage.css";
 
-const Recovery = () => {
+const RecoveryPage = () => {
     const handleBackButtonClick = () => {
         // Handle back button click logic here
         console.log('Back button clicked!');
@@ -53,4 +53,4 @@ const Recovery = () => {
     );
 };
 
-export default Recovery;
+export default RecoveryPage;
