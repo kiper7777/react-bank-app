@@ -63,7 +63,21 @@ router.post('/user-item-data', function (req, res) {
         })
     }
 
-    
+    const user = User.getById(Number(id))
+
+    if (!user) {
+        return res.status(400).json({
+            message: 'Користувач з таким ID не існує',
+        })
+    }
+
+    return res.status(200).json({
+        user: {
+            id: user.id,
+            email: user.email,
+            isConfirm: user.isConfirm,
+        },
+    })
 })
 
 //=================================
