@@ -166,6 +166,66 @@ router.post('/recovery', function (req, res) {
     }
 })
 
+//===================================================
+router.get('/recovery-confirm', function (req, res) {
+    return res.render('recovery-confirm', {
+        name: 'recovery-confirm',
+        component: [
+            'BackButton',
+            // 'field',
+            // 'field-password',
+        ],
+
+        title: 'Recovery confirm page',
+        data: {},
+    })
+})
+
+router.post('/recovery-confirm', function (req, res) {
+    const {password, code} = req.body
+
+    console.log(password, code)
+
+    if (!code || !password) {
+        return res.status(400).json({
+            message: "Помилка. Обов'язкові поля відсутні",
+        })
+    }
+
+    try {
+        const email = Confirm.getData(Number(code))
+
+        if (!email) {
+            return res.status(400).json({
+                message: "Код не існує",
+            })
+        }
+
+        const user = User.getByEmail(email)
+
+        if (!user) {
+            return res.status(400).json({
+                message: "Користувач з таким email не існує",
+            })
+        }
+
+        user.password = password
+
+        console.log(user)
+
+        const session = Session.create(user)
+
+        return res.status(200).json({
+            message: "Пароль змінено",
+            session,
+        })
+    } catch (err) {
+        return res.status(400).json({
+            message: err.message,
+        })
+    }
+})
+
 //============================+++++++++++++++++++++++++=====
 // Підключаємо роутер до бек-енду
 module.exports = router
