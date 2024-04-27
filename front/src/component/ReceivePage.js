@@ -1,13 +1,13 @@
 import React, { useState } from "react";
 import BackButton from "./BackButton";
-import "./Receive.css";
+import "./ReceivePage.css";
 import stripe from "./svg/stripe.svg";
 import stripeGroup from "./svg/stripe-group.svg";
 import coinbase from "./svg/coinbase.svg";
 import coinbaseGroup from "./svg/coinbase-group.svg";
 import { click } from "@testing-library/user-event/dist/click";
 
-const Receive = () => {
+const ReceivePage = () => {
   const handleBackButtonClick = () => {
     // Handle back button click logic here
     console.log("Back button clicked!");
@@ -97,4 +97,4 @@ const Receive = () => {
   );
 };
 
-export default Receive;
+export default ReceivePage;

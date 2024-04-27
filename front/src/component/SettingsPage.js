@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
 import BackButton from './BackButton';
-import "./Settings.css";
+import "./SettingsPage.css";
 
 
-const Settings = () => {
+const SettingsPage = () => {
 
   const handleBackButtonClick = () => {
     // Handle back button click logic here
@@ -95,4 +95,4 @@ const Settings = () => {
   );
 };
 
-export default Settings;
+export default SettingsPage;

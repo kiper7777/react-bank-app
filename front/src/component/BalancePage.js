@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import "./Balance.css";
+import "./BalancePage.css";
 import settings from "./svg/settings.svg";
 import notifications from "./svg/notifications.svg"; 
 import { click } from "@testing-library/user-event/dist/click";
@@ -10,7 +10,7 @@ import coinbase from "./svg/coinbase.svg";
 import person from "./svg/person.svg";
 
 
-const Balance = () => {
+const BalancePage = () => {
   const [balance, setBalance] = useState(1000);
   const [transactions, setTransactions] = useState([]);
 
@@ -172,4 +172,4 @@ const Balance = () => {
   );
 };
 
-export default Balance;
+export default BalancePage;

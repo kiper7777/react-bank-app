@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
 import BackButton from './BackButton';
-import "./Send.css";
+import "./SendPage.css";
 
 
-const Send = () => {
+const SendPage = () => {
 
   const handleBackButtonClick = () => {
     // Handle back button click logic here
@@ -71,4 +71,4 @@ const Send = () => {
   );
 };
 
-export default Send;
+export default SendPage;

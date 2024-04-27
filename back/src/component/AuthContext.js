@@ -57,5 +57,5 @@ export const logout = () => ({
   type: LOGOUT,
 });
 
-// export default AuthProvider;
+// export default AuthContext;
 

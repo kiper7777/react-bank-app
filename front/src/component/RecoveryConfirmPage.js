@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
 import BackButton from './BackButton';
-import "./RecoveryConfirm.css";
+import "./RecoveryConfirmPage.css";
 
 
-const RecoveryConfirm = () => {
+const RecoveryConfirmPage = () => {
 
   const handleBackButtonClick = () => {
     // Handle back button click logic here
@@ -72,4 +72,4 @@ const RecoveryConfirm = () => {
   );
 };
 
-export default RecoveryConfirm;
+export default RecoveryConfirmPage;

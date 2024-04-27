@@ -1,11 +1,11 @@
 import React, { useState } from "react";
 import BackButton from "./BackButton";
-import "./Notifications.css";
+import "./NotificationsPage.css";
 import announcement from "./svg/announcement.svg";
 import warning from "./svg/warning.svg";
 import { click } from "@testing-library/user-event/dist/click";
 
-const Notifications = () => {
+const NotificationsPage = () => {
   const handleBackButtonClick = () => {
     // Handle back button click logic here
     console.log("Back button clicked!");
@@ -102,4 +102,4 @@ const Notifications = () => {
   );
 };
 
-export default Notifications;
+export default NotificationsPage;
