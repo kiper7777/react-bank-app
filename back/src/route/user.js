@@ -32,9 +32,8 @@ router.get('/user-list-data', function (req, res) {
         list: list.map(({id, email}) => ({
             id,
             email,
-        }))
+        })),
     })
-  
 })
 
 //=================================
@@ -52,9 +51,8 @@ router.get('/user-item', function (req, res) {
     })
 })
 
-router.post('/user-item-data', function (req, res) {
+router.get('/user-item-data', function (req, res) {
     const {id} = req.query
-
     // console.log(id)
 
     if (!id) {

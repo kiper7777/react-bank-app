@@ -94,7 +94,7 @@ router.post('/signin', function (req, res) {
     try {
         const user = User.getByEmail(email)
 
-        if (user) {
+        if (!user) {
             return res.status(400).json({
                 message: "Помилка. Користувач з таким email не існує",
             })
