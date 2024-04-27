@@ -65,7 +65,7 @@ router.post('/signup', function (req, res) {
     }
 })
 
-//=================================
+//===================================================
 router.get('/signin', function (req, res) {
     return res.render('signin', {
         name: 'signin',
@@ -119,6 +119,53 @@ router.post('/signin', function (req, res) {
     }
 })
 
-//=================================
+//======================================================
+router.get('/recovery', function (req, res) {
+    return res.render('recovery', {
+        name: 'recovery',
+        component: [
+            'BackButton',
+            // 'field',
+            // 'field-password',
+        ],
+
+        title: 'Recovery page',
+        data: {},
+    })
+})
+
+router.post('/recovery', function (req, res) {
+    const {email} = req.body
+
+    console.log(email)
+
+    if (!email) {
+        return res.status(400).json({
+            message: "Помилка. Обов'язкові поля відсутні",
+        })
+    }
+
+    try {
+        const user = User.getByEmail(email)
+
+        if (!user) {
+            return res.status(400).json({
+                message: "Користувач з таким email не існує",
+            })
+        }
+
+        Confirm.create(email)
+
+        return res.status(200).json({
+            message: "Код для відновлення паролю відправлено",
+        })
+    } catch (err) {
+        return res.status(400).json({
+            message: err.message,
+        })
+    }
+})
+
+//============================+++++++++++++++++++++++++=====
 // Підключаємо роутер до бек-енду
 module.exports = router
