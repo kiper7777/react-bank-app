@@ -31,4 +31,14 @@ class Session {
 
         return session
     }
+
+    static get = (token) => {
+        return (
+            this.#list.find((item) => item.token === token) || null
+        )
+    }
 }
+
+module.exports = {Session}
+
+console.log(Session.generateCode())
