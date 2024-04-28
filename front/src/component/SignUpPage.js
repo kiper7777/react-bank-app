@@ -49,6 +49,7 @@ const SignupPage = () => {
             value={email} 
             onChange={handleEmailChange}
           />
+          <span name="email" className='form__error'>Помилка</span>
         </div>
         <div className='field'>
           <label className='field__label'>Password</label>
