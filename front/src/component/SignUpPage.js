@@ -8,6 +8,7 @@ import {
   REG_EXP_PASSWORD,
 } from './script/form'; 
 
+import { saveSession } from './script/session';
 
 const SignupPage = () => {
 
@@ -69,7 +70,10 @@ const SignupPage = () => {
 
         <span className='link__prefix'>Already have an account? <a className='link'>Sign In</a></span>
         
-        <button className='form__button' type="submit">Continue</button>
+        <button className='form__button' 
+          type="submit"
+          onSubmit={handleSubmit}
+          >Continue</button>
         
       </form>
     </div>
