@@ -6,6 +6,8 @@ const router = express.Router()
 const { User } = require('../class/user')
 const {Confirm} = require('../class/confirm')
 const {Session} = require('../class/session')
+const {SignupPageClass} = require('../class/SignupPageClass')
+
 User.create({
     email: 'user@mail.com',
     password: 123,
@@ -13,6 +15,11 @@ User.create({
 
 User.create({
     email: 'admin@mail.com',
+    password: 123,
+})
+
+User.create({
+    email: 'developer@mail.com',
     password: 123,
 })
 
@@ -25,6 +32,7 @@ router.get('/signup', function (req, res) {
         ],
 
         title: 'Signup page',
+        data: {},
     })
 })
 
