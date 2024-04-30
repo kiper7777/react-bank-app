@@ -7,6 +7,7 @@ const SigninPage = () => {
 
   const handleBackButtonClick = () => {
     // Handle back button click logic here
+    window.history.back(); // This will navigate back to the previous page in the browser history
     console.log('Back button clicked!');
   };
   
@@ -64,7 +65,7 @@ const SigninPage = () => {
 
         <span className='link__prefix'>Forgot your password? <a className='link' href='/restore'>Restore</a></span>
         
-        <button className='form__button' type="submit">Continue</button>
+        <button className='form__button' type="submit" onSubmit={handleSubmit}>Continue</button>
         
       </form>
     </div>
