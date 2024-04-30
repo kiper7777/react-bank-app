@@ -5,7 +5,6 @@ import "./SignupPage.css";
 // import { saveSession } from './script/session';
 
 
-
 const SignupPage = () => {
   const handleBackButtonClick = () => {
     // Handle back button click logic here
@@ -84,13 +83,9 @@ const SignupPage = () => {
           />
         </div>
 
-        <span className='link__prefix'>Already have an account? <a className='link'>Sign In</a></span>
+        <span className='link__prefix'>Already have an account?<a className='link'>Sign In</a></span>
         
-        <button className='form__button' 
-          type="submit"
-          onSubmit={handleSubmit}
-          >Continue
-          </button>
+        <button className='form__button' type="submit">Continue</button>
         
       </form>
     </div>

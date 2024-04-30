@@ -81,9 +81,8 @@ class SignupPageClass extends Form {
 
       })
     }
-    
-  }
+}
 
-  window.SignupPage = new SignupPage()
+window.SignupPage = new SignupPage()
 
-  return <SignupPageClass/>;
+return <SignupPageClass/>;

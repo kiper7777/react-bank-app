@@ -22,9 +22,29 @@ const SigninPage = () => {
     setPassword(e.target.value);
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    // Handle signup logic here (e.g., send data to backend)
+    // Handle signin logic here (e.g., send data to backend)
+    try {
+      const response = await fetch('/signin', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({email, password}),
+      });
+
+      if (response.ok) {
+        // Signin successful
+        console.log('Signin successful');
+      } else {
+        // Registration failed
+        console.error('Signin failed');
+      }
+    } catch (error) {
+      console.error('Error signin:', error);
+    }
+
     console.log('Email:', email);
     console.log('Password:', password);
     // Clear form fields
@@ -43,9 +63,7 @@ const SigninPage = () => {
         <p className='form__subtitle'>Select login method</p>
 
         <div className='field'>
-          <label className='field__label' 
-            type="email" 
-            name="email">Email</label>
+          <label className='field__label' name="email">Email</label>
           <input className='field__input' 
             type="email" 
             placeholder='example@gmail.com'
@@ -65,7 +83,7 @@ const SigninPage = () => {
 
         <span className='link__prefix'>Forgot your password? <a className='link' href='/restore'>Restore</a></span>
         
-        <button className='form__button' type="submit" onSubmit={handleSubmit}>Continue</button>
+        <button className='form__button' type="submit">Continue</button>
         
       </form>
     </div>
