@@ -1,5 +1,6 @@
 import React from "react";
-// import { BrowserRouter, Routes, Route } from "react-router-dom";
+// import ReactDOM from "react-dom";
+// import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 // import AuthRoute from "./AuthRoute";
 // import { AuthProvider } from "./AuthContext"; // Assuming you have created AuthProvider in AuthContext.js
 // import PrivateRoute from "/component/PrivateRoute";
@@ -33,6 +34,73 @@ function App() {
   //   },
   // };
   return (
+    // <Router>
+    //   <Switch>
+    //     <Route path="/" exact component={WelcomePage} />
+    //     <Route path="/signup" component={SignupPage} />
+    //     <Route path="/signin" component={SigninPage} />
+    //     <Route path="/recovery" component={RecoveryPage} />
+    //     <Route path="/recovery-confirm" component={RecoveryConfirmPage} />
+    //     <Route path="/signup-confirm" component={SignupConfirmPage} />
+    //     <Route path="/balance" component={BalancePage} />
+    //     <Route path="/notifications" component={NotificationsPage} />
+    //     <Route path="/settings" component={SettingsPage} />
+    //     <Route path="/receive" component={ReceivePage} />
+    //     <Route path="/send" component={SendPage} />
+    //     <Route path="/transaction" component={TransactionPage} />
+    //   </Switch>
+    // </Router>
+
+    <div>
+      <div className="App">
+        <WelcomePage />
+      </div>
+
+      <div className="form">
+        <SignupPage />
+      </div>
+
+      <div className="form">
+        <SignupConfirmPage />
+      </div>
+
+      <div className="form">
+        <SigninPage />
+      </div>
+
+      <div className="form">
+        <RecoveryPage />
+      </div>
+
+      <div className="form">
+        <RecoveryConfirmPage />
+      </div>
+
+      <div className="form__balance">
+        <BalancePage />
+      </div>
+
+      <div className="form__notifications">
+        <NotificationsPage />
+      </div>
+
+      <div className="form__settings">
+        <SettingsPage />
+      </div>
+
+      <div className="form__receive">
+        <ReceivePage />
+      </div>
+
+      <div className="form__send">
+        <SendPage />
+      </div>
+
+      <div className="form__transaction">
+        <TransactionPage />
+      </div>
+    </div>
+
     // <AuthProvider value={authContextData}>
     //   <BrowserRouter>
     //     <Routes>
@@ -160,56 +228,6 @@ function App() {
     //     </Routes>
     //   </BrowserRouter>
     // </AuthProvider>
-
-    <div>
-      <div className="App">
-        <WelcomePage />
-      </div>
-
-      <div className="form">
-        <SignupPage />
-      </div>
-
-      <div className="form">
-        <SignupConfirmPage />
-      </div>
-
-      <div className="form">
-        <SigninPage />
-      </div>
-
-      <div className="form">
-        <RecoveryPage />
-      </div>
-
-      <div className="form">
-        <RecoveryConfirmPage />
-      </div>
-
-      <div className="form__balance">
-        <BalancePage />
-      </div>
-
-      <div className="form__notifications">
-        <NotificationsPage />
-      </div>
-
-      <div className="form__settings">
-        <SettingsPage />
-      </div>
-
-      <div className="form__receive">
-        <ReceivePage />
-      </div>
-
-      <div className="form__send">
-        <SendPage />
-      </div>
-
-      <div className="form__transaction">
-        <TransactionPage />
-      </div>
-    </div>
   );
 }
 
