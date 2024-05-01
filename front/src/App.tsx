@@ -4,7 +4,7 @@ import React from "react";
 // import { AuthProvider } from "./AuthContext"; // Assuming you have created AuthProvider in AuthContext.js
 // import PrivateRoute from "/component/PrivateRoute";
 
-import WellcomePage from "./component/WellcomePage";
+import WelcomePage from "./component/WelcomePage";
 import SignupPage from "./component/SignupPage";
 import SignupConfirmPage from "./component/SignupConfirmPage";
 import SigninPage from "./component/SigninPage";
@@ -163,7 +163,7 @@ function App() {
 
     <div>
       <div className="App">
-        <WellcomePage />
+        <WelcomePage />
       </div>
 
       <div className="form">

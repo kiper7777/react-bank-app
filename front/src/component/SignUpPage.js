@@ -83,7 +83,7 @@ const SignupPage = () => {
           />
         </div>
 
-        <span className='link__prefix'>Already have an account?<a className='link'>Sign In</a></span>
+        <span className='link__prefix'>Already have an account? <a className='link'>Sign In</a></span>
         
         <button className='form__button' type="submit">Continue</button>
         
