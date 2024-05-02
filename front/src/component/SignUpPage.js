@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import BackButton from './BackButton';
 import "./SignupPage.css";
+import SigninPage from './SigninPage';
 // import { Form, REG_EXP_EMAIL, REG_EXP_PASSWORD } from './script/form';
 // import { saveSession } from './script/session';
 
@@ -83,7 +84,7 @@ const SignupPage = () => {
           />
         </div>
 
-        <span className='link__prefix'>Already have an account? <a className='link'>Sign In</a></span>
+        <span className='link__prefix'>Already have an account? <a href='/signin' className='link'>Sign In</a></span>
         
         <button className='form__button' type="submit">Continue</button>
         
