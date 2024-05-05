@@ -1,0 +1,27 @@
+.user-list-container {
+    max-width: 600px;
+    margin: 0 auto;
+  }
+  
+  .user-list {
+    list-style: none;
+    padding: 0;
+  }
+  
+  .user-item {
+    border-bottom: 1px solid #ccc;
+    padding: 10px 0;
+  }
+  
+  .user-item:last-child {
+    border-bottom: none;
+  }
+  
+  .user-name {
+    font-weight: bold;
+  }
+  
+  .user-email {
+    color: #666;
+  }
+  

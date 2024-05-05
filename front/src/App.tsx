@@ -17,6 +17,7 @@ import SettingsPage from "./component/SettingsPage";
 import ReceivePage from "./component/ReceivePage";
 import SendPage from "./component/SendPage";
 import TransactionPage from "./component/TransactionPage";
+import UserList from "./component/UserList";
 // import SignupPageClass from "./component/SignupPageClass";
 
 function App() {
@@ -99,6 +100,9 @@ function App() {
 
       <div className="form__transaction">
         <TransactionPage />
+      </div>
+      <div className="user-list-container">
+        <UserList />
       </div>
     </div>
 
