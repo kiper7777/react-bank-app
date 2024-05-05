@@ -2,8 +2,8 @@ import {
     Form,
     REG_EXP_EMAIL,
     REG_EXP_PASSWORD,
-  } from './script/form'; 
-import { saveSession } from './script/session';
+  } from './form'; 
+import { saveSession } from './session';
 
 class SignupPageClass extends Form {
     FIELD_NAME = {
@@ -49,7 +49,7 @@ class SignupPageClass extends Form {
         this.setAlert('progress', 'Завантаження...')
 
         try {
-          const res = await fetch('/signup', {
+          const res = await fetch("http://localhost:4000/signup", {
             method: 'POST',
             headers: {
               'Content-Type': 'application/json',
@@ -62,7 +62,7 @@ class SignupPageClass extends Form {
           if (res.ok) {
             this.setAlert('success', data.message)
             saveSession(data.session)
-            location.assign('/')
+            location.assign('/signup')
           } else {
             this.setAlert('error', data.message)
           }

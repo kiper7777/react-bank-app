@@ -17,6 +17,7 @@ import SettingsPage from "./component/SettingsPage";
 import ReceivePage from "./component/ReceivePage";
 import SendPage from "./component/SendPage";
 import TransactionPage from "./component/TransactionPage";
+// import SignupPageClass from "./component/SignupPageClass";
 
 function App() {
   // const authContextData = {
