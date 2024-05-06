@@ -5,12 +5,10 @@ import "./SignupPage.css";
 // import { Form, REG_EXP_EMAIL, REG_EXP_PASSWORD } from './script/form';
 // import { saveSession } from './script/session';
 
-
-
 const SignupPage = () => {
   const handleBackButtonClick = () => {
     // Handle back button click logic here
-    window.history.back(); // This will navigate back to the previous page in the browser history
+    window.history.back(); 
     console.log('Back button clicked!');
   };
   

@@ -1,7 +1,7 @@
 import React from 'react';
 import './WelcomePage.css'; 
 import welcome from "./svg/bank-image.svg";
-import { Link } from 'react-router-dom';
+// import { Link } from 'react-router-dom';
 
 const WelcomePage = () => {
   // const history = useHistory();

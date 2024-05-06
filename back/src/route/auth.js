@@ -29,6 +29,7 @@ router.get('/signup', function (req, res) {
         name: 'signup',
         component: [
             'BackButton',
+            'SignupPage',
         ],
 
         title: 'Signup page',
