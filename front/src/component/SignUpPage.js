@@ -2,10 +2,22 @@ import React, { useState } from 'react';
 import BackButton from './BackButton';
 import "./SignupPage.css";
 // import SigninPage from './SigninPage';
-// import { Form, REG_EXP_EMAIL, REG_EXP_PASSWORD } from './script/form';
+import { Form, REG_EXP_EMAIL, REG_EXP_PASSWORD } from './script/form';
 // import { saveSession } from './script/session';
 
 const SignupPage = () => {
+  // class SignupPageClass {
+  //   static value = {}
+
+  //   static validate = (name, value) => {
+  //     return true
+  //   }
+
+  //   static submit = () => {
+  //     console.log(this.value)
+  //   }
+  // }
+
   const handleBackButtonClick = () => {
     // Handle back button click logic here
     window.history.back(); 

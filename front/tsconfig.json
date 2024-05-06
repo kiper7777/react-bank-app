@@ -22,5 +22,5 @@
   },
   "include": [
     "src"
-, "../back/src/component/AuthContext.js", "../back/src/component/AuthRoute.js"  ]
+, "src/component/AuthContext.js", "src/component/AuthRoute.js"  ]
 }
