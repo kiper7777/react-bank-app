@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import BackButton from './BackButton';
 import "./SignupPage.css";
 // import SigninPage from './SigninPage';
-import { Form, REG_EXP_EMAIL, REG_EXP_PASSWORD } from './script/form';
+// import { Form, REG_EXP_EMAIL, REG_EXP_PASSWORD } from './script/form';
 // import { saveSession } from './script/session';
 
 const SignupPage = () => {

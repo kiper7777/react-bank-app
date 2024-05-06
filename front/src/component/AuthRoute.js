@@ -1,19 +1,42 @@
-import React from 'react';
-import { Route, Redirect } from 'react-router-dom';
+import React, { useState, useEffect } from 'react';
+import { Navigate } from 'react-router-dom';
 
 import { useAuth } from './AuthContext';
 
-const AuthRoute = ({ component: Component, ...rest }) => {
+const AuthRoute = ({ children }) => {
   const { state } = useAuth();
+  const [loading, setLoading] = useState(true);
 
-  return (
-    <Route
-      {...rest}
-      render={(props) => state.token ? (<Redirect to="/" />) : (<Component {...props} />
-        )
-      }
-    />
+  useEffect(() => {
+    // Check if authentication state is fetched
+    setLoading(false);
+  }, []);
+
+  if (loading) {
+    // Render loading indicator or skeleton UI
+    return <div>Loading...</div>;
+  }
+
+  return state.token && state.user.isConfirm ? (
+    <Navigate to={`/balance/${state.user.id}`} />
+  ) : (
+    children
   );
 };
 
 export default AuthRoute;
+
+// import React from 'react';
+// import { Navigate } from 'react-router-dom';
+
+// import { useAuth } from './AuthContext';
+
+// const AuthRoute = ({ children }) => {
+//   const { state } = useAuth();
+
+//   return state.token && state.user.isConfirm ? <Navigate to={`/balance/${state.user.id}`}/> : children;
+// };
+
+// export default AuthRoute;
+
+

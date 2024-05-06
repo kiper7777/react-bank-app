@@ -6,7 +6,7 @@ const router = express.Router()
 const { User } = require('../class/user')
 const {Confirm} = require('../class/confirm')
 const {Session} = require('../class/session')
-const {SignupPageClass} = require('../class/SignupPageClass')
+// const {SignupPageClass} = require('../class/SignupPageClass')
 
 User.create({
     email: 'user@mail.com',
