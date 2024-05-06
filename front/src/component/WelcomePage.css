@@ -1,4 +1,4 @@
-.start-page {
+.welcomepage {
   position: relative;
   width: 394px;
   height: 852px;
@@ -7,7 +7,7 @@
   border-radius: 28px;
 }
 
-.start-page__background-image {
+.welcomepage__background-image {
   position: absolute;
   top: 0;
   left: 0;
@@ -18,7 +18,7 @@
   border-radius: 28px;
 }
 
-.start-page__image {
+.welcomepage__image {
   position: absolute;
   /* top: 50%;
   left: 50%;
@@ -26,7 +26,7 @@
   height: auto;
 }
 
-.start-page__text {
+.welcomepage__text {
   display: grid;
   gap: 16px;
   position: absolute;
@@ -39,17 +39,17 @@
   text-align: center;
 }
 
-.start-page__text-title {
+.welcomepage__text-title {
   font-size: 42px;
   font-weight: bold;
 }
 
-  .start-page__text-description {
+  .welcomepage__text-description {
     font-size: 20px;
     white-space: nowrap;
   }
   
-  .start-page__buttons {
+  .welcomepage__buttons {
     position: absolute;
     bottom: 40px;
     left: 50%;
@@ -61,7 +61,7 @@
     cursor: pointer;
   }
 
-  .start-page__button-purple {
+  .welcomepage__button-purple {
     margin: 0 10px;
     padding: 20px 20px;
     background-color: #775CE5;
@@ -83,7 +83,7 @@
     }
   }
 
-  .start-page__button-white {
+  .welcomepage__button-white {
     margin: 0 10px;
     padding: 20px 20px;
     background-color: #fff;
@@ -105,12 +105,12 @@
     }
   }
 
-  .start-page__button-purple__link {
+  .welcomepage__button-purple__link {
     color: #fff;
     text-decoration: none;
   }
 
-  .start-page__button-white__link {
+  .welcomepage__button-white__link {
     text-decoration: none;
   }
   

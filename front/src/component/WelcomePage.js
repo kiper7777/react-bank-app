@@ -1,6 +1,7 @@
 import React from 'react';
 import './WelcomePage.css'; 
 import welcome from "./svg/bank-image.svg";
+import { Link } from 'react-router-dom';
 
 const WelcomePage = () => {
   // const history = useHistory();
@@ -10,17 +11,24 @@ const WelcomePage = () => {
   // }
 
   return (
-    <div className="start-page">
-      <div className='start-page__background-image'></div>
-      <div className='start-page__text'>
-        <h1 className='start-page__text-title'>Hello!</h1>
-        <p className='start-page__text-description'>Welcome to Bank App</p>
+    <div className="welcomepage">
+      <div className='welcomepage__background-image'></div>
+      <div className='welcomepage__text'>
+        <h1 className='welcomepage__text-title'>Hello!</h1>
+        <p className='welcomepage__text-description'>Welcome to Bank App</p>
       </div>
-      <img src={welcome} alt="Bank Image" className='start-page__image'/>
+      <img src={welcome} alt="Welcome Bank Img" className='welcomepage__image'/>
         
-      <div className="start-page__buttons">
-        <button className='start-page__button-purple'><a className='start-page__button-purple__link'>Sign Up</a></button>
-        <button className='start-page__button-white'><a className='start-page__button-white__link'>Sign In</a></button>
+      <div className="welcomepage__buttons">
+        {/* <Link to="/signup">
+          <button className="welcomepage__button-purple">Sign Up</button>
+        </Link>
+        <Link to="/signin">
+          <button className="welcomepage__button-white">Sign In</button>
+        </Link> */}
+
+        <button className='welcomepage__button-purple'><a href='/signup' className='welcomepage__button-purple__link'>Sign Up</a></button>
+        <button className='welcomepage__button-white'><a href='/signin' className='welcomepage__button-white__link'>Sign In</a></button>
       </div>
     </div>
   );

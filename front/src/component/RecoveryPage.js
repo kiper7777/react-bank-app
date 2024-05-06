@@ -5,12 +5,13 @@ import "./RecoveryPage.css";
 const RecoveryPage = () => {
     const handleBackButtonClick = () => {
         // Handle back button click logic here
+        window.history.back(); // This will navigate back to the previous page in the browser history
         console.log('Back button clicked!');
     };
       
     const [email, setEmail] = useState('');
     const [message, setMessage] = useState('');
-    const [error, setError] = useState('');
+    // const [error, setError] = useState('');
         
     const handleEmailChange = (e) => {
     setEmail(e.target.value);
@@ -21,7 +22,7 @@ const RecoveryPage = () => {
     // Handle password recovery logic here (e.g., send recovery code to email)
 
     try {
-        const response = await fetch('http://localhost:4000/recover-password', {
+        const response = await fetch('http://localhost:4000/recovery', {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',
@@ -32,11 +33,11 @@ const RecoveryPage = () => {
         if (response.ok) {
           setMessage(data.message);
         } else {
-          setError(data.error);
+          setMessage(data.error || 'Failed to recover password');
         }
     } catch (error) {
     console.error('Error recovering password:', error);
-    setError('An error occurred while recovering password. Please try again later.');
+    setMessage('Failed to recover password');
     }
 
     console.log('Recovery code sent to:', email);
@@ -56,7 +57,6 @@ const RecoveryPage = () => {
 
             <div className='field'>
                 <label className='field__label' 
-                  type="email" 
                   name="email" 
                 >Email</label>
                 <input className='field__input' 
@@ -70,6 +70,7 @@ const RecoveryPage = () => {
             </div>
                 
             <button className='form__button' type="submit">Send code</button>
+            {message && <p className="message">{message}</p>}
         </form>
     </div>
     );
