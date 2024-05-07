@@ -264,13 +264,14 @@ router.get('/recovery-confirm', function (req, res) {
 })
 
 router.post('/recovery-confirm', function (req, res) {
-    const {password, code} = req.body
-
-    console.log(password, code)
-
-    if (!code || !password) {
+    const {code, newPassword} = req.body
+    console.log(code, newPassword)
+    
+    // Check if code and newPassword are provided
+    if (!code || !newPassword) {
         return res.status(400).json({
-            message: "Помилка. Обов'язкові поля відсутні",
+            error: 'Code and newPassword are required'
+            // message: "Помилка. Обов'язкові поля відсутні",
         })
     }
 
