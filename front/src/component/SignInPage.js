@@ -81,7 +81,7 @@ const SigninPage = () => {
           />
         </div>
 
-        <span className='link__prefix'>Forgot your password? <a className='link' href='/restore'>Restore</a></span>
+        <span className='link__prefix'>Forgot your password? <a className='link' href='/recovery'>Restore</a></span>
         
         <button className='form__button' type="submit">Continue</button>
         

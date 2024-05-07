@@ -253,6 +253,7 @@ router.get('/recovery-confirm', function (req, res) {
         name: 'recovery-confirm',
         component: [
             'BackButton',
+            'RecoveryConfirmPage',
             // 'field',
             // 'field-password',
         ],
