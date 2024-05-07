@@ -1,11 +1,9 @@
 import React from "react";
-// import ReactDOM from "react-dom";
 import { BrowserRouter as Routes, Route } from "react-router-dom";
 import { BrowserRouter } from "react-router-dom";
 import AuthRoute from "./component/AuthRoute";
 import PrivateRoute from "./component/PrivateRoute";
 import { AuthContext } from "./component/AuthContext";
-// import AuthContextData from "./component/AuthContextData";
 
 import WelcomePage from "./component/WelcomePage";
 import SignupPage from "./component/SignupPage";
@@ -13,40 +11,40 @@ import SignupConfirmPage from "./component/SignupConfirmPage";
 import SigninPage from "./component/SigninPage";
 import RecoveryPage from "./component/RecoveryPage";
 import RecoveryConfirmPage from "./component/RecoveryConfirmPage";
-import BalancePage from "./component/BalancePage";
-import NotificationsPage from "./component/NotificationsPage";
-import SettingsPage from "./component/SettingsPage";
-import ReceivePage from "./component/ReceivePage";
-import SendPage from "./component/SendPage";
-import TransactionPage from "./component/TransactionPage";
+// import BalancePage from "./component/BalancePage";
+// import NotificationsPage from "./component/NotificationsPage";
+// import SettingsPage from "./component/SettingsPage";
+// import ReceivePage from "./component/ReceivePage";
+// import SendPage from "./component/SendPage";
+// import TransactionPage from "./component/TransactionPage";
 // import UserList from "./component/UserList";
 // import SignupPageClass from "./component/SignupPageClass";
 
 function App() {
-  // const AuthContextData = {
-  //   state: {
-  //     token: null,
-  //     user: null,
-  //   },
-  //   login: (token: string, user: User) => {
-  //     // Set the token and user in the authentication state
-  //     AuthContextData.state.token = token;
-  //     AuthContextData.state.user = user;
+  const AuthContextData = {
+    state: {
+      token: null,
+      user: null,
+    },
+    login: (token: any, user: any) => {
+      // Set the token and user in the authentication state
+      AuthContextData.state.token = token;
+      AuthContextData.state.user = user;
 
-  //     // You can also store the token and user in local storage or cookies for persistence
+      // You can also store the token and user in local storage or cookies for persistence
 
-  //     console.log("Logged in");
-  //   },
-  //   logout: () => {
-  //     // Clear the token and user from the authentication state
-  //     AuthContextData.state.token = null;
-  //     AuthContextData.state.user = null;
+      console.log("Logged in");
+    },
+    logout: () => {
+      // Clear the token and user from the authentication state
+      AuthContextData.state.token = null;
+      AuthContextData.state.user = null;
 
-  //     // You should also clear the token and user from local storage or cookies
+      // You should also clear the token and user from local storage or cookies
 
-  //     console.log("Logged out");
-  //   },
-  // };
+      console.log("Logged out");
+    },
+  };
 
   return (
     <AuthContext.Provider value={AuthContextData}>
@@ -100,7 +98,7 @@ function App() {
               </AuthRoute>
             }
           />
-          <Route
+          {/* <Route
             path="/balance"
             element={
               <PrivateRoute>
@@ -147,7 +145,7 @@ function App() {
                 <TransactionPage />
               </PrivateRoute>
             }
-          />
+          /> */}
         </Routes>
       </BrowserRouter>
     </AuthContext.Provider>
