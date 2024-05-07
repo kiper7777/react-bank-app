@@ -26,7 +26,7 @@ const SigninPage = () => {
     e.preventDefault();
     // Handle signin logic here (e.g., send data to backend)
     try {
-      const response = await fetch('/signin', {
+      const response = await fetch("http://localhost:4000/signin", {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

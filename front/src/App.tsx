@@ -1,10 +1,8 @@
 import React from "react";
-import { BrowserRouter as Routes, Route } from "react-router-dom";
-import { BrowserRouter } from "react-router-dom";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
 import AuthRoute from "./component/AuthRoute";
 import PrivateRoute from "./component/PrivateRoute";
 import { AuthContext } from "./component/AuthContext";
-
 import WelcomePage from "./component/WelcomePage";
 import SignupPage from "./component/SignupPage";
 import SignupConfirmPage from "./component/SignupConfirmPage";

@@ -5,6 +5,7 @@ import "./SignupConfirmPage.css";
 const SignupConfirmPage = () => {
     const handleBackButtonClick = () => {
         // Handle back button click logic here
+        window.history.back();
         console.log('Back button clicked!');
     };
       

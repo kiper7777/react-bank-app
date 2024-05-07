@@ -5,6 +5,8 @@ const router = express.Router()
 
 // Підключіть файли роутів
 const { User } = require('../class/user')
+// const {Confirm} = require('../class/confirm')
+// const {Session} = require('../class/session')
 
 //=================================
 
