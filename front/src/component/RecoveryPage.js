@@ -1,11 +1,14 @@
 import React, { useState } from "react";
+// import { useHistory } from "react-router-dom";
 import BackButton from "./BackButton";
 import "./RecoveryPage.css";
 
 const RecoveryPage = () => {
+  // const history = useHistory(); // Initialize useHistory
+
     const handleBackButtonClick = () => {
         // Handle back button click logic here
-        window.history.back(); // This will navigate back to the previous page in the browser history
+        window.history.back(); // Navigate back to the previous page
         console.log('Back button clicked!');
     };
       
@@ -17,8 +20,8 @@ const RecoveryPage = () => {
     setEmail(e.target.value);
     };
     
-    const handleSubmit = async (e) => {
-    e.preventDefault();
+    const handleRecovery = async () => {
+    // e.preventDefault();
     // Handle password recovery logic here (e.g., send recovery code to email)
 
     try {
@@ -29,9 +32,13 @@ const RecoveryPage = () => {
           },
           body: JSON.stringify({ email }),
         });
+
         const data = await response.json();
+
         if (response.ok) {
           setMessage(data.message);
+          // Redirect to the RecoveryConfirmPage component
+          window.location.href = '/recovery-confirm';
         } else {
           setMessage(data.error || 'Failed to recover password');
         }
@@ -41,24 +48,21 @@ const RecoveryPage = () => {
     }
 
     console.log('Recovery code sent to:', email);
-    // Clear email field after submission
-    setEmail('');
+    setEmail(''); // Clear email field after submission
     };
 
     return (
     <div className='page'>
         <header>
-        <BackButton onClick={handleBackButtonClick}/>
+          <BackButton onClick={handleBackButtonClick}/>
         </header>
 
-        <form className='form' onSubmit={handleSubmit}>
+        <form className='form'>
             <h1 className='form__title'>Recover password</h1>
-            <p className='form__subtitle'>Choose a recovery method</p>
+            <p className='form__subtitle'>Enter your email to receive a recovery code</p>
 
             <div className='field'>
-                <label className='field__label' 
-                  name="email" 
-                >Email</label>
+                <label className='field__label'>Email</label>
                 <input className='field__input' 
                   type="email" 
                   id="email" 
@@ -69,7 +73,7 @@ const RecoveryPage = () => {
                 />
             </div>
                 
-            <button className='form__button' type="submit">Send code</button>
+            <button type="button" onClick={handleRecovery} className='form__button'>Send code</button>
             {message && <p className="message">{message}</p>}
         </form>
     </div>
