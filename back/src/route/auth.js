@@ -296,7 +296,22 @@ router.post('/recovery-confirm', function (req, res) {
 
         
 
-        user.password = password
+        // Check if the code matches
+//   const user = users.find((user) => user.confirmationCode === code);
+
+  if (user) {
+    // Update user's password
+    user.password = newPassword;
+    
+    // Remove confirmation code
+    delete user.confirmationCode;
+
+    // Handle successful password restoration
+    res.json({ success: true });
+  } else {
+    // Handle invalid code
+    res.json({ success: false, error: 'Invalid confirmation code' });
+  }
 
         console.log(user)
 
