@@ -40,6 +40,8 @@ const RecoveryConfirmPage = () => {
       const data = await response.json();
 
       if (response.ok) {
+        // Redirect to the SigninPage component
+        window.location.href = '/signin';
         setMessage(data.message);
       } else {
         setMessage(data.error || 'Failed to restore password');

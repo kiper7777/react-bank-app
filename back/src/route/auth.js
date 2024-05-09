@@ -8,6 +8,8 @@ const {Confirm} = require('../class/confirm')
 const {Session} = require('../class/session')
 // const {SignupPageClass} = require('../class/SignupPageClass')
 
+const users = [];
+
 // User.create({
 //     email: 'user@mail.com',
 //     password: 123,
@@ -291,6 +293,8 @@ router.post('/recovery-confirm', function (req, res) {
                 message: "Користувач з таким email не існує",
             })
         }
+
+        
 
         user.password = password
 

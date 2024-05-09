@@ -37,7 +37,7 @@ const SignupPage = () => {
     setPassword(e.target.value);
   };
 
-  const handleSubmit = async (e) => {
+  const handleSignup = async (e) => {
     e.preventDefault();
     setError(null);
     setLoading(true);
@@ -51,7 +51,16 @@ const SignupPage = () => {
         body: JSON.stringify({email, password}),
       });
 
+      const data = await response.json();
+      if (data.success) {
+        
+      } else {
+        // Handle signup error
+      }
+
       if (response.ok) {
+        // Redirect to confirmation page
+        window.location.href = '/signup-confirm';
         // Registration successful
         console.log('Registration successful');
       } else {
@@ -80,7 +89,7 @@ const SignupPage = () => {
         <BackButton onClick={handleBackButtonClick}/>
       </header>
 
-      <form className='form' onSubmit={handleSubmit}>
+      <form className='form'>
         <h1 className='form__title'>Sign up</h1>
         <p className='form__subtitle'>Choose a registration method</p>
 
@@ -110,7 +119,7 @@ const SignupPage = () => {
 
         <span className='link__prefix'>Already have an account? <a href='/signin' className='link'>Sign In</a></span>
         
-        <button className='form__button' type="submit" disabled={loading}>
+        <button onClick={handleSignup} type="button" className='form__button' disabled={loading}>
           {loading ? 'Signing up...' : 'Continue'}
         </button>
         {error && <p className="form__error">{error}</p>}
