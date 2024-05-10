@@ -6,17 +6,6 @@ import "./SignupPage.css";
 // import { saveSession } from './script/session';
 
 const SignupPage = () => {
-  // class SignupPageClass {
-  //   static value = {}
-
-  //   static validate = (name, value) => {
-  //     return true
-  //   }
-
-  //   static submit = () => {
-  //     console.log(this.value)
-  //   }
-  // }
 
   const handleBackButtonClick = () => {
     // Handle back button click logic here
@@ -26,8 +15,24 @@ const SignupPage = () => {
   
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const [emailDirty, setEmailDirty] = useState(false);
+  const [passwordDirty, setPasswordDirty] = useState(false);
+  const [emailError, setEmailError] = useState('email не может быть пустым');
+  const [passwordError, setPasswordError] = useState('пароль не может быть пустым');
+
+  const blurHandler = (e) => {
+    switch (e.target.name) {
+      case 'email':
+        setEmailDirty(true)
+        break
+      case 'password':
+        setPasswordDirty(true)
+        break
+    }
+  }
+  
   const [error, setError] = useState(null);
-  const [loading, setLoading] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
 
   const handleEmailChange = (e) => {
     setEmail(e.target.value);
@@ -39,8 +44,8 @@ const SignupPage = () => {
 
   const handleSignup = async (e) => {
     e.preventDefault();
-    setError(null);
-    setLoading(true);
+    // setError(null);
+    setIsLoading(true);
     // Handle signup logic here (e.g., send data to backend)
     try {
       const response = await fetch("http://localhost:4000/signup", {
@@ -73,7 +78,7 @@ const SignupPage = () => {
       setError(error.message);
       console.error('Error registering:', error);
     } finally {
-      setLoading(false);
+      setIsLoading(false);
     }
 
     console.log('Email:', email);
@@ -94,33 +99,40 @@ const SignupPage = () => {
         <p className='form__subtitle'>Choose a registration method</p>
 
         <div className='field'>
-          <label className='field__label' name="email">Email</label>
+          <label className='field__label'>Email</label>
           <input className='field__input' 
+            name="email"
             type="email" 
             id='email'
             placeholder='example@gmail.com'
             value={email} 
+            onBlur={e => blurHandler(e)}
             onChange={handleEmailChange}
             required
           />
+          {(emailDirty && emailError) && <div style={{color: 'red'}}>{emailError}</div>}
+
           <span name="email" className='form__error'>Помилка</span>
         </div>
         <div className='field'>
           <label className='field__label'>Password</label>
           <input className='field__input' 
+            name="password"
             type="password" 
             id='password'
             placeholder='Pass2000ID'
             value={password} 
+            onBlur={e => blurHandler(e)}
             onChange={handlePasswordChange}
             required
           />
+          {(passwordDirty && passwordError) && <div style={{color: 'red'}}>{passwordError}</div>}
         </div>
 
         <span className='link__prefix'>Already have an account? <a href='/signin' className='link'>Sign In</a></span>
         
-        <button onClick={handleSignup} type="button" className='form__button' disabled={loading}>
-          {loading ? 'Signing up...' : 'Continue'}
+        <button onClick={handleSignup} type="button" className='form__button' disabled={isLoading}>
+          {isLoading ? 'Signing up...' : 'Continue'}
         </button>
         {error && <p className="form__error">{error}</p>}
       </form>
