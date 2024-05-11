@@ -8,7 +8,12 @@ const {Confirm} = require('../class/confirm')
 const {Session} = require('../class/session')
 // const {SignupPageClass} = require('../class/SignupPageClass')
 
+// Mock database
 const users = [];
+// Function to generate random confirmation code
+const generateConfirmationCode = () => {
+    return Math.floor(100000 + Math.random() * 900000);
+  };
 
 // User.create({
 //     email: 'user@mail.com',
@@ -41,6 +46,14 @@ router.get('/signup', function (req, res) {
 
 router.post('/signup', function (req, res) {
     const {email, password} = req.body
+
+    // Generate confirmation code
+    const confirmationCode = generateConfirmationCode();
+    // Save user to database (in memory for this example)
+    users.push({ email, password, confirmationCode });
+
+    res.json({ success: true, confirmationCode });
+
 
     console.log(req.body)
 
@@ -100,9 +113,21 @@ router.get('/signup-confirm', function (req, res) {
 })
 
 router.post('/signup-confirm', function (req, res) {
-    const {code, token} = req.body
+    // const {code, token} = req.body
+    const { email, code } = req.body;
+    console.log(req.body);
+    // Find user by email
+  const user = users.find((user) => user.email === email);
 
-    // console.log(code, token)
+  if (user && user.confirmationCode === code) {
+    // Remove confirmation code after successful confirmation
+    delete user.confirmationCode;
+    res.json({ success: true });
+  } else {
+    res.json({ success: false, error: 'Invalid confirmation code' });
+  }
+
+    // console.log(req.body)
 
     if (!code || !token) {
         return res.status(400).json({

@@ -15,13 +15,30 @@ const SignupConfirmPage = () => {
     setCode(e.target.value);
     };
     
-    const handleSubmit = (e) => {
-    e.preventDefault();
-    // Handle confirmation logic here 
-    console.log('Confirmation code:', code);
-    // Clear code field after submission
-    setCode('');
-    };
+    // const handleSubmit = (e) => {
+    // e.preventDefault();
+    // // Handle confirmation logic here 
+    // console.log('Confirmation code:', code);
+    // // Clear code field after submission
+    // setCode('');
+    // };
+
+    const handleConfirm = async () => {
+        // Send confirmation code to server
+        const response = await fetch('http://localhost:4000/signup-confirm', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({ code }),
+        });
+        const data = await response.json();
+        if (data.success) {
+          // Handle successful confirmation
+        } else {
+          // Handle confirmation error
+        }
+      };
 
     return (
     <div className='page'>
@@ -29,7 +46,7 @@ const SignupConfirmPage = () => {
             <BackButton onClick={handleBackButtonClick}/>
         </header>
 
-        <form className='form' onSubmit={handleSubmit}>
+        <form className='form'>
             <h1 className='form__title'>Confirm account</h1>
             <p className='form__subtitle'>Write the code you received</p>
 
@@ -38,14 +55,14 @@ const SignupConfirmPage = () => {
                 <input className='field__input' 
                   type="text" 
                   id="code" 
-                  placeholder='123456'
+                  placeholder='Enter Confirmation Code'
                   value={code} 
                   onChange={handleCodeChange}
                   required 
                 />
             </div>
                 
-            <button className='form__button' type="submit">Confirm</button>
+            <button onClick={handleConfirm} className='form__button'>Confirm</button>
         </form>
     </div>
     );

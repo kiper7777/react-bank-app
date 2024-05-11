@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import BackButton from './BackButton';
 import "./SignupPage.css";
 // import SigninPage from './SigninPage';
@@ -18,7 +18,16 @@ const SignupPage = () => {
   const [emailDirty, setEmailDirty] = useState(false);
   const [passwordDirty, setPasswordDirty] = useState(false);
   const [emailError, setEmailError] = useState('email не может быть пустым');
-  const [passwordError, setPasswordError] = useState('пароль не может быть пустым');
+  const [passwordError, setPasswordError] = useState('');
+  const [formValid, setFormValid] = useState(false);
+
+  useEffect(() => {
+    if (emailError || passwordError) {
+      setFormValid(false)
+    } else {
+      setFormValid(true)
+    }
+  }, [emailError, passwordError])
 
   const blurHandler = (e) => {
     switch (e.target.name) {
@@ -36,14 +45,25 @@ const SignupPage = () => {
 
   const handleEmailChange = (e) => {
     setEmail(e.target.value);
+    const re = /^(([^<>()[\].,;:\s@"]+(\.[^<>()[\].,;:\s@"]+)*)|(".+"))@(([^<>()[\].,;:\s@"]+\.)+[^<>()[\].,;:\s@"]{2,})$/i;
+    if (!re.test(String(e.target.value).toLowerCase())) {
+      setEmailError('некорректный email')
+    } else {
+      setEmailError('')
+    }
   };
 
   const handlePasswordChange = (e) => {
     setPassword(e.target.value);
+    if (e.target.value.length < 3 || e.target.value.length > 8) {
+      setPasswordError('пароль должен быть длиннее 3 и меньше 8 символов')
+    } else {
+      setPasswordError('')
+    }
   };
 
-  const handleSignup = async (e) => {
-    e.preventDefault();
+  const handleSignup = async () => {
+    // e.preventDefault();
     // setError(null);
     setIsLoading(true);
     // Handle signup logic here (e.g., send data to backend)
@@ -63,20 +83,20 @@ const SignupPage = () => {
         // Handle signup error
       }
 
-      if (response.ok) {
+      if (data.success) {
         // Redirect to confirmation page
-        window.location.href = '/signup-confirm';
+        window.location.push = '/signup-confirm';
         // Registration successful
         console.log('Registration successful');
       } else {
-        const data = await response.json();
-        throw new Error(data.message);
+        // const data = await response.json();
+        // throw new Error(data.message);
         // Registration failed
-        // console.error('Registration failed');
+        console.error('Signup failed:', data.error);
       }
     } catch (error) {
       setError(error.message);
-      console.error('Error registering:', error);
+      console.error('Error during signup:', error.message);
     } finally {
       setIsLoading(false);
     }
@@ -131,8 +151,10 @@ const SignupPage = () => {
 
         <span className='link__prefix'>Already have an account? <a href='/signin' className='link'>Sign In</a></span>
         
-        <button onClick={handleSignup} type="button" className='form__button' disabled={isLoading}>
+        <button onClick={handleSignup} type="button" className='form__button' disabled={!formValid}>
+        {emailError && passwordError && <button className="form__button--disabled">Continue</button>}
           {isLoading ? 'Signing up...' : 'Continue'}
+          {/* Continue */}
         </button>
         {error && <p className="form__error">{error}</p>}
       </form>
