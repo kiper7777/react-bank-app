@@ -68,6 +68,7 @@ const SignupPage = () => {
     setIsLoading(true);
     // Handle signup logic here (e.g., send data to backend)
     try {
+      // Send signup request to server
       const response = await fetch("http://localhost:4000/signup", {
         method: 'POST',
         headers: {
@@ -78,28 +79,33 @@ const SignupPage = () => {
 
       const data = await response.json();
       if (data.success) {
-        
+        // Redirect to confirmation page
+        window.push('/signup-confirm');
       } else {
         // Handle signup error
-      }
-
-      if (data.success) {
-        // Redirect to confirmation page
-        window.location.push = '/signup-confirm';
-        // Registration successful
-        console.log('Registration successful');
-      } else {
-        // const data = await response.json();
-        // throw new Error(data.message);
-        // Registration failed
         console.error('Signup failed:', data.error);
       }
     } catch (error) {
-      setError(error.message);
       console.error('Error during signup:', error.message);
-    } finally {
-      setIsLoading(false);
-    }
+    }  
+
+    //   if (data.success) {
+    //     // Redirect to confirmation page
+    //     window.location.push = '/signup-confirm';
+    //     // Registration successful
+    //     console.log('Registration successful');
+    //   } else {
+    //     // const data = await response.json();
+    //     // throw new Error(data.message);
+    //     // Registration failed
+    //     console.error('Signup failed:', data.error);
+    //   }
+    // } catch (error) {
+    //   setError(error.message);
+    //   console.error('Error during signup:', error.message);
+    // } finally {
+    //   setIsLoading(false);
+    // }
 
     console.log('Email:', email);
     console.log('Password:', password);
