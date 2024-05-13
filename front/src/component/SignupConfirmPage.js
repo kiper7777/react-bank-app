@@ -18,7 +18,7 @@ const SignupConfirmPage = () => {
     // const handleSubmit = (e) => {
     // e.preventDefault();
     // // Handle confirmation logic here 
-    // console.log('Confirmation code:', code);
+    console.log('Confirmation code:', code);
     // // Clear code field after submission
     // setCode('');
     // };

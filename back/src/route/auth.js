@@ -42,39 +42,39 @@ router.post('/signup', function (req, res) {
     // Send response to the client
     res.json({ success: true, confirmationCode });
 
-    console.log(req.body)
+    console.log(email, confirmationCode)
 
 //=========================================================//
-    if (!email || !password) {
-        return res.status(400).json({
-            message: "Помилка. Обов'язкові поля відсутні",
-        })
-    }
+    // if (!email || !password) {
+    //     return res.status(400).json({
+    //         message: "Помилка. Обов'язкові поля відсутні",
+    //     })
+    // }
 
-    try {
-        const user = User.getByEmail(email)
+    // try {
+    //     const user = User.getByEmail(email)
 
-        if (user) {
-            return res.status(400).json({
-                message: "Помилка. Такий користувач вже існує",
-            })
-        }
+    //     if (user) {
+    //         return res.status(400).json({
+    //             message: "Помилка. Такий користувач вже існує",
+    //         })
+    //     }
 
-        const newUser = User.create({email, password})
+    //     const newUser = User.create({email, password})
 
-        const session = Session.create(newUser)
+    //     const session = Session.create(newUser)
 
-        confirm.create(newUser.email)
+    //     confirm.create(newUser.email)
 
-        return res.status(200).json({
-            message: "Користувач успішно зареєстрований",
-            session,
-        })
-    } catch (err) {
-        return res.status(400).json({
-            message: "Помилка створення користувача",
-        })
-    }
+    //     return res.status(200).json({
+    //         message: "Користувач успішно зареєстрований",
+    //         session,
+    //     })
+    // } catch (err) {
+    //     return res.status(400).json({
+    //         message: "Помилка створення користувача",
+    //     })
+    // }
 })
 
 //============================================
@@ -103,64 +103,65 @@ router.get('/signup-confirm', function (req, res) {
 router.post('/signup-confirm', function (req, res) {
     // const {code, token} = req.body
 
-    const { email, code } = req.body;
+    const { code } = req.body;
     console.log(req.body);
 
-    // Find user by email
-  const user = users.find((user) => user.email === email);
+    // Find user by confirmation code
+//   const user = users.find((user) => user.email === email);
+  const user = users.find((user) => user.confirmationCode === code);
 
-  if (user && user.confirmationCode === code) {
+  if (user) {
     // Remove confirmation code after successful confirmation
     delete user.confirmationCode;
     res.json({ success: true });
   } else {
-    res.json({ success: false, error: 'Invalid confirmation code' });
+    res.status(400).json({ success: false, error: 'Invalid confirmation code' });
   }
 
     //=========================================//
 
-    if (!code || !token) {
-        return res.status(400).json({
-            message: "Помилка. Обов'язкові поля відсутні",
-        })
-    }
+    // if (!code || !token) {
+    //     return res.status(400).json({
+    //         message: "Помилка. Обов'язкові поля відсутні",
+    //     })
+    // }
 
-    try {
-        const session = Session.get(token)
+    // try {
+    //     const session = Session.get(token)
 
-        if (!session) {
-            return res.status(400).json({
-                message: "Помилка. Ви не увійшли в акаунт",
-            })
-        }
+    //     if (!session) {
+    //         return res.status(400).json({
+    //             message: "Помилка. Ви не увійшли в акаунт",
+    //         })
+    //     }
 
-        const email = Confirm.getData(code)
+    //     const email = Confirm.getData(code)
 
-        if (!email) {
-            return res.status(400).json({
-                message: "Код не існує",
-            })
-        }
+    //     if (!email) {
+    //         return res.status(400).json({
+    //             message: "Код не існує",
+    //         })
+    //     }
 
-        if (email !== session.user.email) {
-            return res.status(400).json({
-                message: "Код не дійсний",
-            })
-        }
+    //     if (email !== session.user.email) {
+    //         return res.status(400).json({
+    //             message: "Код не дійсний",
+    //         })
+    //     }
 
-        const user = User.getByEmail(session.user.email)
-        user.isConfirm = true
-        session.user.isConfirm = true
+    //     const user = User.getByEmail(session.user.email)
+    //     user.isConfirm = true
+    //     session.user.isConfirm = true
 
-        return res.status(200).json({
-            message: "Ви підтвердили свою пошту",
-            session,
-        })
-    } catch (err) {
-        return res.status(400).json({
-            message: err.message,
-        })
-    }
+    //     return res.status(200).json({
+    //         message: "Ви підтвердили свою пошту",
+    //         session,
+    //     })
+    // } catch (err) {
+    //     return res.status(400).json({
+    //         message: err.message,
+    //     })
+    // }
 })
 
 //========================================================
