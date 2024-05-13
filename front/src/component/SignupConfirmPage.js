@@ -15,30 +15,38 @@ const SignupConfirmPage = () => {
     setCode(e.target.value);
     };
     
-    // const handleSubmit = (e) => {
-    // e.preventDefault();
-    // // Handle confirmation logic here 
-    console.log('Confirmation code:', code);
-    // // Clear code field after submission
-    // setCode('');
-    // };
-
+    // console.log('Confirmation code:', code);
+  
     const handleConfirm = async () => {
-        // Send confirmation code to server
-        const response = await fetch('http://localhost:4000/signup-confirm', {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json',
-          },
-          body: JSON.stringify({ code }),
-        });
-        const data = await response.json();
-        if (data.success) {
-          // Handle successful confirmation
-        } else {
-          // Handle confirmation error
-        }
-      };
+      try {
+          // Log request payload before sending
+          console.log("Request payload:", { code });
+
+          // Send confirmation code to server
+          const response = await fetch('http://localhost:4000/signup-confirm', {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({ code }),
+          });
+
+          const data = await response.json();
+          if (data.success) {
+              // Handle successful confirmation
+              console.log("Confirmation successful!");
+              // Redirect user or display success message
+          } else {
+            // Handle confirmation error
+            console.error("Confirmation error:", data.error);
+            // Display error message to user
+          }
+      } catch (error) {
+          console.error("Error during confirmation:", error.message);
+          // Handle network error or other unexpected errors
+      } 
+      
+    };
 
     return (
     <div className='page'>

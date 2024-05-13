@@ -33,15 +33,17 @@ const SignupPage = ({ setSignupComplete }) => {
   const blurHandler = (e) => {
     switch (e.target.name) {
       case 'email':
-        setEmailDirty(true)
-        break
+        setEmailDirty(true);
+        break;
       case 'password':
-        setPasswordDirty(true)
-        break
+        setPasswordDirty(true);
+        break;
+      default:
+        break;
     }
   }
   
-  const [error, setError] = useState(null);
+  // const [error, setError] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
 
   const handleEmailChange = (e) => {
@@ -135,7 +137,7 @@ const SignupPage = ({ setSignupComplete }) => {
             id='email'
             placeholder='example@gmail.com'
             value={email} 
-            onBlur={e => blurHandler(e)}
+            onBlur={blurHandler}
             onChange={handleEmailChange}
             required
           />
@@ -151,7 +153,7 @@ const SignupPage = ({ setSignupComplete }) => {
             id='password'
             placeholder='Pass2000ID'
             value={password} 
-            onBlur={e => blurHandler(e)}
+            onBlur={blurHandler}
             onChange={handlePasswordChange}
             required
           />
@@ -165,7 +167,7 @@ const SignupPage = ({ setSignupComplete }) => {
           {isLoading ? 'Signing up...' : 'Continue'}
           {/* Continue */}
         </button>
-        {error && <p className="form__error">{error}</p>}
+        {/* {error && <p className="form__error">{error}</p>} */}
       </form>
     </div>
   );
