@@ -1,11 +1,12 @@
 import React, { useEffect, useState } from 'react';
 import BackButton from './BackButton';
 import "./SignupPage.css";
+
 // import SigninPage from './SigninPage';
 // import { Form, REG_EXP_EMAIL, REG_EXP_PASSWORD } from './script/form';
 // import { saveSession } from './script/session';
 
-const SignupPage = () => {
+const SignupPage = ({ setSignupComplete }) => {
 
   const handleBackButtonClick = () => {
     // Handle back button click logic here
@@ -79,8 +80,10 @@ const SignupPage = () => {
 
       const data = await response.json();
       if (data.success) {
+        // Set signup complete
+        setSignupComplete(true);
         // Redirect to confirmation page
-        window.push('/signup-confirm');
+        // window.location.href = '/signup-confirm';
       } else {
         // Handle signup error
         console.error('Signup failed:', data.error);

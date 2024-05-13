@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import AuthRoute from "./component/AuthRoute";
 import PrivateRoute from "./component/PrivateRoute";
@@ -19,6 +19,8 @@ import RecoveryConfirmPage from "./component/RecoveryConfirmPage";
 // import SignupPageClass from "./component/SignupPageClass";
 
 function App() {
+  const [signupComplete, setSignupComplete] = useState(false);
+
   const AuthContextData = {
     state: {
       token: null,
@@ -60,7 +62,12 @@ function App() {
             path="/signup"
             element={
               <AuthRoute>
-                <SignupPage />
+                {!signupComplete ? (
+                  <SignupPage setSignupComplete={setSignupComplete} />
+                ) : (
+                  <SignupConfirmPage />
+                )}
+                {/* <SignupPage /> */}
               </AuthRoute>
             }
           />
