@@ -9,17 +9,19 @@ import SignupConfirmPage from "./component/SignupConfirmPage";
 import SigninPage from "./component/SigninPage";
 import RecoveryPage from "./component/RecoveryPage";
 import RecoveryConfirmPage from "./component/RecoveryConfirmPage";
-// import BalancePage from "./component/BalancePage";
+import BalancePage from "./component/BalancePage";
 // import NotificationsPage from "./component/NotificationsPage";
 // import SettingsPage from "./component/SettingsPage";
 // import ReceivePage from "./component/ReceivePage";
 // import SendPage from "./component/SendPage";
 // import TransactionPage from "./component/TransactionPage";
+
 // import UserList from "./component/UserList";
 // import SignupPageClass from "./component/SignupPageClass";
 
 function App() {
   const [signupComplete, setSignupComplete] = useState(false);
+  // const [signinComplete, setSigninComplete] = useState(false);
 
   const AuthContextData = {
     state: {
@@ -83,6 +85,11 @@ function App() {
             path="/signin"
             element={
               <AuthRoute>
+                {/* {!signinComplete ? (
+                  <SigninPage setSigninComplete={setSigninComplete} />
+                ) : (
+                  <BalancePage />
+                )} */}
                 <SigninPage />
               </AuthRoute>
             }
@@ -103,7 +110,7 @@ function App() {
               </AuthRoute>
             }
           />
-          {/* <Route
+          <Route
             path="/balance"
             element={
               <PrivateRoute>
@@ -111,7 +118,7 @@ function App() {
               </PrivateRoute>
             }
           />
-          <Route
+          {/* <Route
             path="/notifications"
             element={
               <PrivateRoute>
@@ -161,7 +168,12 @@ function App() {
     //   </div>
 
     //   <div className="form">
-    //     <SignupPage />
+    //     {/* <SignupPage /> */}
+    //     {!signupComplete ? (
+    //       <SignupPage setSignupComplete={setSignupComplete} />
+    //     ) : (
+    //       <SignupConfirmPage />
+    //     )}
     //   </div>
 
     //   <div className="form">
@@ -203,9 +215,9 @@ function App() {
     //   <div className="form__transaction">
     //     <TransactionPage />
     //   </div>
-    //   <div className="user-list-container">
+    //   {/* <div className="user-list-container">
     //     <UserList />
-    //   </div>
+    //   </div> */}
     // </div>
   );
 }

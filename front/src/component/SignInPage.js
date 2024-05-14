@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import BackButton from './BackButton';
 import "./SigninPage.css";
-
+import BalancePage from './BalancePage'; // Import the BalancePage component
 
 const SigninPage = () => {
 
@@ -13,6 +13,7 @@ const SigninPage = () => {
   
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const [signinComplete, setSigninComplete] = useState(false); // Track sign-in completion
 
   const handleEmailChange = (e) => {
     setEmail(e.target.value);
@@ -22,10 +23,10 @@ const SigninPage = () => {
     setPassword(e.target.value);
   };
 
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-    // Handle signin logic here (e.g., send data to backend)
+  const handleSignin = async () => {
+    // e.preventDefault();
     try {
+      // Send signin request to server
       const response = await fetch("http://localhost:4000/signin", {
         method: 'POST',
         headers: {
@@ -34,16 +35,33 @@ const SigninPage = () => {
         body: JSON.stringify({email, password}),
       });
 
-      if (response.ok) {
-        // Signin successful
-        console.log('Signin successful');
+      if (!response.ok) {
+        throw new Error('Failed to sign in');
+      }
+
+      const data = await response.json();
+
+      if (data.success) {
+        // Set signin complete
+        setSigninComplete(true);
       } else {
-        // Registration failed
-        console.error('Signin failed');
+        // Handle signin error
+        console.error('Signin failed:', data.error);
       }
     } catch (error) {
-      console.error('Error signin:', error);
+      console.error('Error during signin:', error.message);
     }
+
+    //   if (response.ok) {
+    //     // Signin successful
+    //     console.log('Signin successful');
+    //   } else {
+    //     // Registration failed
+    //     console.error('Signin failed');
+    //   }
+    // } catch (error) {
+    //   console.error('Error signin:', error);
+    // }
 
     console.log('Email:', email);
     console.log('Password:', password);
@@ -52,13 +70,19 @@ const SigninPage = () => {
     setPassword('');
   };
 
+  // Render BalancePage if signin is complete
+  if (signinComplete) {
+    return <BalancePage />;
+  }
+
   return (
+   
     <div className='page'>
       <header>
         <BackButton onClick={handleBackButtonClick}/>
       </header>
 
-      <form className='form' onSubmit={handleSubmit}>
+      <form className='form'>
         <h1 className='form__title'>Sign in</h1>
         <p className='form__subtitle'>Select login method</p>
 
@@ -83,10 +107,11 @@ const SigninPage = () => {
 
         <span className='link__prefix'>Forgot your password? <a className='link' href='/recovery'>Restore</a></span>
         
-        <button className='form__button' type="submit">Continue</button>
+        <button onClick={handleSignin} className='form__button'>Continue</button>
         
       </form>
     </div>
+ 
   );
 };
 

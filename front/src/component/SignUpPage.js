@@ -7,7 +7,6 @@ import "./SignupPage.css";
 // import { saveSession } from './script/session';
 
 const SignupPage = ({ setSignupComplete }) => {
-
   const handleBackButtonClick = () => {
     // Handle back button click logic here
     window.history.back(); 
@@ -21,6 +20,7 @@ const SignupPage = ({ setSignupComplete }) => {
   const [emailError, setEmailError] = useState('email не может быть пустым');
   const [passwordError, setPasswordError] = useState('');
   const [formValid, setFormValid] = useState(false);
+  // const [signupComplete, setSignupComplete] = useState(false); // Track sign-up completion
 
   useEffect(() => {
     if (emailError || passwordError) {
@@ -69,7 +69,7 @@ const SignupPage = ({ setSignupComplete }) => {
     // e.preventDefault();
     // setError(null);
     setIsLoading(true);
-    // Handle signup logic here (e.g., send data to backend)
+    
     try {
       // Send signup request to server
       const response = await fetch("http://localhost:4000/signup", {

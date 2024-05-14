@@ -185,6 +185,17 @@ router.post('/signin', function (req, res) {
 
     console.log(req.body)
 
+    // Check if email and password are correct (dummy logic)
+    if (email === 'email' && password === 'password') {
+        // If credentials are correct, send success response
+        res.json({ success: true });
+    } else {
+        // If credentials are incorrect, send error response
+        res.status(401).json({ success: false, error: 'Invalid email or password' });
+    }
+
+    //===========================//
+
     if (!email || !password) {
         return res.status(400).json({
             message: "Помилка. Обов'язкові поля відсутні",
@@ -346,6 +357,27 @@ router.post('/recovery-confirm', function (req, res) {
     }
 })
 
-//===================================================
+//========================================================
+router.get('/balance', function (req, res) {
+    return res.render('balance', {
+        name: 'balance',
+        component: [
+            'BalancePage',
+            // 'field',
+            // 'field-password',
+        ],
+
+        title: 'Balance page',
+        data: {},
+    })
+})
+
+router.post('/balance', function (req, res) {
+    const {email, password} = req.body
+
+    console.log(req.body)
+})
+
+//======================================================
 // Підключаємо роутер до бек-енду
 module.exports = router
