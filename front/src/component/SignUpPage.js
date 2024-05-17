@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import BackButton from './BackButton';
 import "./SignupPage.css";
 
+
 // import SigninPage from './SigninPage';
 // import { Form, REG_EXP_EMAIL, REG_EXP_PASSWORD } from './script/form';
 // import { saveSession } from './script/session';
@@ -93,24 +94,6 @@ const SignupPage = ({ setSignupComplete }) => {
     } catch (error) {
       console.error('Error during signup:', error.message);
     }  
-
-    //   if (data.success) {
-    //     // Redirect to confirmation page
-    //     window.location.push = '/signup-confirm';
-    //     // Registration successful
-    //     console.log('Registration successful');
-    //   } else {
-    //     // const data = await response.json();
-    //     // throw new Error(data.message);
-    //     // Registration failed
-    //     console.error('Signup failed:', data.error);
-    //   }
-    // } catch (error) {
-    //   setError(error.message);
-    //   console.error('Error during signup:', error.message);
-    // } finally {
-    //   setIsLoading(false);
-    // }
 
     console.log('Email:', email);
     console.log('Password:', password);
