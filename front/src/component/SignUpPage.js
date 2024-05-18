@@ -7,7 +7,7 @@ import "./SignupPage.css";
 // import { Form, REG_EXP_EMAIL, REG_EXP_PASSWORD } from './script/form';
 // import { saveSession } from './script/session';
 
-const SignupPage = ({ setSignupComplete }) => {
+const SignupPage = ({ setSignupComplete, setEmailForConfirmation }) => {
   const handleBackButtonClick = () => {
     // Handle back button click logic here
     window.history.back(); 
@@ -21,8 +21,7 @@ const SignupPage = ({ setSignupComplete }) => {
   const [emailError, setEmailError] = useState('email не может быть пустым');
   const [passwordError, setPasswordError] = useState('');
   const [formValid, setFormValid] = useState(false);
-  // const [signupComplete, setSignupComplete] = useState(false); // Track sign-up completion
-
+  
   useEffect(() => {
     if (emailError || passwordError) {
       setFormValid(false)
@@ -51,7 +50,7 @@ const SignupPage = ({ setSignupComplete }) => {
     setEmail(e.target.value);
     const re = /^(([^<>()[\].,;:\s@"]+(\.[^<>()[\].,;:\s@"]+)*)|(".+"))@(([^<>()[\].,;:\s@"]+\.)+[^<>()[\].,;:\s@"]{2,})$/i;
     if (!re.test(String(e.target.value).toLowerCase())) {
-      setEmailError('некорректный email')
+      setEmailError('Invalid email')
     } else {
       setEmailError('')
     }
@@ -60,19 +59,17 @@ const SignupPage = ({ setSignupComplete }) => {
   const handlePasswordChange = (e) => {
     setPassword(e.target.value);
     if (e.target.value.length < 3 || e.target.value.length > 8) {
-      setPasswordError('пароль должен быть длиннее 3 и меньше 8 символов')
+      setPasswordError('Password should be longer than 3 and less than 8 characters')
     } else {
       setPasswordError('')
     }
   };
 
-  const handleSignup = async () => {
-    // e.preventDefault();
+  const handleSignup = async (e) => {
+    e.preventDefault();
     // setError(null);
     setIsLoading(true);
-    
     try {
-      // Send signup request to server
       const response = await fetch("http://localhost:4000/signup", {
         method: 'POST',
         headers: {
@@ -81,19 +78,24 @@ const SignupPage = ({ setSignupComplete }) => {
         body: JSON.stringify({email, password}),
       });
 
+      if (!response.ok) {
+        throw new Error('Failed to sign up');
+      }
+
       const data = await response.json();
+
       if (data.success) {
-        // Set signup complete
         setSignupComplete(true);
+        setEmailForConfirmation(email);
         // Redirect to confirmation page
-        // window.location.href = '/signup-confirm';
+        // window.location.href = '/signup-confirm?email=' + encodeURIComponent(email);
       } else {
-        // Handle signup error
         console.error('Signup failed:', data.error);
       }
     } catch (error) {
       console.error('Error during signup:', error.message);
-    }  
+    } 
+    setIsLoading(false); 
 
     console.log('Email:', email);
     console.log('Password:', password);
@@ -102,13 +104,17 @@ const SignupPage = ({ setSignupComplete }) => {
     setPassword('');
   };
 
+  // if (signupComplete) {
+  //   return <SignupConfirmation email={email} />;
+  // }
+
   return (
     <div className='page'>
       <header>
         <BackButton onClick={handleBackButtonClick}/>
       </header>
 
-      <form className='form'>
+      <form onSubmit={handleSignup} className='form'>
         <h1 className='form__title'>Sign up</h1>
         <p className='form__subtitle'>Choose a registration method</p>
 
@@ -145,12 +151,11 @@ const SignupPage = ({ setSignupComplete }) => {
 
         <span className='link__prefix'>Already have an account? <a href='/signin' className='link'>Sign In</a></span>
         
-        <button onClick={handleSignup} type="button" className='form__button' disabled={!formValid}>
-        {emailError && passwordError && <button className="form__button--disabled">Continue</button>}
+        <button type="submit" className='form__button' disabled={!formValid}>
+        {/* {emailError && passwordError && <button className="form__button--disabled">Continue</button>} */}
           {isLoading ? 'Signing up...' : 'Continue'}
-          {/* Continue */}
         </button>
-        {/* {error && <p className="form__error">{error}</p>} */}
+        
       </form>
     </div>
   );

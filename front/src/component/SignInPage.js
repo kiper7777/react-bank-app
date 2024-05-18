@@ -23,8 +23,8 @@ const SigninPage = () => {
     setPassword(e.target.value);
   };
 
-  const handleSignin = async () => {
-    // e.preventDefault();
+  const handleSignin = async (e) => {
+    e.preventDefault();
     try {
       // Send signin request to server
       const response = await fetch("http://localhost:4000/signin", {
@@ -42,26 +42,13 @@ const SigninPage = () => {
       const data = await response.json();
 
       if (data.success) {
-        // Set signin complete
         setSigninComplete(true);
       } else {
-        // Handle signin error
         console.error('Signin failed:', data.error);
       }
     } catch (error) {
       console.error('Error during signin:', error.message);
     }
-
-    //   if (response.ok) {
-    //     // Signin successful
-    //     console.log('Signin successful');
-    //   } else {
-    //     // Registration failed
-    //     console.error('Signin failed');
-    //   }
-    // } catch (error) {
-    //   console.error('Error signin:', error);
-    // }
 
     console.log('Email:', email);
     console.log('Password:', password);
@@ -82,23 +69,25 @@ const SigninPage = () => {
         <BackButton onClick={handleBackButtonClick}/>
       </header>
 
-      <form className='form'>
+      <form onSubmit={handleSignin} className='form'>
         <h1 className='form__title'>Sign in</h1>
         <p className='form__subtitle'>Select login method</p>
 
         <div className='field'>
-          <label className='field__label' name="email">Email</label>
+          <label className='field__label' htmlFor='email'>Email</label>
           <input className='field__input' 
             type="email" 
+            id='email'
             placeholder='example@gmail.com'
             value={email} 
             onChange={handleEmailChange} 
           />
         </div>
         <div className='field'>
-          <label className='field__label'>Password</label>
+          <label className='field__label' htmlFor='password'>Password</label>
           <input className='field__input' 
             type="password" 
+            id='password'
             placeholder='********'
             value={password} 
             onChange={handlePasswordChange}
@@ -107,7 +96,7 @@ const SigninPage = () => {
 
         <span className='link__prefix'>Forgot your password? <a className='link' href='/recovery'>Restore</a></span>
         
-        <button onClick={handleSignin} className='form__button'>Continue</button>
+        <button type='submit' className='form__button'>Continue</button>
         
       </form>
     </div>

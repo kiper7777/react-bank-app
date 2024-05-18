@@ -1,6 +1,8 @@
 // Підключаємо роутер до бек-енду
-const express = require('express')
-const router = express.Router()
+const express = require('express');
+const router = express.Router();
+const crypto = require('crypto');
+const bcrypt = require('bcrypt');
 
 // Підключіть файли роутів
 const { User } = require('../class/user')
@@ -8,13 +10,9 @@ const {Confirm} = require('../class/confirm')
 const {Session} = require('../class/session')
 // const {SignupPageClass} = require('../class/SignupPageClass')
 
-// Mock database
+// In-memory store for users and confirmation codes (in production, use a database)
 const users = [];
-
-// Function to generate random confirmation code
-const generateConfirmationCode = () => {
-    return Math.floor(100000 + Math.random() * 900000);
-};
+let confirmationCodes = {};
 
 //============================================
 router.get('/signup', function (req, res) {
@@ -30,19 +28,30 @@ router.get('/signup', function (req, res) {
     })
 })
 
-router.post('/signup', function (req, res) {
+router.post('/signup', async function (req, res) {
     const {email, password} = req.body;
 
-    // Generate confirmation code
-    const confirmationCode = generateConfirmationCode();
+    if (!email || !password) {
+        return res.status(400).json({ success: false, error: 'Email and password are required' });
+    }
 
-    // Save user to database (in memory for this example)
-    users.push({ email, password, confirmationCode });
+    const hashedPassword = await bcrypt.hash(password, 10);
 
-    // Send response to the client
-    res.json({ success: true, confirmationCode });
+    // Store user data (in a real app, you should check if the user already exists)
+    users[email] = { email, password: hashedPassword, confirmed: false };
 
-    console.log(email, confirmationCode)
+    const confirmationCode = crypto.randomBytes(3).toString('hex'); // Generate a simple code
+    confirmationCodes[email] = confirmationCode;
+
+    console.log(`Generated confirmation code for ${email}: ${confirmationCode}`);
+
+    // // Save user to database (in memory for this example)
+    // users.push({ email, password, confirmationCode });
+
+    // // Send response to the client
+    // res.json({ success: true, confirmationCode });
+
+    // console.log(email, confirmationCode)
 
 //=========================================================//
     // if (!email || !password) {
@@ -101,22 +110,40 @@ router.get('/signup-confirm', function (req, res) {
 })
 
 router.post('/signup-confirm', function (req, res) {
-    // const {code, token} = req.body
+    const { email, code } = req.body;
 
-    const { code } = req.body;
-    console.log(req.body);
+    if (!email || !code) {
+        return res.status(400).json({ success: false, error: 'Email and confirmation code are required' });
+    }
 
-    // Find user by confirmation code
-//   const user = users.find((user) => user.email === email);
-  const user = users.find((user) => user.confirmationCode === code);
+    const storedCode = confirmationCodes[email];
 
-  if (user) {
-    // Remove confirmation code after successful confirmation
-    delete user.confirmationCode;
-    res.json({ success: true });
-  } else {
-    res.status(400).json({ success: false, error: 'Invalid confirmation code' });
-  }
+    if (storedCode !== code) {
+        console.log('Invalid confirmation code:', code);
+        return res.status(400).json({ success: false, error: 'Invalid confirmation code' });
+    }
+
+    console.log(`Account confirmed for ${email}`);
+    users[email].confirmed = true; // Mark user as confirmed
+    delete confirmationCodes[email]; // Remove code after successful confirmation
+    res.status(200).json({ success: true });
+
+//     // const {code, token} = req.body
+
+//     const { code } = req.body;
+//     console.log(req.body);
+
+//     // Find user by confirmation code
+// //   const user = users.find((user) => user.email === email);
+//   const user = users.find((user) => user.confirmationCode === code);
+
+//   if (user) {
+//     // Remove confirmation code after successful confirmation
+//     delete user.confirmationCode;
+//     res.json({ success: true });
+//   } else {
+//     res.status(400).json({ success: false, error: 'Invalid confirmation code' });
+//   }
 
     //=========================================//
 
@@ -180,54 +207,66 @@ router.get('/signin', function (req, res) {
     })
 })
 
-router.post('/signin', function (req, res) {
+router.post('/signin', async function (req, res) {
     const {email, password} = req.body
-
     console.log(req.body)
 
-    // Check if email and password are correct (dummy logic)
-    if (email === 'email' && password === 'password') {
-        // If credentials are correct, send success response
-        res.json({ success: true });
-    } else {
-        // If credentials are incorrect, send error response
-        res.status(401).json({ success: false, error: 'Invalid email or password' });
+    if (!email || !password) {
+        return res.status(400).json({ success: false, error: 'Email and password are required' });
     }
+
+    const user = users[email];
+
+    if (!user) {
+        return res.status(400).json({ success: false, error: 'Invalid email or password' });
+    }
+
+    if (!user.confirmed) {
+        return res.status(400).json({ success: false, error: 'Account not confirmed' });
+    }
+
+    const isPasswordValid = await bcrypt.compare(password, user.password);
+
+    if (!isPasswordValid) {
+        return res.status(400).json({ success: false, error: 'Invalid email or password' });
+    }
+
+    res.status(200).json({ success: true, token: 'dummy-token' });
 
     //===========================//
 
-    if (!email || !password) {
-        return res.status(400).json({
-            message: "Помилка. Обов'язкові поля відсутні",
-        })
-    }
+    // if (!email || !password) {
+    //     return res.status(400).json({
+    //         message: "Помилка. Обов'язкові поля відсутні",
+    //     })
+    // }
 
-    try {
-        const user = User.getByEmail(email)
+    // try {
+    //     const user = User.getByEmail(email)
 
-        if (!user) {
-            return res.status(400).json({
-                message: "Помилка. Користувач з таким email не існує",
-            })
-        }
+    //     if (!user) {
+    //         return res.status(400).json({
+    //             message: "Помилка. Користувач з таким email не існує",
+    //         })
+    //     }
 
-        if (user.password !== password) {
-            return res.status(400).json({
-                message: "Помилка. Пароль не підходить",
-            })
-        }
+    //     if (user.password !== password) {
+    //         return res.status(400).json({
+    //             message: "Помилка. Пароль не підходить",
+    //         })
+    //     }
 
-        const session = Session.create(user)
+    //     const session = Session.create(user)
 
-        return res.status(200).json({
-            message: "Ви увійшли",
-            session,
-        })
-    } catch (err) {
-        return res.status(400).json({
-            message: err.message,
-        })
-    }
+    //     return res.status(200).json({
+    //         message: "Ви увійшли",
+    //         session,
+    //     })
+    // } catch (err) {
+    //     return res.status(400).json({
+    //         message: err.message,
+    //     })
+    // }
 })
 
 //======================================================

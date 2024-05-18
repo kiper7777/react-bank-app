@@ -1,26 +1,30 @@
 import React, { useState } from "react";
+import { useNavigate } from 'react-router-dom';
 import BackButton from "./BackButton";
 import "./SignupConfirmPage.css";
 
-const SignupConfirmPage = () => {
-    const handleBackButtonClick = () => {
-        // Handle back button click logic here
-        window.history.back();
-        console.log('Back button clicked!');
-    };
+const SignupConfirmPage = ({ emailForConfirmation }) => {
+    // const handleBackButtonClick = () => {
+    //     window.history.back();
+    //     console.log('Back button clicked!');
+    // };
       
+    const navigate = useNavigate();
+    // const location = useLocation();
     const [code, setCode] = useState('');
-        
+    const [confirmationError, setConfirmationError] = useState('');
+
     const handleCodeChange = (e) => {
     setCode(e.target.value);
     };
     
-    // console.log('Confirmation code:', code);
+    console.log('Confirmation code:', code);
   
-    const handleConfirm = async () => {
+    const handleConfirm = async (e) => {
+      e.preventDefault();
       try {
-          // Log request payload before sending
-          console.log("Request payload:", { code });
+          // // Log request payload before sending
+          // console.log("Request payload:", { code });
 
           // Send confirmation code to server
           const response = await fetch('http://localhost:4000/signup-confirm', {
@@ -28,22 +32,20 @@ const SignupConfirmPage = () => {
             headers: {
               'Content-Type': 'application/json',
             },
-            body: JSON.stringify({ code }),
+            body: JSON.stringify({ email: emailForConfirmation, code }),
           });
 
           const data = await response.json();
           if (data.success) {
-              // Handle successful confirmation
-              console.log("Confirmation successful!");
-              // Redirect user or display success message
+            navigate('/signin');
+            console.log("Confirmation successful!");
           } else {
-            // Handle confirmation error
+            setConfirmationError(data.error);
             console.error("Confirmation error:", data.error);
-            // Display error message to user
           }
       } catch (error) {
-          console.error("Error during confirmation:", error.message);
-          // Handle network error or other unexpected errors
+        setConfirmationError(error.message);
+        console.error("Error during confirmation:", error.message);
       } 
       
     };
@@ -51,16 +53,19 @@ const SignupConfirmPage = () => {
     return (
     <div className='page'>
         <header>
-            <BackButton onClick={handleBackButtonClick}/>
+            <BackButton onClick={() => navigate(-1)}
+            // onClick={handleBackButtonClick}
+            />
         </header>
 
-        <form className='form'>
+        <form onSubmit={handleConfirm} className='form'>
             <h1 className='form__title'>Confirm account</h1>
             <p className='form__subtitle'>Write the code you received</p>
 
             <div className='field'>
                 <label className='field__label' type="email" name="email">Code</label>
                 <input className='field__input' 
+                  name="code"
                   type="text" 
                   id="code" 
                   placeholder='Enter Confirmation Code'
@@ -68,9 +73,10 @@ const SignupConfirmPage = () => {
                   onChange={handleCodeChange}
                   required 
                 />
+                {confirmationError && <div style={{color: 'red'}}>{confirmationError}</div>}
             </div>
                 
-            <button onClick={handleConfirm} className='form__button'>Confirm</button>
+            <button type="submit" className='form__button'>Confirm</button>
         </form>
     </div>
     );

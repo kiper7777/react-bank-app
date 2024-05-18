@@ -21,7 +21,7 @@ import BalancePage from "./component/BalancePage";
 
 function App() {
   const [signupComplete, setSignupComplete] = useState(false);
-  // const [signinComplete, setSigninComplete] = useState(false);
+  const [emailForConfirmation, setEmailForConfirmation] = useState("");
 
   const AuthContextData = {
     state: {
@@ -32,18 +32,12 @@ function App() {
       // Set the token and user in the authentication state
       AuthContextData.state.token = token;
       AuthContextData.state.user = user;
-
-      // You can also store the token and user in local storage or cookies for persistence
-
       console.log("Logged in");
     },
     logout: () => {
       // Clear the token and user from the authentication state
       AuthContextData.state.token = null;
       AuthContextData.state.user = null;
-
-      // You should also clear the token and user from local storage or cookies
-
       console.log("Logged out");
     },
   };
@@ -65,9 +59,14 @@ function App() {
             element={
               <AuthRoute>
                 {!signupComplete ? (
-                  <SignupPage setSignupComplete={setSignupComplete} />
+                  <SignupPage
+                    setSignupComplete={setSignupComplete}
+                    setEmailForConfirmation={setEmailForConfirmation}
+                  />
                 ) : (
-                  <SignupConfirmPage />
+                  <SignupConfirmPage
+                    emailForConfirmation={emailForConfirmation}
+                  />
                 )}
                 {/* <SignupPage /> */}
               </AuthRoute>
@@ -77,7 +76,9 @@ function App() {
             path="/signup-confirm"
             element={
               <PrivateRoute>
-                <SignupConfirmPage />
+                <SignupConfirmPage
+                  emailForConfirmation={emailForConfirmation}
+                />
               </PrivateRoute>
             }
           />
