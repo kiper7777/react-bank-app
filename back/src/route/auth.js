@@ -89,11 +89,11 @@ router.post('/signup', async function (req, res) {
 //============================================
 
 router.get('/signup-confirm', function (req, res) {
-    const {renew, email} = req.query
+    // const {renew, email} = req.query
 
-    if (renew) {
-        Confirm.create(email)
-    }
+    // if (renew) {
+    //     Confirm.create(email)
+    // }
 
     return res.render('signup-confirm', {
         name: 'signup-confirm',
