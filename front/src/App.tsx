@@ -9,7 +9,7 @@ import SignupConfirmPage from "./component/SignupConfirmPage";
 import SigninPage from "./component/SigninPage";
 import RecoveryPage from "./component/RecoveryPage";
 import RecoveryConfirmPage from "./component/RecoveryConfirmPage";
-import BalancePage from "./component/BalancePage";
+// import BalancePage from "./component/BalancePage";
 // import NotificationsPage from "./component/NotificationsPage";
 // import SettingsPage from "./component/SettingsPage";
 // import ReceivePage from "./component/ReceivePage";
@@ -111,14 +111,14 @@ function App() {
               </AuthRoute>
             }
           />
-          <Route
+          {/* <Route
             path="/balance"
             element={
               <PrivateRoute>
                 <BalancePage />
               </PrivateRoute>
             }
-          />
+          /> */}
           {/* <Route
             path="/notifications"
             element={

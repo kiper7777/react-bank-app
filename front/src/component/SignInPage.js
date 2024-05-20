@@ -58,9 +58,9 @@ const SigninPage = () => {
   };
 
   // Render BalancePage if signin is complete
-  if (signinComplete) {
-    return <BalancePage />;
-  }
+  // if (signinComplete) {
+  //   return <BalancePage />;
+  // }
 
   return (
    

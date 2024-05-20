@@ -43,15 +43,15 @@ const BalancePage = () => {
     console.log("Notifications button clicked!");
   };
 
-  const transactions = [
-    { id: 1, name: 'Stripe', time: '12:25', type: 'Receipt', amount: '+$125.00' },
-    { id: 2, name: 'Oleg V.', time: '12:25', type: 'Sending', amount: '-$200.50' },
-    { id: 3, name: 'Coinbase', time: '10:00', type: 'Receipt', amount: '+$1,250.00' },
-    { id: 4, name: 'Stripe', time: '12:25', type: 'Receipt', amount: '+$125.00' },
-    { id: 5, name: 'Diana K.', time: '12:20', type: 'Sending', amount: '-$125.00' },
-    { id: 6, name: 'Stripe', time: '12:25', type: 'Receipt', amount: '+$125.00' },
-    { id: 7, name: 'Stripe', time: '12:20', type: 'Receipt', amount: '+$15.00' },
-  ];
+  // const transactions = [
+  //   { id: 1, name: 'Stripe', time: '12:25', type: 'Receipt', amount: '+$125.00' },
+  //   { id: 2, name: 'Oleg V.', time: '12:25', type: 'Sending', amount: '-$200.50' },
+  //   { id: 3, name: 'Coinbase', time: '10:00', type: 'Receipt', amount: '+$1,250.00' },
+  //   { id: 4, name: 'Stripe', time: '12:25', type: 'Receipt', amount: '+$125.00' },
+  //   { id: 5, name: 'Diana K.', time: '12:20', type: 'Sending', amount: '-$125.00' },
+  //   { id: 6, name: 'Stripe', time: '12:25', type: 'Receipt', amount: '+$125.00' },
+  //   { id: 7, name: 'Stripe', time: '12:20', type: 'Receipt', amount: '+$15.00' },
+  // ];
 
    
   return (
@@ -86,7 +86,7 @@ const BalancePage = () => {
     
             <div className="card__balance">
 
-                <ul className="transaction-list">
+                {/* <ul className="transaction-list">
                   {transactions.map(transaction => (
                     <li key={transaction.id} className="transaction-item">
                       <div className="transaction-details">
@@ -99,9 +99,9 @@ const BalancePage = () => {
                       </div>
                     </li>
                   ))}
-                </ul>
+                </ul> */}
               
-                {/* <div className="card__balance-transaction">
+                <div className="card__balance-transaction">
                   <div className="card__balance-transaction__block">
                     <img
                       src={stripe}
@@ -195,7 +195,7 @@ const BalancePage = () => {
                     </div>
                   </div>
                   <div className="card__balance-transaction__amount">+$125.00</div>
-                </div> */}
+                </div>
 
             </div>
         </form>
