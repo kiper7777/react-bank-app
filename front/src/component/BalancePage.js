@@ -15,16 +15,22 @@ const BalancePage = () => {
   const [transactions, setTransactions] = useState([]);
 
   const handleReceiveMoney = () => {
-    // Simulate receiving money
+    // Logic for receiving money
     const receivedAmount = Math.floor(Math.random() * 100) + 1;
     setBalance(balance + receivedAmount);
     setTransactions([...transactions, {type: 'receive', amount: receivedAmount}]);
+    console.log('Receive button clicked');
+    // Navigate to the receive page
+    window.location.href = '/receive';
   };
 
   const handleSendMoney = () => {
-    // Simulate sending money
+    // Logic for sending money
     const sentAmount = Math.floor(Math.random() * 100) + 1;
     setTransactions([...transactions, {type: 'send', amount: sentAmount}]);
+    console.log('Send button clicked');
+    // Navigate to the send page
+    window.location.href = '/send';
   };
 
   const handleSettingsClick = () => {
@@ -37,6 +43,16 @@ const BalancePage = () => {
     console.log("Notifications button clicked!");
   };
 
+  const transactions = [
+    { id: 1, name: 'Stripe', time: '12:25', type: 'Receipt', amount: '+$125.00' },
+    { id: 2, name: 'Oleg V.', time: '12:25', type: 'Sending', amount: '-$200.50' },
+    { id: 3, name: 'Coinbase', time: '10:00', type: 'Receipt', amount: '+$1,250.00' },
+    { id: 4, name: 'Stripe', time: '12:25', type: 'Receipt', amount: '+$125.00' },
+    { id: 5, name: 'Diana K.', time: '12:20', type: 'Sending', amount: '-$125.00' },
+    { id: 6, name: 'Stripe', time: '12:25', type: 'Receipt', amount: '+$125.00' },
+    { id: 7, name: 'Stripe', time: '12:20', type: 'Receipt', amount: '+$15.00' },
+  ];
+
    
   return (
     <div className="page__balance">
@@ -44,9 +60,9 @@ const BalancePage = () => {
         <div className="header__content">
 
             <div className="header__balance">
-                <img src={settings} alt="Settings Icon" className="header__balance-image" onClick={handleSettingsClick} />
+                <img onClick={handleSettingsClick} src={settings} alt="Settings Icon" className="header__balance-image"/>
                 <h6 className="header__balance-title">Main wallet</h6>
-                <img src={notifications} alt="Notifications Icon" className="header__balance-image" onClick={handleNotificationsClick}/>
+                <img onClick={handleNotificationsClick} src={notifications} alt="Notifications Icon" className="header__balance-image"/>
             </div>
             
             <span className="balance__amount">$ 100.20</span>
@@ -70,7 +86,22 @@ const BalancePage = () => {
     
             <div className="card__balance">
 
-                <div className="card__balance-transaction">
+                <ul className="transaction-list">
+                  {transactions.map(transaction => (
+                    <li key={transaction.id} className="transaction-item">
+                      <div className="transaction-details">
+                        <div className="transaction-icon">S</div>
+                        <div className="transaction-info">
+                          <span className="transaction-name">{transaction.name}</span>
+                          <span className="transaction-time">{transaction.time} - {transaction.type}</span>
+                        </div>
+                        <span className="transaction-amount">{transaction.amount}</span>
+                      </div>
+                    </li>
+                  ))}
+                </ul>
+              
+                {/* <div className="card__balance-transaction">
                   <div className="card__balance-transaction__block">
                     <img
                       src={stripe}
@@ -164,7 +195,7 @@ const BalancePage = () => {
                     </div>
                   </div>
                   <div className="card__balance-transaction__amount">+$125.00</div>
-                </div>
+                </div> */}
 
             </div>
         </form>
