@@ -94,9 +94,10 @@ const SignupPage = ({ setSignupComplete, setEmailForConfirmation }) => {
       }
     } catch (error) {
       console.error('Error during signup:', error.message);
-    } 
+    } finally {
     setIsLoading(false); 
-
+    }
+    
     console.log('Email:', email);
     console.log('Password:', password);
     // Clear form fields
