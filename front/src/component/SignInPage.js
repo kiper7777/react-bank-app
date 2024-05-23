@@ -1,9 +1,15 @@
 import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import BackButton from './BackButton';
 import "./SigninPage.css";
-import BalancePage from './BalancePage'; // Import the BalancePage component
+// import BalancePage from './BalancePage'; // Import the BalancePage component
 
 const SigninPage = () => {
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const [error, setError] = useState('');
+  const [isLoading, setIsLoading] = useState(false);
+  const navigate = useNavigate();
 
   const handleBackButtonClick = () => {
     // Handle back button click logic here
@@ -11,10 +17,6 @@ const SigninPage = () => {
     console.log('Back button clicked!');
   };
   
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
-  const [signinComplete, setSigninComplete] = useState(false); // Track sign-in completion
-
   const handleEmailChange = (e) => {
     setEmail(e.target.value);
   };
@@ -25,6 +27,7 @@ const SigninPage = () => {
 
   const handleSignin = async (e) => {
     e.preventDefault();
+    setIsLoading(true);
     try {
       // Send signin request to server
       const response = await fetch("http://localhost:4000/signin", {
@@ -42,25 +45,26 @@ const SigninPage = () => {
       const data = await response.json();
 
       if (data.success) {
-        setSigninComplete(true);
+        navigate('/balance'); // Navigate to a protected page after signin
       } else {
-        console.error('Signin failed:', data.error);
+        setError('Invalid email or password');
       }
     } catch (error) {
-      console.error('Error during signin:', error.message);
+      setError('Error during sign in');
     }
+    setIsLoading(false);
 
-    console.log('Email:', email);
-    console.log('Password:', password);
-    // Clear form fields
-    setEmail('');
-    setPassword('');
+    // console.log('Email:', email);
+    // console.log('Password:', password);
+    // // Clear form fields
+    // setEmail('');
+    // setPassword('');
   };
 
-  // Render BalancePage if signin is complete
-  if (signinComplete) {
-    return <BalancePage />;
-  }
+  // // Render BalancePage if signin is complete
+  // if (signinComplete) {
+  //   return <BalancePage />;
+  // }
 
   return (
    
@@ -71,32 +75,40 @@ const SigninPage = () => {
 
       <form onSubmit={handleSignin} className='form'>
         <h1 className='form__title'>Sign in</h1>
-        <p className='form__subtitle'>Select login method</p>
+        <p className='form__subtitle'>Enter your credentials to access your account</p>
 
         <div className='field'>
           <label className='field__label' htmlFor='email'>Email</label>
           <input className='field__input' 
+            name="email"
             type="email" 
             id='email'
             placeholder='example@gmail.com'
             value={email} 
             onChange={handleEmailChange} 
+            required
           />
         </div>
         <div className='field'>
           <label className='field__label' htmlFor='password'>Password</label>
           <input className='field__input' 
+            name="password"
             type="password" 
             id='password'
-            placeholder='********'
+            placeholder='Enter your password'
             value={password} 
             onChange={handlePasswordChange}
+            required
           />
         </div>
 
+        {error && <div style={{ color: 'red' }}>{error}</div>}
+
         <span className='link__prefix'>Forgot your password? <a className='link' href='/recovery'>Restore</a></span>
         
-        <button type='submit' className='form__button'>Continue</button>
+        <button type='submit' className='form__button'>
+          {isLoading ? 'Signing in...' : 'Sign in'}
+        </button>
         
       </form>
     </div>

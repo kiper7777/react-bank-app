@@ -20,7 +20,6 @@ import RecoveryConfirmPage from "./component/RecoveryConfirmPage";
 // import SignupPageClass from "./component/SignupPageClass";
 
 function App() {
-  const [signupComplete, setSignupComplete] = useState(false);
   const [emailForConfirmation, setEmailForConfirmation] = useState("");
 
   const AuthContextData = {
@@ -58,17 +57,7 @@ function App() {
             path="/signup"
             element={
               <AuthRoute>
-                {!signupComplete ? (
-                  <SignupPage
-                    setSignupComplete={setSignupComplete}
-                    setEmailForConfirmation={setEmailForConfirmation}
-                  />
-                ) : (
-                  <SignupConfirmPage
-                    emailForConfirmation={emailForConfirmation}
-                  />
-                )}
-                {/* <SignupPage /> */}
+                <SignupPage setEmailForConfirmation={setEmailForConfirmation} />
               </AuthRoute>
             }
           />
@@ -86,11 +75,6 @@ function App() {
             path="/signin"
             element={
               <AuthRoute>
-                {/* {!signinComplete ? (
-                  <SigninPage setSigninComplete={setSigninComplete} />
-                ) : (
-                  <BalancePage />
-                )} */}
                 <SigninPage />
               </AuthRoute>
             }

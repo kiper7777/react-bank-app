@@ -187,6 +187,88 @@
     align-items: end;
   }
 
+  /* .balance-page {
+    padding: 20px;
+  }
+  
+  .balance-header {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 20px;
+  }
+  
+  .balance-header h1 {
+    font-size: 24px;
+    margin-bottom: 10px;
+  }
+  
+  .balance-header h2 {
+    font-size: 32px;
+    margin-bottom: 20px;
+  }
+  
+  .balance-actions {
+    display: flex;
+    gap: 20px;
+  }
+  
+  .action-button {
+    padding: 10px 20px;
+    font-size: 16px;
+    cursor: pointer;
+  }
+  
+  .transaction-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+  
+  .transaction-item {
+    display: flex;
+    align-items: center;
+    padding: 10px 0;
+    border-bottom: 1px solid #ccc;
+  }
+  
+  .transaction-details {
+    display: flex;
+    align-items: center;
+    width: 100%;
+  }
+  
+  .transaction-icon {
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    background-color: #f0f0f0;
+    margin-right: 10px;
+  }
+  
+  .transaction-info {
+    flex: 1;
+  }
+  
+  .transaction-name {
+    font-weight: bold;
+  }
+  
+  .transaction-time {
+    display: block;
+    font-size: 14px;
+    color: #666;
+  }
+  
+  .transaction-amount {
+    font-size: 16px;
+    font-weight: bold;
+  } */
+  
+
 
 
 

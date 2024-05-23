@@ -1,18 +1,17 @@
 // Підключаємо роутер до бек-енду
 const express = require('express');
 const router = express.Router();
-const crypto = require('crypto');
-const bcrypt = require('bcrypt');
 
 // Підключіть файли роутів
-const { User } = require('../class/user')
-const {Confirm} = require('../class/confirm')
-const {Session} = require('../class/session')
+// const { User } = require('../class/user')
+// const {Confirm} = require('../class/confirm')
+// const {Session} = require('../class/session')
 // const {SignupPageClass} = require('../class/SignupPageClass')
 
-// In-memory store for users and confirmation codes (in production, use a database)
-const users = [];
-let confirmationCodes = {};
+let confirmationCodes = {}; // Store confirmation codes keyed by email
+
+// // Generate a random code for confirmation
+// const generateCode = () => Math.floor(100000 + Math.random() * 900000).toString();
 
 //============================================
 router.get('/signup', function (req, res) {
@@ -28,30 +27,13 @@ router.get('/signup', function (req, res) {
     })
 })
 
-router.post('/signup', async function (req, res) {
+router.post('/signup', function (req, res) {
     const {email, password} = req.body;
 
-    if (!email || !password) {
-        return res.status(400).json({ success: false, error: 'Email and password are required' });
-    }
-
-    const hashedPassword = await bcrypt.hash(password, 10);
-
-    // Store user data (in a real app, you should check if the user already exists)
-    users[email] = { email, password: hashedPassword, confirmed: false };
-
-    const confirmationCode = crypto.randomBytes(3).toString('hex'); // Generate a simple code
+    const confirmationCode = Math.floor(100000 + Math.random() * 900000).toString();
     confirmationCodes[email] = confirmationCode;
-
-    console.log(`Generated confirmation code for ${email}: ${confirmationCode}`);
-
-    // // Save user to database (in memory for this example)
-    // users.push({ email, password, confirmationCode });
-
-    // // Send response to the client
-    // res.json({ success: true, confirmationCode });
-
-    // console.log(email, confirmationCode)
+    console.log(`Confirmation code for ${email}: ${confirmationCode}`);
+    res.json({ success: true });
 
 //=========================================================//
     // if (!email || !password) {
@@ -112,21 +94,28 @@ router.get('/signup-confirm', function (req, res) {
 router.post('/signup-confirm', function (req, res) {
     const { email, code } = req.body;
 
-    if (!email || !code) {
-        return res.status(400).json({ success: false, error: 'Email and confirmation code are required' });
-    }
+    if (confirmationCodes[email] && confirmationCodes[email] === code) {
+        delete confirmationCodes[email]; // Remove the code after successful confirmation
+        res.json({ success: true });
+      } else {
+        res.status(400).json({ success: false, error: 'Invalid confirmation code' });
+      }
 
-    const storedCode = confirmationCodes[email];
+    // if (!email || !code) {
+    //     return res.status(400).json({ success: false, error: 'Email and confirmation code are required' });
+    // }
 
-    if (storedCode !== code) {
-        console.log('Invalid confirmation code:', code);
-        return res.status(400).json({ success: false, error: 'Invalid confirmation code' });
-    }
+    // const storedCode = confirmationCodes[email];
 
-    console.log(`Account confirmed for ${email}`);
-    users[email].confirmed = true; // Mark user as confirmed
-    delete confirmationCodes[email]; // Remove code after successful confirmation
-    res.status(200).json({ success: true });
+    // if (storedCode !== code) {
+    //     console.log('Invalid confirmation code:', code);
+    //     return res.status(400).json({ success: false, error: 'Invalid confirmation code' });
+    // }
+
+    // console.log(`Account confirmed for ${email}`);
+    // users[email].confirmed = true; // Mark user as confirmed
+    // delete confirmationCodes[email]; // Remove code after successful confirmation
+    // res.status(200).json({ success: true });
 
 //     // const {code, token} = req.body
 
@@ -207,31 +196,38 @@ router.get('/signin', function (req, res) {
     })
 })
 
-router.post('/signin', async function (req, res) {
+router.post('/signin', function (req, res) {
     const {email, password} = req.body
     console.log(req.body)
 
-    if (!email || !password) {
-        return res.status(400).json({ success: false, error: 'Email and password are required' });
-    }
+    if (!users[email] || users[email].password !== password || !users[email].confirmed) {
+        return res.status(400).json({ success: false, error: 'Invalid email or password, or email not confirmed' });
+      }
+    
+      // Generate a token in a real application
+      res.json({ success: true, message: 'Signed in successfully' });
 
-    const user = users[email];
+    // if (!email || !password) {
+    //     return res.status(400).json({ success: false, error: 'Email and password are required' });
+    // }
 
-    if (!user) {
-        return res.status(400).json({ success: false, error: 'Invalid email or password' });
-    }
+    // const user = users[email];
 
-    if (!user.confirmed) {
-        return res.status(400).json({ success: false, error: 'Account not confirmed' });
-    }
+    // if (!user) {
+    //     return res.status(400).json({ success: false, error: 'Invalid email or password' });
+    // }
 
-    const isPasswordValid = await bcrypt.compare(password, user.password);
+    // if (!user.confirmed) {
+    //     return res.status(400).json({ success: false, error: 'Account not confirmed' });
+    // }
 
-    if (!isPasswordValid) {
-        return res.status(400).json({ success: false, error: 'Invalid email or password' });
-    }
+    // const isPasswordValid = await bcrypt.compare(password, user.password);
 
-    res.status(200).json({ success: true, token: 'dummy-token' });
+    // if (!isPasswordValid) {
+    //     return res.status(400).json({ success: false, error: 'Invalid email or password' });
+    // }
+
+    // res.status(200).json({ success: true, token: 'dummy-token' });
 
     //===========================//
 

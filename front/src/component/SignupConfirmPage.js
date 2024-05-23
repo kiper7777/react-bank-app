@@ -1,27 +1,28 @@
-import React, { useState } from "react";
-import { useNavigate } from 'react-router-dom';
+import React, { useState, useContext } from "react";
+import { SignupContext } from './SignupContext';
 import BackButton from "./BackButton";
 import "./SignupConfirmPage.css";
 
-const SignupConfirmPage = ({ emailForConfirmation }) => {
-    // const handleBackButtonClick = () => {
-    //     window.history.back();
-    //     console.log('Back button clicked!');
-    // };
-      
-    const navigate = useNavigate();
-    // const location = useLocation();
+const SignupConfirmPage = (setEmailForConfirmation) => {
+    const { emailForConfirmation } = useContext(SignupContext);
     const [code, setCode] = useState('');
-    const [confirmationError, setConfirmationError] = useState('');
-
-    const handleCodeChange = (e) => {
-    setCode(e.target.value);
-    };
+    const [error, setError] = useState('');
+    const [isLoading, setIsLoading] = useState(false);
     
-    console.log('Confirmation code:', code);
+    const handleBackButtonClick = () => {
+        window.history.back();
+        console.log('Back button clicked!');
+    };
+      
+    // const handleCodeChange = (e) => {
+    // setCode(e.target.value);
+    // };
+    
+    // console.log('Confirmation code:', code);
   
     const handleConfirm = async (e) => {
       e.preventDefault();
+      setIsLoading(true);
       try {
           // // Log request payload before sending
           // console.log("Request payload:", { code });
@@ -35,48 +36,51 @@ const SignupConfirmPage = ({ emailForConfirmation }) => {
             body: JSON.stringify({ email: emailForConfirmation, code }),
           });
 
+          if (!response.ok) {
+            throw new Error('Failed to confirm signup');
+          }
+
           const data = await response.json();
           if (data.success) {
-            navigate('/signin');
+            window.location.href = '/signin';
             console.log("Confirmation successful!");
           } else {
-            setConfirmationError(data.error);
-            console.error("Confirmation error:", data.error);
+            setError('Invalid confirmation code');
           }
       } catch (error) {
-        setConfirmationError(error.message);
-        console.error("Error during confirmation:", error.message);
+        setError('Error during confirmation');
       } 
-      
+      setIsLoading(false);
     };
 
     return (
     <div className='page'>
         <header>
-            <BackButton onClick={() => navigate(-1)}
-            // onClick={handleBackButtonClick}
-            />
+            <BackButton onClick={handleBackButtonClick}/>
         </header>
 
         <form onSubmit={handleConfirm} className='form'>
             <h1 className='form__title'>Confirm account</h1>
-            <p className='form__subtitle'>Write the code you received</p>
+            <p className='form__subtitle'>Enter the confirmation code sent to your email</p>
 
             <div className='field'>
-                <label className='field__label' type="email" name="email">Code</label>
+                <label className='field__label' type="email" name="email">Confirmation Code</label>
                 <input className='field__input' 
-                  name="code"
+                  name="confirmationCode"
                   type="text" 
                   id="code" 
                   placeholder='Enter Confirmation Code'
                   value={code} 
-                  onChange={handleCodeChange}
+                  onChange={setCode}
                   required 
                 />
-                {confirmationError && <div style={{color: 'red'}}>{confirmationError}</div>}
             </div>
+
+            {error && <div style={{ color: 'red' }}>{error}</div>}
                 
-            <button type="submit" className='form__button'>Confirm</button>
+            <button type="submit" className='form__button'>
+              {isLoading ? 'Confirming...' : 'Confirm'}
+            </button>
         </form>
     </div>
     );

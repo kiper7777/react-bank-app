@@ -18,7 +18,7 @@ const AuthRoute = ({ children }) => {
   }
 
   return state.token && state.user.isConfirm ? (
-    <Navigate to={`/balance/${state.user.id}`} />
+    <Navigate to={`/${state.user.id}`} />
   ) : (
     children
   );

@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import BackButton from './BackButton';
 import "./SignupPage.css";
 
@@ -7,28 +8,26 @@ import "./SignupPage.css";
 // import { Form, REG_EXP_EMAIL, REG_EXP_PASSWORD } from './script/form';
 // import { saveSession } from './script/session';
 
-const SignupPage = ({ setSignupComplete, setEmailForConfirmation }) => {
+const SignupPage = ({ setEmailForConfirmation }) => {
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const [emailDirty, setEmailDirty] = useState(false);
+  const [passwordDirty, setPasswordDirty] = useState(false);
+  const [emailError, setEmailError] = useState('Email cannot be empty');
+  const [passwordError, setPasswordError] = useState('');
+  const [formValid, setFormValid] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
+  const navigate = useNavigate();
+
   const handleBackButtonClick = () => {
     // Handle back button click logic here
     window.history.back(); 
     console.log('Back button clicked!');
   };
   
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
-  const [emailDirty, setEmailDirty] = useState(false);
-  const [passwordDirty, setPasswordDirty] = useState(false);
-  const [emailError, setEmailError] = useState('email не может быть пустым');
-  const [passwordError, setPasswordError] = useState('');
-  const [formValid, setFormValid] = useState(false);
-  
   useEffect(() => {
-    if (emailError || passwordError) {
-      setFormValid(false)
-    } else {
-      setFormValid(true)
-    }
-  }, [emailError, passwordError])
+    setFormValid(!emailError && !passwordError);
+  }, [emailError, passwordError]);
 
   const blurHandler = (e) => {
     switch (e.target.name) {
@@ -43,9 +42,6 @@ const SignupPage = ({ setSignupComplete, setEmailForConfirmation }) => {
     }
   }
   
-  // const [error, setError] = useState(null);
-  const [isLoading, setIsLoading] = useState(false);
-
   const handleEmailChange = (e) => {
     setEmail(e.target.value);
     const re = /^(([^<>()[\].,;:\s@"]+(\.[^<>()[\].,;:\s@"]+)*)|(".+"))@(([^<>()[\].,;:\s@"]+\.)+[^<>()[\].,;:\s@"]{2,})$/i;
@@ -67,8 +63,7 @@ const SignupPage = ({ setSignupComplete, setEmailForConfirmation }) => {
 
   const handleSignup = async (e) => {
     e.preventDefault();
-    // setError(null);
-    // setIsLoading(true);
+    setIsLoading(true);
     try {
       const response = await fetch("http://localhost:4000/signup", {
         method: 'POST',
@@ -85,19 +80,16 @@ const SignupPage = ({ setSignupComplete, setEmailForConfirmation }) => {
       const data = await response.json();
 
       if (data.success) {
-        setSignupComplete(true);
         setEmailForConfirmation(email);
-        // Redirect to confirmation page
-        // window.location.href = '/signup-confirm?email=' + encodeURIComponent(email);
+        navigate('/signup-confirm', { replace: true });
       } else {
         console.error('Signup failed:', data.error);
       }
     } catch (error) {
       console.error('Error during signup:', error.message);
-    } finally {
+    } 
     setIsLoading(false); 
-    }
-    
+        
     console.log('Email:', email);
     console.log('Password:', password);
     // Clear form fields
@@ -106,7 +98,7 @@ const SignupPage = ({ setSignupComplete, setEmailForConfirmation }) => {
   };
 
   // if (signupComplete) {
-  //   return <SignupConfirmation email={email} />;
+  //   return <SignupConfirmationPage email={email} />;
   // }
 
   return (
