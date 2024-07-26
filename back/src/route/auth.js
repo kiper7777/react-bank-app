@@ -13,6 +13,8 @@ let confirmationCodes = {}; // Store confirmation codes keyed by email
 // // Generate a random code for confirmation
 // const generateCode = () => Math.floor(100000 + Math.random() * 900000).toString();
 
+let users = []; // Mock database for users
+
 //============================================
 router.get('/signup', function (req, res) {
     return res.render('signup', {
