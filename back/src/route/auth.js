@@ -29,13 +29,22 @@ router.get('/signup', function (req, res) {
     })
 })
 
-router.post('/signup', function (req, res) {
-    const {email, password} = req.body;
+// Route for signup
+router.post('/signup', (req, res) => {
+    const { email, password } = req.body;
 
+    // Generate confirmation code
     const confirmationCode = Math.floor(100000 + Math.random() * 900000).toString();
-    confirmationCodes[email] = confirmationCode;
-    console.log(`Confirmation code for ${email}: ${confirmationCode}`);
-    res.json({ success: true });
+
+    // Save user to mock database (in memory for this example)
+    const newUser = { email, password, confirmationCode, confirmed: false };
+    users.push(newUser);
+
+    console.log('New user registered:', newUser);
+
+    // Send confirmation code back to the client for confirmation step
+    res.json({ success: true, confirmationCode });
+});
 
 //=========================================================//
     // if (!email || !password) {
@@ -68,16 +77,10 @@ router.post('/signup', function (req, res) {
     //         message: "Помилка створення користувача",
     //     })
     // }
-})
 
 //============================================
 
 router.get('/signup-confirm', function (req, res) {
-    // const {renew, email} = req.query
-
-    // if (renew) {
-    //     Confirm.create(email)
-    // }
 
     return res.render('signup-confirm', {
         name: 'signup-confirm',
@@ -93,15 +96,21 @@ router.get('/signup-confirm', function (req, res) {
     })
 })
 
-router.post('/signup-confirm', function (req, res) {
-    const { email, code } = req.body;
+// Route for confirmation
+router.post('/signup-confirm', (req, res) => {
+    const { code } = req.body;
 
-    if (confirmationCodes[email] && confirmationCodes[email] === code) {
-        delete confirmationCodes[email]; // Remove the code after successful confirmation
+    // Find user by confirmation code
+    const user = users.find((user) => user.confirmationCode === code);
+
+    if (user) {
+        // Mark user as confirmed
+        user.confirmed = true;
         res.json({ success: true });
-      } else {
+    } else {
         res.status(400).json({ success: false, error: 'Invalid confirmation code' });
-      }
+    }
+});
 
     // if (!email || !code) {
     //     return res.status(400).json({ success: false, error: 'Email and confirmation code are required' });
@@ -180,7 +189,6 @@ router.post('/signup-confirm', function (req, res) {
     //         message: err.message,
     //     })
     // }
-})
 
 //========================================================
 router.get('/signin', function (req, res) {
@@ -198,16 +206,26 @@ router.get('/signin', function (req, res) {
     })
 })
 
-router.post('/signin', function (req, res) {
-    const {email, password} = req.body
-    console.log(req.body)
+// Route for signin
+router.post('/signin', (req, res) => {
+    const { email, password } = req.body;
 
-    if (!users[email] || users[email].password !== password || !users[email].confirmed) {
-        return res.status(400).json({ success: false, error: 'Invalid email or password, or email not confirmed' });
-      }
+    // Find user by email and password
+    const user = users.find((user) => user.email === email && user.password === password);
+
+    if (user) {
+        if (user.confirmed) {
+            res.json({ success: true });
+        } else {
+            res.status(400).json({ success: false, error: 'Email not confirmed' });
+        }
+    } else {
+        res.status(401).json({ success: false, error: 'Invalid email or password' });
+    }
+});
     
       // Generate a token in a real application
-      res.json({ success: true, message: 'Signed in successfully' });
+    //   res.json({ success: true, message: 'Signed in successfully' });
 
     // if (!email || !password) {
     //     return res.status(400).json({ success: false, error: 'Email and password are required' });
@@ -265,7 +283,6 @@ router.post('/signin', function (req, res) {
     //         message: err.message,
     //     })
     // }
-})
 
 //======================================================
 router.get('/recovery', function (req, res) {
@@ -414,6 +431,11 @@ router.post('/balance', function (req, res) {
 
     console.log(req.body)
 })
+
+// Route to get all users (for debugging purposes)
+router.get('/users', (req, res) => {
+    res.json(users);
+});
 
 //======================================================
 // Підключаємо роутер до бек-енду
