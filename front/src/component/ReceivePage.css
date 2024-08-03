@@ -131,5 +131,37 @@
     margin-left: auto;
   }
 
+  .confirmation {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+    padding: 20px;
+  }
+  
+  .confirm-button, .cancel-button {
+    background-color: #775CE5;
+    color: #fff;
+    font-size: 16px;
+    border: none;
+    border-radius: 14px;
+    width: 150px;
+    height: 40px;
+    cursor: pointer;
+    justify-content: center;
+    align-items: center;
+    transition: opacity 0.3s;
+    margin: 10px;
+  }
+  
+  .confirm-button:hover, .cancel-button:hover {
+    background-color: #6a4ddc;
+  }
+  
+  .confirm-button:active, .cancel-button:active {
+    opacity: 0.7;
+  }
+  
+
 
     
