@@ -5,6 +5,8 @@ import SigninPage from "./component/SigninPage";
 import SignupConfirmPage from "./component/SignupConfirmPage";
 import SignupPage from "./component/SignupPage";
 import BalancePage from "./component/BalancePage";
+import SendPage from "./component/SendPage";
+import ReceivePage from "./component/ReceivePage";
 
 const App = () => {
   return (
@@ -15,6 +17,8 @@ const App = () => {
         <Route path="/signup-confirm" element={<SignupConfirmPage />} />
         <Route path="/signin" element={<SigninPage />} />
         <Route path="/balance" element={<BalancePage />} />
+        <Route path="/send" element={<SendPage />} />
+        <Route path="/receive" element={<ReceivePage />} />
       </Routes>
     </Router>
   );
