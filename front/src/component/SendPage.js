@@ -1,14 +1,10 @@
 import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import BackButton from './BackButton';
 import "./SendPage.css";
 
-
 const SendPage = () => {
-
-  const handleBackButtonClick = () => {
-    // Handle back button click logic here
-    console.log('Back button clicked!');
-  };
+  const navigate = useNavigate();
   
   const [email, setEmail] = useState('');
   const [sum, setSum] = useState('');
@@ -23,12 +19,14 @@ const SendPage = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    // Handle send money logic here
     console.log('Recipient Email:', email);
     console.log('Sum to be sent:', sum);
-    // Clear fields after submission
     setEmail('');
     setSum('');
+  };
+
+  const handleBackButtonClick = () => {
+    navigate(-1);
   };
 
   return (
@@ -39,7 +37,6 @@ const SendPage = () => {
       </header>
 
       <form className='form__send' onSubmit={handleSubmit}>
-                
         <div className='field__send'>
           <label className='field__send-label' type="email" name="email">Email</label>
           <input className='field__input' 
@@ -65,7 +62,6 @@ const SendPage = () => {
         </div>
 
         <button className='form__send-button' type="submit">Send</button>
-        
       </form>
     </div>
   );
