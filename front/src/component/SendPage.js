@@ -1,11 +1,12 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { BalanceContext } from './BalanceContext';
 import BackButton from './BackButton';
 import "./SendPage.css";
 
 const SendPage = () => {
   const navigate = useNavigate();
-  
+  const { balance, setBalance } = useContext(BalanceContext);
   const [email, setEmail] = useState('');
   const [sum, setSum] = useState('');
 
@@ -19,10 +20,15 @@ const SendPage = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log('Recipient Email:', email);
-    console.log('Sum to be sent:', sum);
-    setEmail('');
-    setSum('');
+    const amount = parseFloat(sum);
+    if (!isNaN(amount) && amount > 0 && amount <= balance) {
+      setBalance(balance - amount);
+      setEmail('');
+      setSum('');
+      navigate('/balance');
+    } else {
+      alert('Invalid amount or insufficient funds.');
+    }
   };
 
   const handleBackButtonClick = () => {
