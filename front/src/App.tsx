@@ -7,20 +7,23 @@ import SignupPage from "./component/SignupPage";
 import BalancePage from "./component/BalancePage";
 import SendPage from "./component/SendPage";
 import ReceivePage from "./component/ReceivePage";
+import { BalanceProvider } from "./component/BalanceContext";
 
 const App = () => {
   return (
-    <Router>
-      <Routes>
-        <Route path="/" element={<WelcomePage />} />
-        <Route path="/signup" element={<SignupPage />} />
-        <Route path="/signup-confirm" element={<SignupConfirmPage />} />
-        <Route path="/signin" element={<SigninPage />} />
-        <Route path="/balance" element={<BalancePage />} />
-        <Route path="/send" element={<SendPage />} />
-        <Route path="/receive" element={<ReceivePage />} />
-      </Routes>
-    </Router>
+    <BalanceProvider>
+      <Router>
+        <Routes>
+          <Route path="/" element={<WelcomePage />} />
+          <Route path="/signup" element={<SignupPage />} />
+          <Route path="/signup-confirm" element={<SignupConfirmPage />} />
+          <Route path="/signin" element={<SigninPage />} />
+          <Route path="/balance" element={<BalancePage />} />
+          <Route path="/send" element={<SendPage />} />
+          <Route path="/receive" element={<ReceivePage />} />
+        </Routes>
+      </Router>
+    </BalanceProvider>
   );
 };
 
