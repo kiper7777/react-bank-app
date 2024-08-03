@@ -33,7 +33,7 @@ const BalancePage = () => {
       setBalance(balance - Number(amount));
       setTransactions([...transactions, { type: "send", amount: amount }]);
     }
-    setShowInput(false);
+    setShowInput(true);
   };
 
   const handleSettingsClick = () => {
