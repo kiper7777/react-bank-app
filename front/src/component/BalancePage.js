@@ -44,6 +44,10 @@ const BalancePage = () => {
     }
   };
 
+  const handleTransactionClick = (id) => {
+    navigate(`/transaction/${id}`);
+  };
+
   return (
     <div className="page__balance">
       <div className='page__balance__background-image'></div>
@@ -71,7 +75,7 @@ const BalancePage = () => {
         
         <ul className="transaction-list">
           {transactions.map((transaction, index) => (
-            <li key={index} className="transaction-item">
+            <li key={index} className="transaction-item" onClick={() => handleTransactionClick(index)}>
               <div className="transaction-details">
                 <div className="transaction-icon">
                   <img src={getPaymentSystemIcon(transaction.paymentSystem)} alt={`${transaction.paymentSystem} Icon`} />

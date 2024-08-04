@@ -8,6 +8,7 @@ import BalancePage from "./component/BalancePage";
 import SendPage from "./component/SendPage";
 import ReceivePage from "./component/ReceivePage";
 import { BalanceProvider } from "./component/BalanceContext";
+import TransactionPage from "./component/TransactionPage";
 
 const App = () => {
   return (
@@ -21,6 +22,7 @@ const App = () => {
           <Route path="/balance" element={<BalancePage />} />
           <Route path="/send" element={<SendPage />} />
           <Route path="/receive" element={<ReceivePage />} />
+          <Route path="/transaction/:id" element={<TransactionPage />} />
         </Routes>
       </Router>
     </BalanceProvider>
