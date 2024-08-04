@@ -58,11 +58,11 @@ const BalancePage = () => {
 
       <div className="balance__operations">
         <div className="balance__operation">
-          <img src={receive} alt="Receive Icon" className='balance__operations-image' onClick={handleReceiveMoney}/> 
+          <img onClick={handleReceiveMoney} src={receive} alt="Receive Icon" className='balance__operations-image'/> 
           <span className="balance__operations-text">Receive</span>
         </div>
         <div className="balance__operation">
-          <img src={send} alt="Send Icon" className='balance__operations-image' onClick={handleSendMoney}/>
+          <img onClick={handleSendMoney} src={send} alt="Send Icon" className='balance__operations-image'/>
           <span className="balance__operations-text">Send</span>
         </div>
       </div>
