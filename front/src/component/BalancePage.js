@@ -65,14 +65,11 @@ const BalancePage = () => {
                   )}
                 </div>
                 <div className="transaction-info">
-                  <span className="transaction-name">
-                    {transaction.type === 'receive' ? 'Received from' : 'Sent to'} {transaction.counterparty}
+                  <span className={`transaction-system ${transaction.type}`}>
+                    {transaction.paymentSystem.toUpperCase()}
                   </span>
                   <span className="transaction-time">
                     {new Date(transaction.time).toLocaleString()}
-                  </span>
-                  <span className="transaction-system">
-                    via {transaction.paymentSystem}
                   </span>
                 </div>
                 <div className={`transaction-amount ${transaction.type}`}>
