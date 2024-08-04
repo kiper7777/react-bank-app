@@ -9,6 +9,7 @@ import SendPage from "./component/SendPage";
 import ReceivePage from "./component/ReceivePage";
 import { BalanceProvider } from "./component/BalanceContext";
 import TransactionPage from "./component/TransactionPage";
+import RecoveryPage from "./component/RecoveryPage";
 
 const App = () => {
   return (
@@ -23,6 +24,7 @@ const App = () => {
           <Route path="/send" element={<SendPage />} />
           <Route path="/receive" element={<ReceivePage />} />
           <Route path="/transaction/:id" element={<TransactionPage />} />
+          <Route path="/recovery" element={<RecoveryPage />} />
         </Routes>
       </Router>
     </BalanceProvider>
