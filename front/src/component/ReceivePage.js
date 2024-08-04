@@ -1,6 +1,6 @@
 import React, { useState, useContext } from "react";
 import { useNavigate } from "react-router-dom";
-import { BalanceContext } from "./BalanceContext";
+import { BalanceContext, TransactionsContext } from "./BalanceContext";
 import BackButton from "./BackButton";
 import "./ReceivePage.css";
 import stripe from "./svg/stripe.svg";
@@ -11,6 +11,7 @@ import coinbaseGroup from "./svg/coinbase-group.svg";
 const ReceivePage = () => {
   const navigate = useNavigate();
   const { balance, setBalance } = useContext(BalanceContext);
+  const { transactions, setTransactions } = useContext(TransactionsContext);
   const [amount, setAmount] = useState("");
   const [paymentSystem, setPaymentSystem] = useState("");
   const [confirmation, setConfirmation] = useState(false);
@@ -28,6 +29,13 @@ const ReceivePage = () => {
     const receivedAmount = parseFloat(amount);
     if (!isNaN(receivedAmount) && receivedAmount > 0) {
       setBalance(balance + receivedAmount);
+      setTransactions([...transactions, {
+        type: 'receive',
+        counterparty: paymentSystem,
+        amount: receivedAmount,
+        time: new Date().toISOString(),
+        paymentSystem: paymentSystem
+      }]);
       setAmount("");
       setPaymentSystem("");
       setConfirmation(false);

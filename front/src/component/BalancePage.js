@@ -1,6 +1,6 @@
 import React, { useContext } from "react";
 import { useNavigate } from "react-router-dom";
-import { BalanceContext } from "./BalanceContext";
+import { BalanceContext, TransactionsContext } from "./BalanceContext";
 import "./BalancePage.css";
 import settings from "./svg/settings.svg";
 import notifications from "./svg/notifications.svg";
@@ -8,8 +8,9 @@ import receive from "./svg/receive.svg";
 import send from "./svg/send.svg";
 
 const BalancePage = () => {
-  const navigate = useNavigate();
   const { balance } = useContext(BalanceContext);
+  const { transactions } = useContext(TransactionsContext);
+  const navigate = useNavigate();
 
   const handleReceiveMoney = () => {
     navigate("/receive");
@@ -45,9 +46,42 @@ const BalancePage = () => {
           <span className="balance__operations-text">Receive</span>
         </div>
         <div className="balance__operation">
-          <img src={send} alt="Send Icon" className='balance__operation-image' onClick={handleSendMoney}/>
+          <img src={send} alt="Send Icon" className='balance__operations-image' onClick={handleSendMoney}/>
           <span className="balance__operations-text">Send</span>
         </div>
+      </div>
+
+      <div className="transactions__content">
+        <h2>Transactions</h2>
+        <ul className="transaction-list">
+          {transactions.map((transaction, index) => (
+            <li key={index} className="transaction-item">
+              <div className="transaction-details">
+                <div className="transaction-icon">
+                  {transaction.type === 'receive' ? (
+                    <img src={receive} alt="Receive Icon" />
+                  ) : (
+                    <img src={send} alt="Send Icon" />
+                  )}
+                </div>
+                <div className="transaction-info">
+                  <span className="transaction-name">
+                    {transaction.type === 'receive' ? 'Received from' : 'Sent to'} {transaction.counterparty}
+                  </span>
+                  <span className="transaction-time">
+                    {new Date(transaction.time).toLocaleString()}
+                  </span>
+                  <span className="transaction-system">
+                    via {transaction.paymentSystem}
+                  </span>
+                </div>
+                <div className={`transaction-amount ${transaction.type}`}>
+                  {transaction.type === 'receive' ? '+' : '-'}${transaction.amount.toFixed(2)}
+                </div>
+              </div>
+            </li>
+          ))}
+        </ul>
       </div>
     </div>
   );

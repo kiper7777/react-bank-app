@@ -1,12 +1,13 @@
 import React, { useState, useContext } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { BalanceContext } from './BalanceContext';
+import { BalanceContext, TransactionsContext } from './BalanceContext';
 import BackButton from './BackButton';
 import "./SendPage.css";
 
 const SendPage = () => {
   const navigate = useNavigate();
   const { balance, setBalance } = useContext(BalanceContext);
+  const { transactions, setTransactions } = useContext(TransactionsContext);
   const [email, setEmail] = useState('');
   const [sum, setSum] = useState('');
 
@@ -23,6 +24,13 @@ const SendPage = () => {
     const amount = parseFloat(sum);
     if (!isNaN(amount) && amount > 0 && amount <= balance) {
       setBalance(balance - amount);
+      setTransactions([...transactions, {
+        type: 'send',
+        counterparty: email,
+        amount: amount,
+        time: new Date().toISOString(),
+        paymentSystem: 'Email'
+      }]);
       setEmail('');
       setSum('');
       navigate('/balance');

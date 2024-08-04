@@ -1,15 +1,17 @@
 import React, { createContext, useState } from 'react';
 
-const BalanceContext = createContext();
+export const BalanceContext = createContext();
+export const TransactionsContext = createContext();
 
-const BalanceProvider = ({ children }) => {
-  const [balance, setBalance] = useState(1000.00);
+export const BalanceProvider = ({ children }) => {
+  const [balance, setBalance] = useState(1000);  // Начальный баланс, можно изменить
+  const [transactions, setTransactions] = useState([]);
 
   return (
     <BalanceContext.Provider value={{ balance, setBalance }}>
-      {children}
+      <TransactionsContext.Provider value={{ transactions, setTransactions }}>
+        {children}
+      </TransactionsContext.Provider>
     </BalanceContext.Provider>
   );
 };
-
-export { BalanceContext, BalanceProvider };
