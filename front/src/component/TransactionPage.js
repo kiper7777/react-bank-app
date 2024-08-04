@@ -14,6 +14,10 @@ const TransactionPage = () => {
     navigate("/balance");
   };
 
+  if (!transaction) {
+    return <div>Transaction not found</div>;
+  }
+
   return (
     <div className="page__transaction">
       <div className="header">

@@ -1,25 +1,16 @@
-// import React, {SignUpForm} from "react";
-
-// class BackButton extends SignUpForm {
-//     static back() {
-//         return window.history.back()
-//     }
-// }
-
-// window.backButton = BackButton 
-
 import React from "react";
+import { useNavigate } from "react-router-dom";
 import backbutton from "./svg/back-button.svg";
 import "./BackButton.css";
 
 const BackButton = ({onClick}) => {
+    const navigate = useNavigate();
+
     const handleBackButtonClick = () => {
         if (onClick) {
-            // Call the onClick function passed as prop
-            onClick();
+          onClick();
         } else {
-            // Default action: navigate back in the browser history
-          window.history.back();
+          navigate(-1);
         }
     };
 
