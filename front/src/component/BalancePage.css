@@ -96,8 +96,9 @@
 }
 
 .transaction-list {
+  width: 100%;
   list-style: none;
-  padding: 0;
+  padding: 16px;
   margin: 0;
 }
 

@@ -6,6 +6,9 @@ import settings from "./svg/settings.svg";
 import notifications from "./svg/notifications.svg";
 import receive from "./svg/receive.svg";
 import send from "./svg/send.svg";
+import stripe from "./svg/stripe.svg";
+import coinbase from "./svg/coinbase.svg";
+import email from "./svg/email.svg";
 
 const BalancePage = () => {
   const { balance } = useContext(BalanceContext);
@@ -26,6 +29,19 @@ const BalancePage = () => {
 
   const handleNotificationsClick = () => {
     console.log("Notifications button clicked!");
+  };
+
+  const getPaymentSystemIcon = (paymentSystem) => {
+    switch (paymentSystem) {
+      case 'Stripe':
+        return stripe;
+      case 'Coinbase':
+        return coinbase;
+      case 'Email':
+        return email;  
+      default:
+        return null;
+    }
   };
 
   return (
@@ -52,17 +68,13 @@ const BalancePage = () => {
       </div>
 
       <div className="transactions__content">
-        <h2>Transactions</h2>
+        
         <ul className="transaction-list">
           {transactions.map((transaction, index) => (
             <li key={index} className="transaction-item">
               <div className="transaction-details">
                 <div className="transaction-icon">
-                  {transaction.type === 'receive' ? (
-                    <img src={receive} alt="Receive Icon" />
-                  ) : (
-                    <img src={send} alt="Send Icon" />
-                  )}
+                  <img src={getPaymentSystemIcon(transaction.paymentSystem)} alt={`${transaction.paymentSystem} Icon`} />
                 </div>
                 <div className="transaction-info">
                   <span className={`transaction-system ${transaction.type}`}>
