@@ -1,17 +1,11 @@
 import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import BackButton from './BackButton';
 import "./RecoveryConfirmPage.css";
-import "./RecoveryPage.css";
-
 
 const RecoveryConfirmPage = () => {
+  const navigate = useNavigate(); // Инициализация useNavigate
 
-  const handleBackButtonClick = () => {
-    // Handle back button click logic here
-    window.history.back(); // Navigate back to the previous page
-    console.log('Back button clicked!');
-  };
-  
   const [code, setCode] = useState('');
   const [newPassword, setNewPassword] = useState('');
   const [message, setMessage] = useState('');
@@ -25,10 +19,7 @@ const RecoveryConfirmPage = () => {
   };
 
   const handleRestorePassword = async () => {
-    // e.preventDefault();
-    
     try {
-      // Assuming you have an API endpoint for password recovery confirmation
       const response = await fetch('http://localhost:4000/recovery-confirm', {
         method: 'POST',
         headers: {
@@ -40,9 +31,9 @@ const RecoveryConfirmPage = () => {
       const data = await response.json();
 
       if (response.ok) {
-        // Redirect to the SigninPage component
-        window.location.href = '/signin';
         setMessage(data.message);
+        // Перенаправление на страницу входа после успешного восстановления пароля
+        navigate('/signin');
       } else {
         setMessage(data.error || 'Failed to restore password');
       }
@@ -51,17 +42,14 @@ const RecoveryConfirmPage = () => {
       setMessage('Failed to restore password');
     }
 
-    console.log('Confirmation code:', code);
-    console.log('New password:', newPassword);
-    // Clear fields after submission
-    setCode('');
-    setNewPassword('');
+    setCode(''); // Очистка поля после отправки
+    setNewPassword(''); // Очистка поля после отправки
   };
 
   return (
     <div className='page'>
       <header>
-        <BackButton onClick={handleBackButtonClick}/>
+        <BackButton onClick={() => navigate(-1)} />
       </header>
 
       <form className='form'>
@@ -70,23 +58,25 @@ const RecoveryConfirmPage = () => {
 
         <div className='field'>
           <label className='field__label' htmlFor="code">Code</label>
-          <input className='field__input' 
-            type="text" 
+          <input
+            className='field__input'
+            type="text"
             id="code"
             placeholder='Enter the code'
-            value={code} 
-            onChange={handleCodeChange} 
+            value={code}
+            onChange={handleCodeChange}
             required
           />
         </div>
 
         <div className='field'>
           <label className='field__label' htmlFor="newPassword">New password</label>
-          <input className='field__input' 
-            type="password" 
+          <input
+            className='field__input'
+            type="password"
             id="newPassword"
             placeholder='Enter your new password'
-            value={newPassword} 
+            value={newPassword}
             onChange={handleNewPasswordChange}
             required
           />
@@ -94,9 +84,7 @@ const RecoveryConfirmPage = () => {
 
         <button type="button" onClick={handleRestorePassword} className='form__button'>Restore password</button>
         {message && <p className="message">{message}</p>}
-        
       </form>
-      
     </div>
   );
 };
