@@ -35,7 +35,7 @@ const RecoveryConfirmPage = () => {
         // Перенаправление на страницу входа после успешного восстановления пароля
         navigate('/signin');
       } else {
-        setMessage(data.message || 'Failed to restore password');
+        setMessage(data.error || 'Failed to restore password');
       }
     } catch (error) {
       console.error('Error restoring password:', error);
