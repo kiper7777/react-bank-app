@@ -30,7 +30,7 @@ const RecoveryPage = () => {
         // Перенаправление на страницу подтверждения восстановления пароля
         navigate('/recovery-confirm');
       } else {
-        setMessage(data.error || 'Failed to recover password');
+        setMessage(data.message || 'Failed to recover password');
       }
     } catch (error) {
       console.error('Error recovering password:', error);

@@ -10,6 +10,7 @@ import ReceivePage from "./component/ReceivePage";
 import { BalanceProvider } from "./component/BalanceContext";
 import TransactionPage from "./component/TransactionPage";
 import RecoveryPage from "./component/RecoveryPage";
+import RecoveryConfirmPage from "./component/RecoveryConfirmPage";
 
 const App = () => {
   return (
@@ -25,6 +26,7 @@ const App = () => {
           <Route path="/receive" element={<ReceivePage />} />
           <Route path="/transaction/:id" element={<TransactionPage />} />
           <Route path="/recovery" element={<RecoveryPage />} />
+          <Route path="/recovery-confirm" element={<RecoveryConfirmPage />} />
         </Routes>
       </Router>
     </BalanceProvider>
