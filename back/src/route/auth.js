@@ -1,6 +1,16 @@
 // Підключаємо роутер до бек-енду
 const express = require('express');
 const router = express.Router();
+const User = require('./models/User'); // Модель пользователя
+const Confirm = require('./models/Confirm'); // Модель подтверждения
+
+const {
+    getUserByEmail,
+    updateUserPassword,
+    createConfirmationCode,
+    getEmailByCode,
+    deleteConfirmationCode,
+  } = require('./users');
 
 // Підключіть файли роутів
 // const { User } = require('../class/user')
@@ -300,38 +310,26 @@ router.get('/recovery', function (req, res) {
     })
 })
 
-router.post('/recovery', function (req, res) {
-    const {email} = req.body
-
-    console.log(email)
-
+router.post('/recovery', (req, res) => {
+    const { email } = req.body;
+  
     if (!email) {
-        return res.status(400).json({
-            message: "Помилка. Обов'язкові поля відсутні",
-        })
+      return res.status(400).json({ message: "Email is required" });
     }
-
-    try {
-        const user = User.getByEmail(email)
-
-        if (!user) {
-            return res.status(400).json({
-                message: "Користувач з таким email не існує",
-            })
-        }
-
-        Confirm.create(email)
-
-        return res.status(200).json({
-            message: "Код для відновлення паролю відправлено",
-        })
-    } catch (err) {
-        return res.status(400).json({
-            message: err.message,
-        })
+  
+    const user = getUserByEmail(email);
+  
+    if (!user) {
+      return res.status(400).json({ message: "User with this email does not exist" });
     }
-})
-
+  
+    const code = createConfirmationCode(email);
+    console.log(`Recovery code for ${email}: ${code}`); // Здесь вы можете отправить код пользователю на email
+  
+    return res.status(200).json({ message: "Recovery code sent" });
+  });
+  
+  
 //===================================================
 router.get('/recovery-confirm', function (req, res) {
     return res.render('recovery-confirm', {
@@ -348,68 +346,29 @@ router.get('/recovery-confirm', function (req, res) {
     })
 })
 
-router.post('/recovery-confirm', function (req, res) {
-    const {code, newPassword} = req.body
-    console.log(code, newPassword)
-    
-    // Check if code and newPassword are provided
+router.post('/recovery-confirm', (req, res) => {
+    const { code, newPassword } = req.body;
+  
     if (!code || !newPassword) {
-        return res.status(400).json({
-            error: 'Code and newPassword are required'
-            // message: "Помилка. Обов'язкові поля відсутні",
-        })
+      return res.status(400).json({ message: "Code and newPassword are required" });
     }
-
-    try {
-        const email = Confirm.getData(Number(code))
-
-        if (!email) {
-            return res.status(400).json({
-                message: "Код не існує",
-            })
-        }
-
-        const user = User.getByEmail(email)
-
-        if (!user) {
-            return res.status(400).json({
-                message: "Користувач з таким email не існує",
-            })
-        }
-
-        
-
-        // Check if the code matches
-//   const user = users.find((user) => user.confirmationCode === code);
-
-  if (user) {
-    // Update user's password
-    user.password = newPassword;
-    
-    // Remove confirmation code
-    delete user.confirmationCode;
-
-    // Handle successful password restoration
-    res.json({ success: true });
-  } else {
-    // Handle invalid code
-    res.json({ success: false, error: 'Invalid confirmation code' });
-  }
-
-        console.log(user)
-
-        const session = Session.create(user)
-
-        return res.status(200).json({
-            message: "Пароль змінено",
-            session,
-        })
-    } catch (err) {
-        return res.status(400).json({
-            message: err.message,
-        })
+  
+    const email = getEmailByCode(code);
+  
+    if (!email) {
+      return res.status(400).json({ message: "Invalid code" });
     }
-})
+  
+    const success = updateUserPassword(email, newPassword);
+  
+    if (!success) {
+      return res.status(400).json({ message: "Failed to update password" });
+    }
+  
+    deleteConfirmationCode(code);
+  
+    return res.status(200).json({ message: "Password updated successfully" });
+  });
 
 //========================================================
 router.get('/balance', function (req, res) {
