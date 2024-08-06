@@ -300,37 +300,45 @@ router.get('/recovery', function (req, res) {
     })
 })
 
-router.post('/recovery', function (req, res) {
-    const {email} = req.body
+app.post('/recovery', (req, res) => {
+    const { email } = req.body;
+    // Ваша логика для отправки кода восстановления пароля по электронной почте
+    const recoveryCode = generateRecoveryCode(); // Функция для генерации кода восстановления
+    // Сохранение кода в базе данных или временном хранилище
+    res.status(200).json({ success: true, confirmationCode: recoveryCode });
+  });
 
-    console.log(email)
+// router.post('/recovery', function (req, res) {
+//     const {email} = req.body
 
-    if (!email) {
-        return res.status(400).json({
-            message: "Помилка. Обов'язкові поля відсутні",
-        })
-    }
+//     console.log(email)
 
-    try {
-        const user = User.getByEmail(email)
+//     if (!email) {
+//         return res.status(400).json({
+//             message: "Помилка. Обов'язкові поля відсутні",
+//         })
+//     }
 
-        if (!user) {
-            return res.status(400).json({
-                message: "Користувач з таким email не існує",
-            })
-        }
+//     try {
+//         const user = User.getByEmail(email)
 
-        Confirm.create(email)
+//         if (!user) {
+//             return res.status(400).json({
+//                 message: "Користувач з таким email не існує",
+//             })
+//         }
 
-        return res.status(200).json({
-            message: "Код для відновлення паролю відправлено",
-        })
-    } catch (err) {
-        return res.status(400).json({
-            message: err.message,
-        })
-    }
-})
+//         Confirm.create(email)
+
+//         return res.status(200).json({
+//             message: "Код для відновлення паролю відправлено",
+//         })
+//     } catch (err) {
+//         return res.status(400).json({
+//             message: err.message,
+//         })
+//     }
+// })
 
 //===================================================
 router.get('/recovery-confirm', function (req, res) {

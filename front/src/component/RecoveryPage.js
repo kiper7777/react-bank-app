@@ -1,13 +1,15 @@
 import React, { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { Navigate } from "react-router-dom";
 import BackButton from "./BackButton";
 import "./RecoveryPage.css";
 
 const RecoveryPage = () => {
-  const navigate = useNavigate(); // Инициализация useNavigate
+  // const navigate = useNavigate(); // Инициализация useNavigate
 
   const [email, setEmail] = useState('');
   const [message, setMessage] = useState('');
+  const [confirmationCode, setConfirmationCode] = useState(null);
+  const [recoveryComplete, setRecoveryComplete] = useState(false);
 
   const handleEmailChange = (e) => {
     setEmail(e.target.value);
@@ -25,10 +27,12 @@ const RecoveryPage = () => {
 
       const data = await response.json();
 
-      if (response.ok) {
+      if (data.success) {
         setMessage(data.message);
-        // Перенаправление на страницу подтверждения восстановления пароля
-        navigate('/recovery-confirm');
+        setConfirmationCode(data.confirmationCode);
+        setRecoveryComplete(true);
+        // // Перенаправление на страницу подтверждения восстановления пароля
+        // navigate('/recovery-confirm');
       } else {
         setMessage(data.error || 'Failed to recover password');
       }
@@ -40,10 +44,14 @@ const RecoveryPage = () => {
     setEmail(''); // Очистка поля после отправки
   };
 
+  if (recoveryComplete) {
+    return <Navigate to="/recovery-confirm" state={{ confirmationCode, newPassword }} />;
+  }
+
   return (
     <div className='page'>
       <header>
-        <BackButton onClick={() => navigate(-1)} />
+        <BackButton onClick={() => window.history.back()} />
       </header>
 
       <form className='form'>
