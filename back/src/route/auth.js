@@ -356,68 +356,78 @@ router.get('/recovery-confirm', function (req, res) {
     })
 })
 
-router.post('/recovery-confirm', function (req, res) {
-    const {code, newPassword} = req.body
-    console.log(code, newPassword)
-    
-    // Check if code and newPassword are provided
-    if (!code || !newPassword) {
-        return res.status(400).json({
-            error: 'Code and newPassword are required'
-            // message: "Помилка. Обов'язкові поля відсутні",
-        })
+app.post('/recovery-confirm', (req, res) => {
+    const { code, newPassword } = req.body;
+    // Ваша логика для проверки кода восстановления и обновления пароля
+    if (isValidRecoveryCode(code)) {
+      // Обновление пароля в базе данных или временном хранилище
+      res.status(200).json({ success: true, message: 'Password updated successfully' });
+    } else {
+      res.status(400).json({ success: false, error: 'Invalid recovery code' });
     }
+  });
+// router.post('/recovery-confirm', function (req, res) {
+//     const {code, newPassword} = req.body
+//     console.log(code, newPassword)
+    
+//     // Check if code and newPassword are provided
+//     if (!code || !newPassword) {
+//         return res.status(400).json({
+//             error: 'Code and newPassword are required'
+//             // message: "Помилка. Обов'язкові поля відсутні",
+//         })
+//     }
 
-    try {
-        const email = Confirm.getData(Number(code))
+//     try {
+//         const email = Confirm.getData(Number(code))
 
-        if (!email) {
-            return res.status(400).json({
-                message: "Код не існує",
-            })
-        }
+//         if (!email) {
+//             return res.status(400).json({
+//                 message: "Код не існує",
+//             })
+//         }
 
-        const user = User.getByEmail(email)
+//         const user = User.getByEmail(email)
 
-        if (!user) {
-            return res.status(400).json({
-                message: "Користувач з таким email не існує",
-            })
-        }
+//         if (!user) {
+//             return res.status(400).json({
+//                 message: "Користувач з таким email не існує",
+//             })
+//         }
 
         
 
-        // Check if the code matches
-//   const user = users.find((user) => user.confirmationCode === code);
+//         // Check if the code matches
+// //   const user = users.find((user) => user.confirmationCode === code);
 
-  if (user) {
-    // Update user's password
-    user.password = newPassword;
+//   if (user) {
+//     // Update user's password
+//     user.password = newPassword;
     
-    // Remove confirmation code
-    delete user.confirmationCode;
+//     // Remove confirmation code
+//     delete user.confirmationCode;
 
-    // Handle successful password restoration
-    res.json({ success: true });
-  } else {
-    // Handle invalid code
-    res.json({ success: false, error: 'Invalid confirmation code' });
-  }
+//     // Handle successful password restoration
+//     res.json({ success: true });
+//   } else {
+//     // Handle invalid code
+//     res.json({ success: false, error: 'Invalid confirmation code' });
+//   }
 
-        console.log(user)
+//         console.log(user)
 
-        const session = Session.create(user)
+//         const session = Session.create(user)
 
-        return res.status(200).json({
-            message: "Пароль змінено",
-            session,
-        })
-    } catch (err) {
-        return res.status(400).json({
-            message: err.message,
-        })
-    }
-})
+//         return res.status(200).json({
+//             message: "Пароль змінено",
+//             session,
+//         })
+//     } catch (err) {
+//         return res.status(400).json({
+//             message: err.message,
+//         })
+//     }
+// })
 
 //========================================================
 router.get('/balance', function (req, res) {

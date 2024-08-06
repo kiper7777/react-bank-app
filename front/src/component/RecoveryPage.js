@@ -45,7 +45,7 @@ const RecoveryPage = () => {
   };
 
   if (recoveryComplete) {
-    return <Navigate to="/recovery-confirm" state={{ confirmationCode, newPassword }} />;
+    return <Navigate to="/recovery-confirm" state={{ confirmationCode }} />;
   }
 
   return (
