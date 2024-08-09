@@ -1,4 +1,53 @@
-.user-list-container {
+/* Основной контейнер */
+div {
+  margin: 20px;
+  padding: 20px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  background-color: #f9f9f9;
+}
+
+/* Заголовок */
+h1 {
+  font-size: 24px;
+  margin-bottom: 20px;
+  color: #333;
+  text-align: center;
+}
+
+/* Таблица */
+table {
+  width: 100%;
+  border-collapse: separate;
+}
+
+/* Заголовки таблицы */
+thead th {
+  background-color: #4CAF50;
+  color: white;
+  text-align: left;
+  padding: 12px;
+  border-bottom: 2px solid #ddd;
+}
+
+/* Ячейки таблицы */
+tbody td {
+  padding: 12px;
+  border-bottom: 1px solid #ddd;
+}
+
+/* Цвет чередующихся строк */
+tbody tr:nth-child(even) {
+  background-color: #f2f2f2;
+}
+
+/* Стиль для последней строки (без границы снизу) */
+tbody tr:last-child td {
+  border-bottom: none;
+}
+
+
+/* .user-list-container {
     max-width: 600px;
     margin: 0 auto;
   }
@@ -23,5 +72,5 @@
   
   .user-email {
     color: #666;
-  }
+  } */
   
