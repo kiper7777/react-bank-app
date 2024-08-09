@@ -14,56 +14,6 @@ let users = [
     return crypto.randomBytes(3).toString('hex'); // Генерируем 6-значный код
   };
   
-  // Маршрут для отправки кода восстановления
-  router.post('/recovery', (req, res) => {
-    const { email } = req.body;
-  
-    if (!email) {
-      return res.status(400).json({ success: false, message: 'Email is required' });
-    }
-  
-    // Поиск пользователя по email
-    const user = users.find(u => u.email === email);
-  
-    if (!user) {
-      return res.status(404).json({ success: false, message: 'User with this email does not exist' });
-    }
-  
-    // Генерация кода восстановления
-    const recoveryCode = generateRecoveryCode();
-  
-    // Сохранение кода восстановления в памяти
-    recoveryCodes[email] = recoveryCode;
-  
-    // В реальном приложении здесь бы отправили код на email
-    console.log(`Generated recovery code for ${email}: ${recoveryCode}`);
-  
-    return res.status(200).json({ success: true, message: 'Recovery code sent', confirmationCode: recoveryCode });
-  });
-  
-  // Маршрут для подтверждения кода и изменения пароля
-  router.post('/recovery-confirm', (req, res) => {
-    const { email, code, newPassword } = req.body;
-  
-    if (!email || !code || !newPassword) {
-      return res.status(400).json({ success: false, message: 'All fields are required' });
-    }
-  
-    // Проверка кода восстановления
-    if (recoveryCodes[email] !== code) {
-      return res.status(400).json({ success: false, message: 'Invalid recovery code' });
-    }
-  
-    // Обновление пароля пользователя
-    const user = users.find(u => u.email === email);
-    user.password = newPassword;
-  
-    // Удаление использованного кода восстановления
-    delete recoveryCodes[email];
-  
-    return res.status(200).json({ success: true, message: 'Password updated successfully' });
-  });
-
 // Підключіть файли роутів
 // const { User } = require('../class/user')
 // const {Confirm} = require('../class/confirm')
@@ -362,6 +312,33 @@ router.get('/recovery', function (req, res) {
     })
 })
 
+// Маршрут для отправки кода восстановления
+router.post('/recovery', (req, res) => {
+    const { email } = req.body;
+  
+    if (!email) {
+      return res.status(400).json({ success: false, message: 'Email is required' });
+    }
+  
+    // Поиск пользователя по email
+    const user = users.find(u => u.email === email);
+  
+    if (!user) {
+      return res.status(404).json({ success: false, message: 'User with this email does not exist' });
+    }
+  
+    // Генерация кода восстановления
+    const recoveryCode = generateRecoveryCode();
+  
+    // Сохранение кода восстановления в памяти
+    recoveryCodes[email] = recoveryCode;
+  
+    // В реальном приложении здесь бы отправили код на email
+    console.log(`Generated recovery code for ${email}: ${recoveryCode}`);
+  
+    return res.status(200).json({ success: true, message: 'Recovery code sent', confirmationCode: recoveryCode });
+  });
+
 // router.post('/recovery', (req, res) => {
 //     const { email } = req.body;
 //     // Ваша логика для отправки кода восстановления пароля по электронной почте
@@ -417,6 +394,29 @@ router.get('/recovery-confirm', function (req, res) {
         data: {},
     })
 })
+
+// Маршрут для подтверждения кода и изменения пароля
+router.post('/recovery-confirm', (req, res) => {
+    const { email, code, newPassword } = req.body;
+  
+    if (!email || !code || !newPassword) {
+      return res.status(400).json({ success: false, message: 'All fields are required' });
+    }
+  
+    // Проверка кода восстановления
+    if (recoveryCodes[email] !== code) {
+      return res.status(400).json({ success: false, message: 'Invalid recovery code' });
+    }
+  
+    // Обновление пароля пользователя
+    const user = users.find(u => u.email === email);
+    user.password = newPassword;
+  
+    // Удаление использованного кода восстановления
+    delete recoveryCodes[email];
+  
+    return res.status(200).json({ success: true, message: 'Password updated successfully' });
+  });
 
 // app.post('/recovery-confirm', (req, res) => {
 //     const { code, newPassword } = req.body;
