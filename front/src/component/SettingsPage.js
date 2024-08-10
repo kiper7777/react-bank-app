@@ -6,13 +6,14 @@ import "./SettingsPage.css";
 
 const SettingsPage = () => {
   const navigate = useNavigate();
-  const [email, setEmail] = useState('');
+  // const [email, setEmail] = useState('');
+  const [newEmail, setNewEmail] = useState('');
   const [oldPassword, setOldPassword] = useState('');
   const [newPassword, setNewPassword] = useState('');
   const [message, setMessage] = useState('');
 
-  const handleEmailChange = (e) => {
-    setEmail(e.target.value);
+  const handleNewEmailChange = (e) => {
+    setNewEmail(e.target.value);
   };
 
   const handleOldPasswordChange = (e) => {
@@ -31,12 +32,13 @@ const SettingsPage = () => {
         headers: {
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify({ email }),
+        body: JSON.stringify({ newEmail, oldPassword }),
       });
 
       const data = await response.json();
 
       if (data.success) {
+        setNewEmail();
         setMessage('Email updated successfully');
       } else {
         setMessage(data.error || 'Failed to update email');
@@ -91,8 +93,8 @@ const SettingsPage = () => {
           <input className='field__input' 
             type="email" 
             placeholder='example@gmail.com'
-            value={email} 
-            onChange={handleEmailChange} 
+            value={newEmail} 
+            onChange={handleNewEmailChange} 
             required
           />
         </div>
@@ -139,10 +141,10 @@ const SettingsPage = () => {
         <hr className='divider'/>
 
         <button className='form__button-red' onClick={handleLogout}>Log out</button>
+
+        {message && <p className="message">{message}</p>}
         
       </form>
-
-      {message && <p className="message">{message}</p>}
 
     </div>
   );
