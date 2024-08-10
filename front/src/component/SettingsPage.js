@@ -109,11 +109,11 @@ const SettingsPage = () => {
         </div>
 
         <button className='form__button-white' type="submit">Save Email</button>
-      <form/> 
+      </form> 
 
       <hr className='divider'/> 
       
-      <form className='form__settings' onSubmit={handlePasswordSubmit}></form>
+      <form className='form__settings' onSubmit={handlePasswordSubmit}>
         <div className='field'>
           <h6 className='field__settings-title'>Change password</h6>  
           <label className='field__settings-label' type="password" name="password">Old Password</label>
