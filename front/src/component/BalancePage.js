@@ -30,6 +30,7 @@ const BalancePage = () => {
 
   const handleNotificationsClick = () => {
     console.log("Notifications button clicked!");
+    navigate("/notifications");
   };
 
   const getPaymentSystemIcon = (paymentSystem) => {

@@ -13,6 +13,7 @@ import RecoveryPage from "./component/RecoveryPage";
 import RecoveryConfirmPage from "./component/RecoveryConfirmPage";
 import UsersList from "./component/UserList";
 import SettingsPage from "./component/SettingsPage";
+import NotificationsPage from "./component/NotificationsPage";
 
 const App = () => {
   return (
@@ -31,6 +32,7 @@ const App = () => {
           <Route path="/recovery-confirm" element={<RecoveryConfirmPage />} />
           <Route path="/users" element={<UsersList />} />
           <Route path="/settings" element={<SettingsPage />} />
+          <Route path="/notifications" element={<NotificationsPage />} />
         </Routes>
       </Router>
     </BalanceProvider>
