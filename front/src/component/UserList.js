@@ -19,7 +19,7 @@ const UsersList = () => {
   }, []);
 
   return (
-    <div>
+    <div className='user-list-container'>
       <h1>Registered Users</h1>
       <table>
         <thead>
