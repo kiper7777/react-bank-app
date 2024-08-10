@@ -1,131 +1,126 @@
 .page__settings {
-    width: 394px;
-    height: 852px;
-    margin: 10px;
-    border: 1px solid #775CE5;
-    border-radius: 28px;
-  }
+  width: 394px;
+  height: 852px;
+  margin: 10px;
+  border: 1px solid #775CE5;
+  border-radius: 28px;
+}
 
-  .header {
-    display: flex;
-    /* align-items: center; */
-    align-items: baseline;
-    /* margin: 52px 92px 14px 14px; */
-  }
-    
-  .form__settings {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    padding: 14px;
-    background-color: #fff;
-    gap: 20px;
-  }
+.header {
+  display: flex;
+  align-items: baseline;
+}
 
-  .header__settings-title {
-    margin-right: 48px;
-    font-size: 20px;
-    line-height: 100%;
-    font-weight: 500;
-    color: #121212;
-    text-align: center;
-    flex-grow: 1;
-   }
+.form__settings {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 14px;
+  background-color: #fff;
+  gap: 20px;
+}
 
-  .field__settings-title {
-    font-size: 16px;
-    line-height: 100%;
-    font-weight: 500;
-    color: #121212;
-  }
-  
-  .field__settings {
-    /* align-self: start;
-    font-size: 14px;
-    color: #1D1D1F; */
-    display: flex;
-    flex-direction: column;
-    gap: 8px;
-    width: 352px;
-  }
-  
-  .field__settings-label {
-    /* display: block; */
-    font-size: 14px;
-    color: #1D1D1F;
-    margin: 0;
-  }
-  
-  .field__input {
-    border: 1px solid #E9E8EB;
-    border-radius: 12px;
-    height: 54px;
-    gap: 16px;
-    padding: 16px 20px;
-    font-size: 14px;
-    color: #1D1D1F;
-    transition: border-color 0.3s;
-  }
-  
-  .field__input::placeholder {
-    color: gray;
-  }
-  
-  .field__input:hover {
-    border-color: #775CE5;
-  }
-  
-  .field__input:focus {
-    border-color: #ce0e0e;
-  }
-  
-  .form__button-white {
-    background-color: #fff;
-    color: #775CE5;
-    font-size: 14px;
-    border: 1px solid #775CE5;
-    border-radius: 14px;
-    width: 352px;
-    height: 56px;
-    cursor: pointer;
-    justify-content: center;
-    align-items: center;
-  
-    transition: opacity 0.3s;
-      &:hover {
-        background-color: #775CE5;
-        color: #fff;
-      }
-      &:active {
-        opacity: 0.7; 
-      }
-  }
+.header__settings-title {
+  margin-right: 48px;
+  font-size: 20px;
+  line-height: 100%;
+  font-weight: 500;
+  color: #121212;
+  text-align: center;
+  flex-grow: 1;
+}
 
-  .form__button-red {
-    background-color: #fff;
-    color: #F23152;
-    font-size: 14px;
-    border: 1px solid #F23152;
-    border-radius: 14px;
-    width: 352px;
-    height: 56px;
-    cursor: pointer;
-    justify-content: center;
-    align-items: center;
-  
-    transition: opacity 0.3s;
-      &:hover {
-        background-color: #F23152;
-        color: #fff;
-      }
-      &:active {
-        opacity: 0.7; 
-      }
-  }
+.field__settings-title {
+  font-size: 16px;
+  line-height: 100%;
+  font-weight: 500;
+  color: #121212;
+}
 
-  .divider {
-    border: 1px solid #E9E8EB;
-    width: 352px;
-    margin: auto;
-  }
-    
+.field__settings {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  width: 352px;
+}
+
+.field__settings-label {
+  font-size: 14px;
+  color: #1D1D1F;
+  margin: 0;
+}
+
+.field__input {
+  border: 1px solid #E9E8EB;
+  border-radius: 12px;
+  height: 54px;
+  gap: 16px;
+  padding: 16px 20px;
+  font-size: 14px;
+  color: #1D1D1F;
+  transition: border-color 0.3s;
+}
+
+.field__input::placeholder {
+  color: gray;
+}
+
+.field__input:hover {
+  border-color: #775CE5;
+}
+
+.field__input:focus {
+  border-color: #ce0e0e;
+}
+
+.form__button-white {
+  background-color: #fff;
+  color: #775CE5;
+  font-size: 14px;
+  border: 1px solid #775CE5;
+  border-radius: 14px;
+  width: 352px;
+  height: 56px;
+  cursor: pointer;
+  justify-content: center;
+  align-items: center;
+  transition: opacity 0.3s;
+}
+
+.form__button-white:hover {
+  background-color: #775CE5;
+  color: #fff;
+}
+
+.form__button-white:active {
+  opacity: 0.7;
+}
+
+.form__button-red {
+  background-color: #fff;
+  color: #F23152;
+  font-size: 14px;
+  border: 1px solid #F23152;
+  border-radius: 14px;
+  width: 352px;
+  height: 56px;
+  cursor: pointer;
+  justify-content: center;
+  align-items: center;
+  transition: opacity 0.3s;
+}
+
+.form__button-red:hover {
+  background-color: #F23152;
+  color: #fff;
+}
+
+.form__button-red:active {
+  opacity: 0.7;
+}
+
+.divider {
+  border: 1px solid #E9E8EB;
+  width: 352px;
+  margin: auto;
+}

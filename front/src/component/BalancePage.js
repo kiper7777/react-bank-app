@@ -25,6 +25,7 @@ const BalancePage = () => {
 
   const handleSettingsClick = () => {
     console.log("Settings button clicked!");
+    navigate("/settings");
   };
 
   const handleNotificationsClick = () => {

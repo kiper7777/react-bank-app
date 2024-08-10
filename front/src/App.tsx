@@ -12,6 +12,7 @@ import TransactionPage from "./component/TransactionPage";
 import RecoveryPage from "./component/RecoveryPage";
 import RecoveryConfirmPage from "./component/RecoveryConfirmPage";
 import UsersList from "./component/UserList";
+import SettingsPage from "./component/SettingsPage";
 
 const App = () => {
   return (
@@ -29,6 +30,7 @@ const App = () => {
           <Route path="/recovery" element={<RecoveryPage />} />
           <Route path="/recovery-confirm" element={<RecoveryConfirmPage />} />
           <Route path="/users" element={<UsersList />} />
+          <Route path="/settings" element={<SettingsPage />} />
         </Routes>
       </Router>
     </BalanceProvider>
