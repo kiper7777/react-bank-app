@@ -1,7 +1,8 @@
 // Підключаємо роутер до бек-енду
-const express = require('express')
-const router = express.Router()
-const crypto = require('crypto')
+const express = require('express');
+const router = express.Router();
+const crypto = require('crypto');
+const bcrypt = require('bcrypt');
 
 // Підключіть файли роутів
 // const { User } = require('../class/user')
@@ -14,18 +15,20 @@ let confirmationCodes = {} // Store confirmation codes keyed by email
 // let users = []; // Mock database for users
 
 // Временное хранилище пользователей и кодов восстановления
+// Пример пользователей (в реальном приложении используйте базу данных)
 let users = [
   {
     email: 'ivan@ukr.net',
-    password: '123',
+    password: '$2b$10$KIX6Q9YzFkG5XxZHmTWIw.ZJ8W9/I4DxKgf/FV3U1ET3T5Ym0hvF.', // хеш для "123"
     confirmed: true,
   },
   {
     email: 'pulka@inbox.eu',
-    password: '123',
+    password: '$2b$10$KIX6Q9YzFkG5XxZHmTWIw.ZJ8W9/I4DxKgf/FV3U1ET3T5Ym0hvF.', // хеш для "123"
     confirmed: true,
   },
-]
+];
+
 let recoveryCodes = {}
 
 // Функция для генерации случайного кода восстановления
@@ -586,6 +589,33 @@ router.post('/balance', function (req, res) {
 router.get('/users', (req, res) => {
   res.json(users)
 })
+
+// Маршрут для обновления email и пароля
+router.post('/settings', async (req, res) => {
+  const { action, newEmail, oldPassword, newPassword } = req.body;
+
+  // В реальном приложении здесь должна быть проверка аутентификации пользователя
+  const user = users[0];
+
+  if (action === 'updateEmail') {
+    const passwordMatch = await bcrypt.compare(oldPassword, user.password);
+    if (!passwordMatch) {
+      return res.status(400).json({ success: false, error: 'Invalid old password' });
+    }
+    user.email = newEmail;
+    res.json({ success: true, message: 'Email updated successfully' });
+  } else if (action === 'updatePassword') {
+    const passwordMatch = await bcrypt.compare(oldPassword, user.password);
+    if (!passwordMatch) {
+      return res.status(400).json({ success: false, error: 'Invalid old password' });
+    }
+    const hashedNewPassword = await bcrypt.hash(newPassword, 10);
+    user.password = hashedNewPassword;
+    res.json({ success: true, message: 'Password updated successfully' });
+  } else {
+    res.status(400).json({ success: false, error: 'Invalid action' });
+  }
+});
 
 //======================================================
 // Підключаємо роутер до бек-енду
