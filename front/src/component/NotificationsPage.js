@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import { useNavigate } from 'react-router-dom';
 import BackButton from "./BackButton";
 import "./NotificationsPage.css";
 import announcement from "./svg/announcement.svg";
@@ -6,6 +7,7 @@ import warning from "./svg/warning.svg";
 
 const NotificationsPage = () => {
   const [notifications, setNotifications] = useState([]);
+  const navigate = useNavigate();
 
   useEffect(() => {
     // Функция для добавления нового уведомления
@@ -33,14 +35,14 @@ const NotificationsPage = () => {
     };
   }, []);
 
-  const handleBackButtonClick = () => {
-    console.log("Back button clicked!");
-  };
+  // const handleBackButtonClick = () => {
+  //   console.log("Back button clicked!");
+  // };
 
   return (
     <div className="page__notifications">
       <div className="header">
-        <BackButton onClick={handleBackButtonClick} />
+      <BackButton onClick={() => navigate(-1)} />
         <h1 className="header__notifications-title">Notifications</h1>
       </div>
 
