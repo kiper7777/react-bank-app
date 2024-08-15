@@ -23,7 +23,7 @@ let users = [
   },
   {
     email: 'pulka@inbox.eu',
-    password: '$2b$10$KIX6Q9YzFkG5XxZHmTWIw.ZJ8W9/I4DxKgf/FV3U1ET3T5Ym0hvF.', // хеш для "123"
+    password: '$2b$10$.ZJ8W9/I4DxKgf/FV3U1ET3T5Ym0hvF.', // хеш для "123"
     confirmed: true,
   },
 ];
