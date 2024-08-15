@@ -15,11 +15,10 @@ let confirmationCodes = {} // Store confirmation codes keyed by email
 // let users = []; // Mock database for users
 
 // Временное хранилище пользователей и кодов восстановления
-// Пример пользователей (в реальном приложении используйте базу данных)
 let users = [
   {
     email: 'ivan@ukr.net',
-    password: '$2b$10$KIX6Q9YzFkG5XxZHmTWIw.ZJ8W9/I4DxKgf/FV3U1ET3T5Ym0hvF.', // хеш для "123"
+    password: '$2b$10$.ZJ8W9/I4DxKgf/FV3U1ET3T5Ym0hvF.', // хеш для "123"
     confirmed: true,
   },
   {
